@@ -1,3 +1,6 @@
 [submodule "emacs/.emacs.d"]
 	path = emacs/.emacs.d
 	url = https://github.com/hlissner/doom-emacs.git
+[submodule "oh-my-zsh/.oh-my-zsh/themes/powerlevel10k"]
+	path = oh-my-zsh/.oh-my-zsh/themes/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
