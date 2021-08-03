@@ -1,0 +1,15 @@
+#+TITLE: dotfiles
+
+All my config files for Emacs, Zsh, OMZ, and Powerlevel10k
+
+Using GNU Stow to link the dotfiles in the required directories
+
+#+begin_src sh
+sudo apt install stow
+#+end_src
+
+-----
+
+#+begin_src markdown
+<font size=0.5>_Courtesy: [Ish Bosamiya](https://github.com/ishbosamiya)_</font>
+#+end_src
