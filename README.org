@@ -10,6 +10,4 @@ sudo apt install stow
 
 -----
 
-#+begin_src markdown
-<font size=0.5>_Courtesy: [Ish Bosamiya](https://github.com/ishbosamiya)_</font>
-#+end_src
+/Courtesy: [[https://github.com/ishbosamiya][Ish Bosamiya]]/
