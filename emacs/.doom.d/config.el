@@ -74,4 +74,4 @@
 (setq confirm-kill-emacs nil)
 
 ;;Launch Emacs in full screen
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
+;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
