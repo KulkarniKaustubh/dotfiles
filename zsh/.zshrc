@@ -32,10 +32,10 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="false"
 
 # Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
+# DISABLE_UPDATE_PROMPT="false"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -181,7 +181,7 @@ alias p3="python3"
 alias cls="clear"
 
 # ROS setup file
-source /opt/ros/noetic/setup.zsh
+# source /opt/ros/noetic/setup.zsh
 
 # envmerger alias
 alias envmerger="source envmerger"
