@@ -196,3 +196,4 @@ then
     unfunction preexec
     PS1='$ '
 fi
+alias emacs="emacsclient -c"
