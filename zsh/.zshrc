@@ -122,6 +122,7 @@ alias c..='cd ..'
 
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/cuda/bin
 export PATH=$PATH:/usr/local/cuda/bin:/home/kaustubh/.cargo/bin
+export PATH=$PATH:/home/kaustubh/.local/bin
 # export PATH=$PATH:~/scripts
 
 # pip zsh completion start
@@ -196,4 +197,4 @@ then
     unfunction preexec
     PS1='$ '
 fi
-alias emacs="emacsclient -c"
+alias e="emacsclient -c"
