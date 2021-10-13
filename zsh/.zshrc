@@ -198,3 +198,4 @@ then
     PS1='$ '
 fi
 alias e="emacsclient -c"
+alias caprepo="c ~/Research/capstone/code/repos/CapstoneProject; source ~/Envs/capstone/bin/activate"
