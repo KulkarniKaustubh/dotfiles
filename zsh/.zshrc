@@ -3,46 +3,30 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 bindkey -e
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
 # End of lines configured by zsh-newuser-install
 
+# fixing control + left/right in zsh
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
+# sourcing plugins, themes, etc.
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# end
 
-alias c='cd'
-# alias ll='ls -l'
-# alias la='ls -A'
-# alias l='ls -CF'
-# alias lla='ls -alF'
-alias ls='exa'
-alias ll='exa -l'
-alias la='exa -a'
-alias lla='exa -laF'
-alias l="ls"
-alias c..='cd ..'
+# ROS setup file
+# source /opt/ros/noetic/setup.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# add binaries to $PATH
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/cuda/bin
 export PATH=$PATH:/usr/local/cuda/bin:/home/kaustubh/.cargo/bin
 export PATH=$PATH:/home/kaustubh/.local/bin
-# export PATH=$PATH:~/scripts
-
-# pip zsh completion start
-function _pip_completion {
-  local words cword
-  read -Ac words
-  read -cn cword
-  reply=( $( COMP_WORDS="$words[*]" \
-             COMP_CWORD=$(( cword-1 )) \
-             PIP_AUTO_COMPLETE=1 $words[1] 2>/dev/null ))
-}
-compctl -K _pip_completion pip3
-# pip zsh completion end
-
+# end of $PATH exports
 
 # pip zsh completion start
 function _pip_completion {
@@ -78,22 +62,9 @@ command_not_found_handler () {
 alias gst="git status"
 alias ga="git add"
 alias gcm="git commit -m"
+# end of git aliases
 
-alias cat="batcat"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-alias p="python"
-alias p3="python3"
-alias cls="clear"
-
-# ROS setup file
-# source /opt/ros/noetic/setup.zsh
-
-# envmerger alias
-alias envmerger="source envmerger"
-
-# getting Emacs tramp to work
+# getting Emacs tramp to work with zsh
 if [[ "$TERM" == "dumb" ]]
 then
     unsetopt zle
@@ -103,5 +74,29 @@ then
     unfunction preexec
     PS1='$ '
 fi
+
+# start of aliases
+alias c='cd'
+
+# alias ll='ls -l'
+# alias la='ls -A'
+# alias l='ls -CF'
+# alias lla='ls -alF'
+
+alias ls='exa'
+alias ll='exa -l'
+alias la='exa -a'
+alias lla='exa -laF'
+alias l="ls"
+alias c..='cd ..'
+
+alias cat="batcat"
+
+alias p="python"
+alias p3="python3"
+alias cls="clear"
+
+alias envmerger="source envmerger"
+
 alias e="emacsclient -c"
-alias caprepo="c ~/Research/capstone/code/repos/CapstoneProject; source ~/Envs/capstone/bin/activate"
+# end of aliases
