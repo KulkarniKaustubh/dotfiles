@@ -13,9 +13,12 @@
 ;; Make ESC or C-[ quit prompts to satisfy my addiction
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
 
+;; Enable the use SPC as a prefix in emacs
+;; (general-def :states '(normal motion emacs) "SPC" nil)
+;; (define-key evil-motion-state-map (kbd "SPC") nil)
+
 ;; Initialize package resources
 (require 'package)
-
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
 			 ("org" . "https://orgmode.org/elpa/")
 			 ("elpa" . "https://elpa.gnu.org/packages/")))
@@ -57,7 +60,7 @@
   :ensure t
   :init (doom-modeline-mode 1)
   :config
-  (setq doom-modeline-height 5))
+  (setq doom-modeline-height 5)) ;; This isn't working for some reason
 
 ;; Install doom themes
 (use-package doom-themes
@@ -72,11 +75,16 @@
 (use-package evil
   :ensure t	; Install evil if not installed
   :config
-  (evil-mode 1))  ; Run evil mode by default
+  (define-key evil-motion-state-map (kbd "C-u") 'evil-scroll-up)
+  ;; (setq evil-want-C-u-scroll )
+  (evil-mode 1))
+  ;;(global-set-key (kbd "C-u") 'evil-scroll-up)  ; Run evil mode by default
 
 ;; Install magit
 (use-package magit
   :ensure t)
+  ;; :config
+  ;; (global-set-key (kbd "SPC g g") 'magit-status))
 
 ;; Install which-key
 (use-package which-key
