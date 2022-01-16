@@ -1,5 +1,8 @@
 \#*.*\#
 *.*~
 *%*%*
+elpa
+transient
+network-security.data
 emacs/.emacs.d
 zsh/.zsh
