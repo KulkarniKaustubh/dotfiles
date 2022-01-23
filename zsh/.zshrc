@@ -6,8 +6,8 @@ bindkey -e
 # End of lines configured by zsh-newuser-install
 
 # fixing control + left/right in zsh
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" emacs-forward-word
+bindkey "^[[1;5D" emacs-backward-word
 
 # sourcing plugins, themes, etc.
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -102,4 +102,6 @@ alias cls="clear"
 alias envmerger="source envmerger"
 
 alias e="emacsclient -c"
+alias prepos="c ~/Internships/Pronisi/repos"
 # end of aliases
+alias orepos="c ~/Research/opencv/repos; source ~/Envs/ml/bin/activate; envmerger /home/kaustubh/Envs/cv_old"
