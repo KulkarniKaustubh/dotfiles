@@ -137,7 +137,7 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; If nil, bold is universally disabled
         doom-themes-enable-italic t) ; If nil, italics is universally disabled
-  (load-theme 'doom-vibrant t))
+  (load-theme 'doom-palenight t))
 
 ;; Install rainbow delimiters (paranthesis highlighter)
 (use-package rainbow-delimiters
