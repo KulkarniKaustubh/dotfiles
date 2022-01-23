@@ -15,11 +15,11 @@
 ;; Make ESC or C-[ quit prompts to satisfy my addiction
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
 
-;; Enable the use SPC as a prefix in emacs
-;; (general-def :states '(normal motion emacs) "SPC" nil)
-
 ;; Stop cursor from jumping to the center while scrolling
 (setq scroll-conservatively 101)  ; A value above 100 prevents redisplaying to the center
+
+;; Enable the use SPC as a prefix in emacs
+;; (general-def :states '(normal motion emacs) "SPC" nil)
 
 ;; ------------------------------------------------------------------
 
@@ -39,6 +39,17 @@
 
 (require 'use-package)
 (setq use-package-always-ensure t)
+
+;; Enable line numbers in files
+(column-number-mode)
+(global-display-line-numbers-mode t)
+
+;; Disable line numbers for some modes like shell mode
+(dolist (mode '(org-mode-hook
+                term-mode-hook
+  		shell-mode-hook
+                eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;; ------------------------------------------------------------------
 
@@ -61,11 +72,24 @@
 ;;			Package Installations
 ;; ------------------------------------------------------------------
 
+;; Install evil mode
+(use-package evil
+  :ensure t	; Install evil if not installed
+  :config
+  (define-key evil-motion-state-map (kbd "C-u") 'evil-scroll-up)
+  (define-key evil-normal-state-map (kbd "SPC b k") 'kill-current-buffer)
+  ;; overwrite 'evil-search-forward search with swiper 
+  (define-key evil-normal-state-map (kbd "/") 'swiper)
+  ;; (setq evil-want-C-u-scroll )
+  (evil-mode 1))
+  ;;(global-set-key (kbd "C-u") 'evil-scroll-up)  ; Run evil mode by default
+
 ;; Install swiper
 (use-package swiper)
 
 ;; Install ivy
 (use-package ivy
+  :diminish
   :ensure t
   :bind (("C-s" . swiper)
          :map ivy-minibuffer-map
@@ -83,16 +107,6 @@
   :config
   (ivy-mode 1))	; Run ivy by default
 
-;; Install evil mode
-(use-package evil
-  :ensure t	; Install evil if not installed
-  :config
-  (define-key evil-motion-state-map (kbd "C-u") 'evil-scroll-up)
-  (define-key evil-normal-state-map (kbd "SPC b k") 'kill-current-buffer)
-  ;; (setq evil-want-C-u-scroll )
-  (evil-mode 1))
-  ;;(global-set-key (kbd "C-u") 'evil-scroll-up)  ; Run evil mode by default
-
 ;; Install doom themes
 (use-package doom-themes
   :ensure t
@@ -102,12 +116,17 @@
         doom-themes-enable-italic t) ; If nil, italics is universally disabled
   (load-theme 'doom-one t))
 
+;; Install rainbow delimiters (paranthesis highlighter)
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+
 ;; Set up doom modeline
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
-  :config
-  (setq doom-modeline-height 25)) ; This isn't working for values below 25
+  :custom ((doom-modeline-height 15)))  ; This isn't working for values below 25
+  ;; :config
+  ;; (setq doom-modeline-height 25)) 
 
 ;; To make doom modeline height smaller
 ;; (defun my-doom-modeline--font-height ()
@@ -123,6 +142,7 @@
 
 ;; Install which-key
 (use-package which-key
+  :init (which-key-mode)
   :ensure t
   :config
   (which-key-mode 1))
