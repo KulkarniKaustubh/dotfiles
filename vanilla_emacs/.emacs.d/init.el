@@ -17,7 +17,6 @@
 
 ;; Enable the use SPC as a prefix in emacs
 ;; (general-def :states '(normal motion emacs) "SPC" nil)
-(define-key evil-normal-state-map (kbd "SPC b k") 'kill-current-buffer)
 
 ;; Stop cursor from jumping to the center while scrolling
 (setq scroll-conservatively 101)  ; A value above 100 prevents redisplaying to the center
@@ -62,9 +61,25 @@
 ;;			Package Installations
 ;; ------------------------------------------------------------------
 
+;; Install swiper
+(use-package swiper)
+
 ;; Install ivy
 (use-package ivy
   :ensure t
+  :bind (("C-s" . swiper)
+         :map ivy-minibuffer-map
+         ("TAB" . ivy-alt-done)
+         ("C-l" . ivy-alt-done)
+         ("C-j" . ivy-next-line)
+         ("C-k" . ivy-previous-line)
+         :map ivy-switch-buffer-map
+         ("C-k" . ivy-previous-line)
+         ("C-l" . ivy-done)
+         ("C-d" . ivy-switch-buffer-kill)
+         :map ivy-reverse-i-search-map
+         ("C-k" . ivy-previous-line)
+         ("C-d" . ivy-reverse-i-search-kill))
   :config
   (ivy-mode 1))	; Run ivy by default
 
@@ -73,6 +88,7 @@
   :ensure t	; Install evil if not installed
   :config
   (define-key evil-motion-state-map (kbd "C-u") 'evil-scroll-up)
+  (define-key evil-normal-state-map (kbd "SPC b k") 'kill-current-buffer)
   ;; (setq evil-want-C-u-scroll )
   (evil-mode 1))
   ;;(global-set-key (kbd "C-u") 'evil-scroll-up)  ; Run evil mode by default
