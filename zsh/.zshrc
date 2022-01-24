@@ -38,18 +38,6 @@ export PATH=$PATH:/usr/local/cuda/bin:/home/kaustubh/.cargo/bin
 export PATH=$PATH:/home/kaustubh/.local/bin
 # end of $PATH exports
 
-# pip zsh completion start
-function _pip_completion {
-  local words cword
-  read -Ac words
-  read -cn cword
-  reply=( $( COMP_WORDS="$words[*]" \
-             COMP_CWORD=$(( cword-1 )) \
-             PIP_AUTO_COMPLETE=1 $words[1] 2>/dev/null ))
-}
-compctl -K _pip_completion pip
-# pip zsh completion end
-
 # bash's command not found auto suggest
 command_not_found_handler () {
     if [ -x /usr/lib/command-not-found ]
