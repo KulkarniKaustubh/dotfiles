@@ -1,5 +1,13 @@
+# ignore emacs specific  files
 \#*.*\#
 *.*~
 *%*%*
+
+# ignore local .emacs.d because of git submodule
 emacs/.emacs.d
+
+# ignore zsh plugins and themes
 zsh/.zsh
+
+# ignore machine specific/private zshrc files
+zsh/.private_*.zshrc

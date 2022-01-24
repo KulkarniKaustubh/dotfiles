@@ -100,6 +100,7 @@ alias cls="clear"
 alias envmerger="source envmerger"
 
 alias e="emacsclient -c"
-alias prepos="c ~/Internships/Pronisi/repos"
-alias orepos="c ~/Research/opencv/repos; source ~/Envs/ml/bin/activate; envmerger /home/kaustubh/Envs/cv_old"
 # end of aliases
+
+# source machine specific/private aliases
+source ~/.dotfiles/zsh/.private_aliases.zsh
