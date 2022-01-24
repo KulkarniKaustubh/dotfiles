@@ -5,9 +5,16 @@ SAVEHIST=1000
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
-# fixing control + left/right in zsh
-bindkey "^[[1;5C" emacs-forward-word
-bindkey "^[[1;5D" emacs-backward-word
+# Fixing zsh history problems on multiple terminals
+setopt inc_append_history
+setopt share_history
+
+# Fixing control + left/right in zsh
+autoload -Uz select-word-style
+select-word-style bash
+
+bindkey ";5C" forward-word
+bindkey ";5D" backward-word
 
 # sourcing plugins, themes, etc.
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -103,5 +110,5 @@ alias envmerger="source envmerger"
 
 alias e="emacsclient -c"
 alias prepos="c ~/Internships/Pronisi/repos"
-# end of aliases
 alias orepos="c ~/Research/opencv/repos; source ~/Envs/ml/bin/activate; envmerger /home/kaustubh/Envs/cv_old"
+# end of aliases
