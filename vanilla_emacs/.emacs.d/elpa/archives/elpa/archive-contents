@@ -468,7 +468,7 @@
 	  (:authors
 	   ("Daniel Mendler" . "mail@daniel-mendler.de")))])
  (coterm .
-	 [(1 3)
+	 [(1 4)
 	  ((emacs
 	    (26 1)))
 	  "Terminal emulation for comint" tar
@@ -476,7 +476,8 @@
 	   (:keywords "processes")
 	   (:maintainer "jakanakaevangeli" . "jakanakaevangeli@chiru.no")
 	   (:authors
-	    ("jakanakaevangeli" . "jakanakaevangeli@chiru.no")))])
+	    ("jakanakaevangeli" . "jakanakaevangeli@chiru.no"))
+	   (:commit . "28ea65f0f88b65e561359d0fb8fc8dd84d6258d6"))])
  (counsel .
 	  [(0 13 4)
 	   ((emacs
@@ -578,17 +579,18 @@
 		  ("Daiki Ueno" . "ueno@gnu.org"))
 		 (:maintainer nil . "emacs-devel@gnu.org"))])
  (debbugs .
-	  [(0 29)
+	  [(0 30)
 	   ((emacs
 	     (25 1))
 	    (soap-client
 	     (3 1 5)))
 	   "SOAP library to access debbugs servers" tar
-	   ((:maintainer "Michael Albinus" . "michael.albinus@gmx.de")
+	   ((:keywords "comm" "hypermedia")
+	    (:maintainer "Michael Albinus" . "michael.albinus@gmx.de")
 	    (:authors
 	     ("Michael Albinus" . "michael.albinus@gmx.de"))
-	    (:keywords "comm" "hypermedia")
-	    (:url . "https://elpa.gnu.org/packages/debbugs.html"))])
+	    (:url . "https://elpa.gnu.org/packages/debbugs.html")
+	    (:commit . "e875a34129ddddefd88895017701607e8affa6d7"))])
  (delight .
 	  [(1 7)
 	   ((cl-lib
@@ -705,6 +707,17 @@
 	    (:authors
 	     ("Chong Yidong" . "cyd@gnu.org"))
 	    (:maintainer "Chong Yidong" . "cyd@gnu.org"))])
+ (dtache .
+	 [(0 4)
+	  ((emacs
+	    (27 1)))
+	  "Run and interact with detached shell commands" tar
+	  ((:url . "https://www.gitlab.com/niklaseklund/dtache.git")
+	   (:keywords "convenience" "processes")
+	   (:maintainer "Niklas Eklund" . "niklas.eklund@posteo.net")
+	   (:authors
+	    ("Niklas Eklund" . "niklas.eklund@posteo.net"))
+	   (:commit . "45eeecf2d57369961bbc09539d26a3b522e71cdf"))])
  (dts-mode .
 	   [(0 1 1)
 	    nil "Major mode for Device Tree source files" tar
@@ -776,7 +789,7 @@
 	      (:maintainer "Markus Triska" . "triska@metalevel.at")
 	      (:url . "https://www.metalevel.at/ediprolog/"))])
  (eev .
-      [(20220115)
+      [(20220120)
        ((emacs
 	 (24 4)))
        "Support for e-scripts (eepitch blocks, elisp hyperlinks, etc)" tar
@@ -785,7 +798,7 @@
 	(:maintainer "Eduardo Ochs" . "eduardoochs@gmail.com")
 	(:authors
 	 ("Eduardo Ochs" . "eduardoochs@gmail.com"))
-	(:commit . "65bc251809ca9196b3b47ebb4feba4e73c22388a"))])
+	(:commit . "3294e4a76a1fa7d01a9a80960e5e3fc39e1eb683"))])
  (eglot .
 	[(1 8)
 	 ((emacs
@@ -1489,15 +1502,16 @@
 	      ("Terrence Brannon" . "metaperl@gmail.com"))
 	     (:maintainer nil . "emacs-devel@gnu.org"))])
  (leaf .
-       [(4 5 2)
+       [(4 5 5)
 	((emacs
 	  (24 1)))
 	"Simplify your init.el configuration, extended use-package" tar
 	((:url . "https://github.com/conao3/leaf.el")
+	 (:keywords "lisp" "settings")
 	 (:maintainer "Naoya Yamashita" . "conao3@gmail.com")
 	 (:authors
 	  ("Naoya Yamashita" . "conao3@gmail.com"))
-	 (:keywords "lisp" "settings"))])
+	 (:commit . "7cc38f9739eadc569b1179fabe7f7893167105da"))])
  (let-alist .
    [(1 0 6)
     ((emacs
@@ -1594,14 +1608,15 @@
 		      (:maintainer "Vitalie Spinu" . "spinuvit@gmail.com")
 		      (:url . "https://github.com/vspinu/math-symbol-lists"))])
  (mct .
-      [(0 3 0)
+      [(0 4 2)
        ((emacs
 	 (27 1)))
        "Minibuffer and Completions in Tandem" tar
        ((:url . "https://gitlab.com/protesilaos/mct")
 	(:maintainer "Protesilaos Stavrou" . "info@protesilaos.com")
 	(:authors
-	 ("Protesilaos Stavrou" . "info@protesilaos.com")))])
+	 ("Protesilaos Stavrou" . "info@protesilaos.com"))
+	(:commit . "e250562c531578c88f91db7cad1210f56adcf095"))])
  (memory-usage .
 	       [(0 2)
 		nil "Analyze the memory usage of Emacs in various ways" single
@@ -2077,7 +2092,7 @@
 	   ("Mario Lang" . "mlang@delysid.org"))
 	  (:maintainer "Mario Lang" . "mlang@delysid.org"))])
  (posframe .
-	   [(1 1 6)
+	   [(1 1 7)
 	    ((emacs
 	      (26 1)))
 	    "Pop a posframe (just a frame) at point" tar
@@ -2085,7 +2100,8 @@
 	     (:keywords "convenience" "tooltip")
 	     (:maintainer "Feng Shu" . "tumashu@163.com")
 	     (:authors
-	      ("Feng Shu" . "tumashu@163.com")))])
+	      ("Feng Shu" . "tumashu@163.com"))
+	     (:commit . "c91d4d53fa479ceb604071008ce0a901770eff57"))])
  (project .
 	  [(0 8 1)
 	   ((emacs
@@ -2318,17 +2334,18 @@
 		   ("Bastien Guerry" . "bzg@gnu.org"))
 		  (:maintainer "Bastien Guerry" . "bzg@gnu.org"))])
  (relint .
-	 [(1 19)
+	 [(1 20)
 	  ((xr
-	    (1 20))
+	    (1 22))
 	   (emacs
 	    (26 1)))
 	  "Elisp regexp mistake finder" tar
 	  ((:url . "https://github.com/mattiase/relint")
+	   (:keywords "lisp" "regexps")
 	   (:maintainer "Mattias Engdegård" . "mattiase@acm.org")
 	   (:authors
 	    ("Mattias Engdegård" . "mattiase@acm.org"))
-	   (:keywords "lisp" "regexps"))])
+	   (:commit . "5a918af0c99ab83355d4ec73a2fb39e70c173956"))])
  (repology .
 	   [(1 1 0)
 	    ((emacs
@@ -2635,13 +2652,14 @@
 	       ("Ulf Jasper" . "ulf.jasper@web.de"))
 	      (:maintainer "Ulf Jasper" . "ulf.jasper@web.de"))])
  (svg-lib .
-	  [(0 2 4)
+	  [(0 2 5)
 	   ((emacs
 	     (27 1)))
 	   "SVG tags, progress bars & icons" tar
 	   ((:url . "https://github.com/rougier/svg-lib")
 	    (:keywords "svg" "icons" "tags" "convenience")
-	    (:maintainer "Nicolas P. Rougier" . "Nicolas.Rougier@inria.fr"))])
+	    (:maintainer "Nicolas P. Rougier" . "Nicolas.Rougier@inria.fr")
+	    (:commit . "0486c9453449771bc3f5872f70bc5cb23580d0f4"))])
  (svg-tag-mode .
 	       [(0 3 2)
 		((emacs
@@ -2802,10 +2820,11 @@
 	      (:maintainer "Toby Cubitt" . "toby-undo-tree@dr-qubit.org")
 	      (:url . "http://www.dr-qubit.org/emacs.php"))])
  (uni-confusables .
-		  [(0 2)
+		  [(0 3)
 		   nil "Unicode confusables table" tar
 		   ((:maintainer "Teodor Zlatanov" . "tzz@lifelogs.com")
-		    (:url . "https://elpa.gnu.org/packages/uni-confusables.html"))])
+		    (:url . "https://elpa.gnu.org/packages/uni-confusables.html")
+		    (:commit . "393e1adeec5b0eb51f9606983655cfe2272c6e54"))])
  (uniquify-files .
 		 [(1 0 3)
 		  ((emacs
@@ -3085,13 +3104,14 @@
 	     ("Ivan Kanis" . "ivan@kanis.fr"))
 	    (:maintainer "Ivan Kanis" . "ivan@kanis.fr"))])
  (xclip .
-	[(1 10)
-	 nil "Copy&paste GUI clipboard from text terminal" single
-	 ((:url . "http://elpa.gnu.org/packages/xclip.html")
-	  (:keywords "convenience" "tools")
+	[(1 11)
+	 nil "Copy&paste GUI clipboard from text terminal" tar
+	 ((:keywords "convenience" "tools")
+	  (:maintainer "Leo Liu" . "sdl.web@gmail.com")
 	  (:authors
 	   ("Leo Liu" . "sdl.web@gmail.com"))
-	  (:maintainer "Leo Liu" . "sdl.web@gmail.com"))])
+	  (:url . "https://elpa.gnu.org/packages/xclip.html")
+	  (:commit . "5b54645cab438e133e27b4690c57066f8271a992"))])
  (xelb .
        [(0 18)
 	((emacs
@@ -3117,15 +3137,16 @@
 	(:authors
 	 ("Thien-Thi Nguyen" . "ttn@gnu.org")))])
  (xr .
-     [(1 21)
+     [(1 22)
       ((emacs
 	(26 1)))
       "Convert string regexp to rx notation" tar
       ((:url . "https://github.com/mattiase/xr")
+       (:keywords "lisp" "regexps")
        (:maintainer "Mattias Engdegård" . "mattiase@acm.org")
        (:authors
 	("Mattias Engdegård" . "mattiase@acm.org"))
-       (:keywords "lisp" "regexps"))])
+       (:commit . "a873bbbe9cdf1abab63fc94730966f5a8f9adaa6"))])
  (xref .
        [(1 3 2)
 	((emacs
