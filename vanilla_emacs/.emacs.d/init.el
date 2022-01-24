@@ -8,8 +8,6 @@
 
 (menu-bar-mode -1)	; Disable the menu bar
 
-;; (load-theme 'wombat)	; Load up a theme on startup for emacs
-
 ;; ------------------------------------------------------------------
 
 ;; Make ESC or C-[ quit prompts to satisfy my addiction
@@ -18,16 +16,13 @@
 ;; Stop cursor from jumping to the center while scrolling
 (setq scroll-conservatively 101)  ; A value above 100 prevents redisplaying to the center
 
-;; Enable the use SPC as a prefix in emacs
-;; (general-def :states '(normal motion emacs) "SPC" nil)
-
 ;; ------------------------------------------------------------------
 
 ;; Initialize package resources
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
-			 ("org" . "https://orgmode.org/elpa/")
-			 ("elpa" . "https://elpa.gnu.org/packages/")))
+                         ("org" . "https://orgmode.org/elpa/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
 
 (package-initialize)
 (unless package-archive-contents
@@ -47,7 +42,7 @@
 ;; Disable line numbers for some modes like shell mode
 (dolist (mode '(org-mode-hook
                 term-mode-hook
-  		shell-mode-hook
+                shell-mode-hook
                 eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
@@ -59,11 +54,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   (quote
-    ("47db50ff66e35d3a440485357fb6acb767c100e135ccdf459060407f8baea7b2" "4b0e826f58b39e2ce2829fab8ca999bcdc076dec35187bf4e9a4b938cb5771dc" "da186cce19b5aed3f6a2316845583dbee76aea9255ea0da857d1c058ff003546" "234dbb732ef054b109a9e5ee5b499632c63cc24f7c2383a849815dacc1727cb6" default)))
+   '("47db50ff66e35d3a440485357fb6acb767c100e135ccdf459060407f8baea7b2" "4b0e826f58b39e2ce2829fab8ca999bcdc076dec35187bf4e9a4b938cb5771dc" "da186cce19b5aed3f6a2316845583dbee76aea9255ea0da857d1c058ff003546" "234dbb732ef054b109a9e5ee5b499632c63cc24f7c2383a849815dacc1727cb6" default))
  '(package-selected-packages
-   (quote
-    (smex helpful undo-tree counsel ivy-rich doom-themes which-key evil magit doom-modeline ivy use-package))))
+   '(vterm-toggle vterm evil-collection general smex helpful undo-tree counsel ivy-rich doom-themes which-key evil magit doom-modeline ivy use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -72,19 +65,34 @@
  )
 
 ;; ------------------------------------------------------------------
-;;			Package Installations
+;;                     Package Installations
 ;; ------------------------------------------------------------------
 
 ;; Install evil mode
 (use-package evil
+  :init
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-C-i-jump nil)
   :config
-  (define-key evil-motion-state-map (kbd "C-u") 'evil-scroll-up)
-  (define-key evil-normal-state-map (kbd "SPC b k") 'kill-current-buffer)
-  ;; overwrite 'evil-search-forward search with swiper 
-  (define-key evil-normal-state-map (kbd "/") 'swiper)
-  ;; (setq evil-want-C-u-scroll )
-  (evil-mode 1))
-  ;;(global-set-key (kbd "C-u") 'evil-scroll-up)  ; Run evil mode by default
+  (evil-mode 1)
+  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+  (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+  (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
+
+  ;; Use visual line motions even outside of visual-line-mode buffers
+  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+
+  (evil-set-initial-state 'messages-buffer-mode 'normal)
+  (evil-set-initial-state 'dashboard-mode 'normal))
+
+;; Install evil-collection
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
 
 ;; Fix evil-mode redo with undo tree
 (use-package undo-tree
@@ -114,12 +122,16 @@
          ("C-k" . ivy-previous-line)
          ("C-d" . ivy-reverse-i-search-kill))
   :config
-  (ivy-mode 1))	; Run ivy by default
+  (ivy-mode 1))   ; Run ivy by default
+
+;; Run to load all icons after ivy
+(use-package all-the-icons)
 
 ;; Install counsel
 (use-package counsel
+  :init (counsel-mode)
   :bind (("M-x" . counsel-M-x)
-         ;; ("C-x b" . counsel-ibuffer)
+         ("C-x b" . counsel-ibuffer)
          ("C-x C-f" . counsel-find-file)
          :map minibuffer-local-map
          ("C-r" . 'counsel-minibuffer-history)))
@@ -147,14 +159,6 @@
 (use-package doom-modeline
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))  ; This isn't working for values below 25
-  ;; :config
-  ;; (setq doom-modeline-height 25)) 
-
-;; To make doom modeline height smaller
-;; (defun my-doom-modeline--font-height ()
-;;   "Calculate the actual char height of the mode-line."
-;;   (+ (frame-char-height) 0.95)))
-;; (advice-add #'doom-modeline--font-height :override #'my-doom-modeline--font-height)
 
 ;; Install magit
 (use-package magit
@@ -175,3 +179,37 @@
   ([remap describe-command] . helpful-command)
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
+
+;; Install general
+(use-package general
+  :config
+  ; (general-evil-setup t)
+  (general-create-definer kaus/leader-keys
+    :keymaps '(normal insert visual emacs)
+    :prefix "SPC"
+    :global-prefix "C-SPC")
+
+  (kaus/leader-keys
+    "t"   '(:ignore t :which-key "toggles")
+    "tt"  '(counsel-load-theme :which-key "choose theme")
+    "gg"  '(magit-status :which-key "magit-status")
+    "bk"  '(kill-current-buffer :which-key "kill-current-buffer")
+    "ot"  '(vterm-toggle :which-key "vterm-toggle")
+    "."   '(dired :which-key "dired")
+    "RET" '(counsel-bookmark :which-key "counsel-bookmark")
+    ))
+
+;; Install vterm
+(use-package vterm)
+(use-package vterm-toggle
+  :config
+  (setq vterm-toggle-fullscreen-p nil)
+  (add-to-list 'display-buffer-alist
+	       '((lambda(bufname _) (with-current-buffer bufname (equal major-mode 'vterm-mode)))
+	         (display-buffer-reuse-window display-buffer-at-bottom)
+	         ;;(display-buffer-reuse-window display-buffer-in-direction)
+	         ;;display-buffer-in-direction/direction/dedicated is added in emacs27
+	         (direction . bottom)
+	         (dedicated . t) ;dedicated is supported in emacs27
+	         (reusable-frames . visible)
+	         (window-height . 0.3))))
