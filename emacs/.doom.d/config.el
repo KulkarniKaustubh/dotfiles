@@ -77,3 +77,4 @@
 ;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
 (define-key evil-normal-state-map (kbd "/") 'swiper)
+(define-key evil-normal-state-map (kbd "C-s") 'swiper)
