@@ -6,3 +6,4 @@ eshell
 network-security.data
 emacs/.emacs.d
 zsh/.zsh
+smex-*
