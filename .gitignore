@@ -9,5 +9,5 @@ emacs/.emacs.d
 # ignore zsh plugins and themes
 zsh/.zsh
 
-# ignore machine specific/private zshrc files
-zsh/.private_*.zshrc
+# ignore machine specific/private .zsh files
+zsh/.private_*.zsh
