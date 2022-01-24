@@ -19,8 +19,10 @@ select-word-style bash
 bindkey ";5C" forward-word
 bindkey ";5D" backward-word
 
-# Add tab completion with highlight
+# Add hilight enabled tab completion with colors
 zstyle ':completion:*' menu select
+eval "$(dircolors)"
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # Get bash's compgen
 autoload -Uz compinit
