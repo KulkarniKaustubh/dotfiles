@@ -16,6 +16,9 @@ select-word-style bash
 bindkey ";5C" forward-word
 bindkey ";5D" backward-word
 
+# Add tab completion with highlight
+zstyle ':completion:*' menu select
+
 # sourcing plugins, themes, etc.
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
