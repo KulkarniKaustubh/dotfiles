@@ -131,6 +131,7 @@
 (use-package counsel
   :init (counsel-mode)
   :bind (("M-x" . counsel-M-x)
+	 ("C-x x" . counsel-M-x)
          ("C-x b" . counsel-ibuffer)
          ("C-x C-f" . counsel-find-file)
          :map minibuffer-local-map
@@ -199,9 +200,15 @@
     "RET" '(counsel-bookmark :which-key "counsel-bookmark")
     ))
 
-;; Install vterm
+;; Install vterm (emacs27+ required)
+;; Before the following line, run:
+;; sudo apt install cmake libtool libtool-bin 
 (use-package vterm)
+
+;; Install vterm toggle
+;; Enable vterm to go at the bottom
 (use-package vterm-toggle
+  :init
   :config
   (setq vterm-toggle-fullscreen-p nil)
   (add-to-list 'display-buffer-alist
