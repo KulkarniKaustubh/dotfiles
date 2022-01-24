@@ -9,6 +9,9 @@ bindkey -e
 setopt inc_append_history
 setopt share_history
 
+# Ignore duplicate commands in history file
+setopt histignorealldups
+
 # Fixing control + left/right in zsh
 autoload -Uz select-word-style
 select-word-style bash
@@ -19,10 +22,16 @@ bindkey ";5D" backward-word
 # Add tab completion with highlight
 zstyle ':completion:*' menu select
 
+# Get bash's compgen
+autoload -Uz compinit
+compinit
+autoload -Uz bashcompinit
+bashcompinit
+
 # sourcing plugins, themes, etc.
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
+source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # end
 
@@ -102,5 +111,7 @@ alias envmerger="source envmerger"
 alias e="emacsclient -c"
 # end of aliases
 
-# source machine specific/private aliases
-source ~/.dotfiles/zsh/.private_aliases.zsh
+# check and source machine specific/private .zsh files
+if compgen -G "$HOME/.dotfiles/zsh/.private_*.zsh" > /dev/null; then
+    source $HOME/.dotfiles/zsh/.private_*.zsh
+fi
