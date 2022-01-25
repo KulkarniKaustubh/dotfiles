@@ -159,7 +159,7 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; If nil, bold is universally disabled
         doom-themes-enable-italic t) ; If nil, italics is universally disabled
-  (load-theme 'doom-homage-black t))
+  (load-theme 'doom-palenight t))
 
 ;; Install rainbow delimiters (paranthesis highlighter)
 (use-package rainbow-delimiters
@@ -187,6 +187,40 @@
   ([remap describe-command] . helpful-command)
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
+
+;; Install vterm (emacs27+ required)
+;; Before the following line, run:
+;; sudo apt install cmake libtool libtool-bin 
+(use-package vterm
+  :init)
+
+;; Install vterm toggle
+;; Enable vterm to go at the bottom
+(use-package vterm-toggle
+  :init
+  :config
+  (setq vterm-toggle-fullscreen-p nil)
+  (add-to-list 'display-buffer-alist
+	       '((lambda(bufname _) (with-current-buffer bufname (equal major-mode 'vterm-mode)))
+	         (display-buffer-reuse-window display-buffer-at-bottom)
+	         ;;(display-buffer-reuse-window display-buffer-in-direction)
+	         ;;display-buffer-in-direction/direction/dedicated is added in emacs27
+	         (direction . bottom)
+	         (dedicated . t) ;dedicated is supported in emacs27
+	         (reusable-frames . visible)
+	         (window-height . 0.3))))
+
+;; Install golden-ration for automatice resizing of windows
+(use-package golden-ratio
+  :config
+  (golden-ratio-mode 1)
+  (setq golden-ratio-auto-scale t)
+  (setq golden-ratio-extra-commands
+  (append golden-ratio-extra-commands
+    '(evil-window-left
+      evil-window-right
+      evil-window-up
+      evil-window-down))))
 
 ;; Install general
 (use-package general
@@ -222,7 +256,9 @@
     ;; Buffer keys
     "bk"  '(kill-current-buffer :which-key "kill-current-buffer")
     "bb"  '(counsel-ibuffer :which-key "counsel-ibuffer")
-    ","   '(counsel-ibuffer :which-key "counsel-ibuffer")
+    ","   '(counsel-switch-buffer :which-key "counsel-switch-buffer")
+    "bp"  '(previous-buffer :which-key "previous-buffer")
+    "bn"  '(next-buffer :which-key "next-buffer")
 
     ;; Evil window keys
     "wh"  '(evil-window-left :which-key "evil-window-left")
@@ -296,25 +332,3 @@
     "."   '(counsel-dired :which-key "counsel-dired")
     "RET" '(counsel-bookmark :which-key "counsel-bookmark")
     ))
-
-;; Install vterm (emacs27+ required)
-;; Before the following line, run:
-;; sudo apt install cmake libtool libtool-bin 
-(use-package vterm
-  :init)
-
-;; Install vterm toggle
-;; Enable vterm to go at the bottom
-(use-package vterm-toggle
-  :init
-  :config
-  (setq vterm-toggle-fullscreen-p nil)
-  (add-to-list 'display-buffer-alist
-	       '((lambda(bufname _) (with-current-buffer bufname (equal major-mode 'vterm-mode)))
-	         (display-buffer-reuse-window display-buffer-at-bottom)
-	         ;;(display-buffer-reuse-window display-buffer-in-direction)
-	         ;;display-buffer-in-direction/direction/dedicated is added in emacs27
-	         (direction . bottom)
-	         (dedicated . t) ;dedicated is supported in emacs27
-	         (reusable-frames . visible)
-	         (window-height . 0.3))))
