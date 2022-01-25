@@ -40,8 +40,15 @@
 (dolist (mode '(org-mode-hook
                 term-mode-hook
                 shell-mode-hook
-                eshell-mode-hook))
+                eshell-mode-hook
+                vterm-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+;; ------------------------------------------------------------------
+
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+;; (setq indent-line-function 'insert-tab)
 
 ;; ------------------------------------------------------------------
 
