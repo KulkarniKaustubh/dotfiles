@@ -1,12 +1,12 @@
 ;; Initial stuff
 (setq inhibit-startup-message t) ; Remove startup message
 
-(scroll-bar-mode -1)	; Disable the visible scroll bar
-(tool-bar-mode -1)	; Disable the toolbar
-(tooltip-mode -1)	; Disable tooltips
-(set-fringe-mode 10)	; Give some breathing room
+(scroll-bar-mode -1)    ; Disable the visible scroll bar
+(tool-bar-mode -1)      ; Disable the toolbar
+(tooltip-mode -1)       ; Disable tooltips
+(set-fringe-mode 10)    ; Give some breathing room
 
-(menu-bar-mode -1)	; Disable the menu bar
+(menu-bar-mode -1)      ; Disable the menu bar
 
 ;; ------------------------------------------------------------------
 
@@ -201,14 +201,14 @@
   :config
   (setq vterm-toggle-fullscreen-p nil)
   (add-to-list 'display-buffer-alist
-	       '((lambda(bufname _) (with-current-buffer bufname (equal major-mode 'vterm-mode)))
-	         (display-buffer-reuse-window display-buffer-at-bottom)
-	         ;;(display-buffer-reuse-window display-buffer-in-direction)
-	         ;;display-buffer-in-direction/direction/dedicated is added in emacs27
-	         (direction . bottom)
-	         (dedicated . t) ;dedicated is supported in emacs27
-	         (reusable-frames . visible)
-	         (window-height . 0.3))))
+               '((lambda(bufname _) (with-current-buffer bufname (equal major-mode 'vterm-mode)))
+                 (display-buffer-reuse-window display-buffer-at-bottom)
+                 ;;(display-buffer-reuse-window display-buffer-in-direction)
+                 ;;display-buffer-in-direction/direction/dedicated is added in emacs27
+                 (direction . bottom)
+                 (dedicated . t) ;dedicated is supported in emacs27
+                 (reusable-frames . visible)
+                 (window-height . 0.3))))
 
 ;; Install golden-ration for automatice resizing of windows
 (use-package golden-ratio
@@ -272,7 +272,7 @@
     "wL"  '(evil-window-move-far-right :which-key  "evil-window-move-far-right")
 
     "wv"  '(evil-window-vsplit :which-key  "evil-window-vsplit")
-    "ws"  '(evil-window-hsplit :which-key  "evil-window-hsplit")
+    "ws"  '(evil-window-split :which-key  "evil-window-split")
 
     "wc"  '(evil-window-delete :which-key "evil-window-delete")
     )
