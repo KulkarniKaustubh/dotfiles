@@ -205,7 +205,7 @@
     :keymaps 'override
     :prefix "SPC")
 
-  (general-create-definer kaus/counsel-keys
+  (general-create-definer kaus/misc-keys
     :states '(normal visual emacs)
     :keymaps 'override
     :prefix "SPC")
@@ -225,13 +225,18 @@
     "wk"  '(evil-window-up :which-key  "evil-window-up")
     "wl"  '(evil-window-right :which-key  "evil-window-right")
 
+    "wH"  '(evil-window-move-far-left :which-key "evil-window-move-far-left")
+    "wJ"  '(evil-window-move-very-down :which-key  "evil-window-move-very-down")
+    "wK"  '(evil-window-move-very-up :which-key  "evil-window-move-very-up")
+    "wL"  '(evil-window-move-far-right :which-key  "evil-window-move-far-right")
+
     "wv"  '(evil-window-vsplit :which-key  "evil-window-vsplit")
     "ws"  '(evil-window-hsplit :which-key  "evil-window-hsplit")
 
     "wc"  '(evil-window-delete :which-key "evil-window-delete")
     )
 
-  (kaus/counsel-keys
+  (kaus/misc-keys
     "gg"  '(magit-status :which-key "magit-status")
     "ot"  '(vterm-toggle :which-key "vterm-toggle")
     "."   '(counsel-dired :which-key "counsel-dired")
