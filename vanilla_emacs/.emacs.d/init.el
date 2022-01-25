@@ -32,6 +32,8 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+;; ------------------------------------------------------------------
+
 ;; Enable line numbers in files
 (column-number-mode)
 (global-display-line-numbers-mode t)
@@ -157,7 +159,7 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; If nil, bold is universally disabled
         doom-themes-enable-italic t) ; If nil, italics is universally disabled
-  (load-theme 'doom-palenight t))
+  (load-theme 'doom-homage-black t))
 
 ;; Install rainbow delimiters (paranthesis highlighter)
 (use-package rainbow-delimiters
@@ -189,9 +191,9 @@
 ;; Install general
 (use-package general
   :init
+  :after evil
   :config
   (general-evil-setup t)
-  ;; (general-override-mode 1)
 
   (general-create-definer kaus/test-keys
     :states '(normal visual emacs)
@@ -203,28 +205,44 @@
     :keymaps 'override
     :prefix "SPC")
 
+  (general-create-definer kaus/counsel-keys
+    :states '(normal visual emacs)
+    :keymaps 'override
+    :prefix "SPC")
+
   (kaus/test-keys
-    "t"   '(:ignore t :which-key "toggles")
-    "tt"  '(counsel-load-theme :which-key "choose theme")
-    )
-  
+    "t"  '(counsel-load-theme :which-key "choose theme"))
+
   (kaus/window-and-buffer-keys
     ;; Buffer keys
     "bk"  '(kill-current-buffer :which-key "kill-current-buffer")
     "bb"  '(counsel-ibuffer :which-key "counsel-ibuffer")
-    ","  '(counsel-ibuffer :which-key "counsel-ibuffer")
-    ;; Window keys
+    ","   '(counsel-ibuffer :which-key "counsel-ibuffer")
 
+    ;; Evil window keys
+    "wh"  '(evil-window-left :which-key "evil-window-left")
+    "wj"  '(evil-window-down :which-key  "evil-window-down")
+    "wk"  '(evil-window-up :which-key  "evil-window-up")
+    "wl"  '(evil-window-right :which-key  "evil-window-right")
+
+    "wv"  '(evil-window-vsplit :which-key  "evil-window-vsplit")
+    "ws"  '(evil-window-hsplit :which-key  "evil-window-hsplit")
+
+    "wc"  '(evil-window-delete :which-key "evil-window-delete")
+    )
+
+  (kaus/counsel-keys
     "gg"  '(magit-status :which-key "magit-status")
     "ot"  '(vterm-toggle :which-key "vterm-toggle")
-    "."   '(dired :which-key "dired")
+    "."   '(counsel-dired :which-key "counsel-dired")
     "RET" '(counsel-bookmark :which-key "counsel-bookmark")
     ))
 
 ;; Install vterm (emacs27+ required)
 ;; Before the following line, run:
 ;; sudo apt install cmake libtool libtool-bin 
-(use-package vterm)
+(use-package vterm
+  :init)
 
 ;; Install vterm toggle
 ;; Enable vterm to go at the bottom
