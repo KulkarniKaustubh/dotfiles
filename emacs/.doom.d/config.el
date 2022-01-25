@@ -25,7 +25,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-vibrant)
+(setq doom-theme 'doom-palenight)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -75,6 +75,6 @@
 
 ;;Launch Emacs in full screen
 ;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
-(define-key key-translation-map (kbd "ESC") (kbd "C-g"))
-(define-key evil-normal-state-map (kbd "/") 'swiper)
-(define-key evil-normal-state-map (kbd "C-s") 'swiper)
+;; (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
+;; (define-key evil-normal-state-map (kbd "/") 'swiper)
+;; (define-key evil-normal-state-map (kbd "C-s") 'swiper)
