@@ -8,6 +8,14 @@ emacs/.emacs.d
 
 # ignore zsh plugins and themes
 zsh/.zsh
+<<<<<<< HEAD
 
 # ignore machine specific/private .zsh files
 zsh/.private_*.zsh
+
+# ignore .emacs.d files
+transient
+eshell
+network-security.data
+smex-*
+bookmarks
