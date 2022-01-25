@@ -78,6 +78,9 @@
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
   (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
 
+  ;; Override evil-search-forward with swiper
+  (define-key evil-motion-state-map (kbd "/") 'swiper)
+
   ;; Use visual line motions even outside of visual-line-mode buffers
   (evil-global-set-key 'motion "j" 'evil-next-visual-line)
   (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
@@ -159,9 +162,7 @@
   :custom ((doom-modeline-height 15)))  ; This isn't working for values below 25
 
 ;; Install magit
-(use-package magit
-  :config
-  (define-key evil-normal-state-map (kbd "SPC g g") 'magit-status))
+(use-package magit)
 
 ;; Install which-key
 (use-package which-key
@@ -180,18 +181,34 @@
 
 ;; Install general
 (use-package general
+  :init
   :config
-  ; (general-evil-setup t)
-  (general-create-definer kaus/leader-keys
-    :keymaps '(normal insert visual emacs)
-    :prefix "SPC"
-    :global-prefix "C-SPC")
+  (general-evil-setup t)
+  ;; (general-override-mode 1)
 
-  (kaus/leader-keys
+  (general-create-definer kaus/test-keys
+    :states '(normal visual emacs)
+    :keymaps 'override
+    :prefix "SPC")
+
+  (general-create-definer kaus/window-and-buffer-keys
+    :states '(normal visual emacs)
+    :keymaps 'override
+    :prefix "SPC")
+
+  (kaus/test-keys
     "t"   '(:ignore t :which-key "toggles")
     "tt"  '(counsel-load-theme :which-key "choose theme")
-    "gg"  '(magit-status :which-key "magit-status")
+    )
+  
+  (kaus/window-and-buffer-keys
+    ;; Buffer keys
     "bk"  '(kill-current-buffer :which-key "kill-current-buffer")
+    "bb"  '(counsel-ibuffer :which-key "counsel-ibuffer")
+    ","  '(counsel-ibuffer :which-key "counsel-ibuffer")
+    ;; Window keys
+
+    "gg"  '(magit-status :which-key "magit-status")
     "ot"  '(vterm-toggle :which-key "vterm-toggle")
     "."   '(dired :which-key "dired")
     "RET" '(counsel-bookmark :which-key "counsel-bookmark")
