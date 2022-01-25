@@ -210,8 +210,13 @@
     :keymaps 'override
     :prefix "SPC")
 
+  (general-create-definer kaus/help-keys
+    :states '(normal visual emacs)
+    :keymaps 'override
+    :prefix "SPC")
+
   (kaus/test-keys
-    "t"  '(counsel-load-theme :which-key "choose theme"))
+    "t"   '(counsel-load-theme :which-key "choose theme"))
 
   (kaus/window-and-buffer-keys
     ;; Buffer keys
@@ -236,6 +241,55 @@
     "wc"  '(evil-window-delete :which-key "evil-window-delete")
     )
 
+  (kaus/help-keys
+    "h."     '(display-local-help :which-key "display-local-help")
+    "hC"     '(describe-coding-system :which-key "describe-coding-system")
+    "h C-\\" '(describe-input-method :which-key "describe-input-method")
+    "h C-a"  '(about-emacs :which-key "about-emacs")
+    "h C-c"  '(describe-copying :which-key "describe-copying")
+    "h C-d"  '(view-emacs-debugging :which-key "macs-debugging")
+    "h C-e"  '(view-external-packages :which-key "xternal-packages")
+    "h C-f"  '(view-emacs-FAQ :which-key "macs-FAQ")
+    "h C-h"  '(help-for-help :which-key "or-help")
+    "h C-n"  '(view-emacs-news :which-key "macs-news")
+    "h C-o"  '(describe-distribution :which-key "describe-distribution")
+    "h C-p"  '(view-emacs-problems :which-key "macs-problems")
+    "h C-s"  '(search-forward-help-for-help :which-key "or-help")
+    "h C-t"  '(view-emacs-todo :which-key "view-emacs-todo")
+    "h C-w"  '(describe-no-warranty :which-key "describe-no-warranty")
+    "hF"     '(Info-goto-emacs-command-node :which-key "Info-goto-emacs-command-node")
+    "hI"     '(describe-input-method :which-key "describe-input-method")
+    "hK"     '(Info-goto-emacs-key-command-node :which-key "Info-goto-emacs-key-command-node")
+    "hL"     '(describe-language-environment :which-key "describe-language-environment")
+    "hP"     '(describe-package :which-key "describe-package")
+    "h RET"  '(view-order-manuals :which-key "view-order-manuals")
+    "hS"     '(info-lookup-symbol :which-key "info-lookup-symbol")
+    "ha"     '(apropos-command :which-key "apropos-command")
+    "hb"     '(describe-bindings :which-key "describe-bindings")
+    "hc"     '(describe-key-briefly :which-key "describe-key-briefly")
+    "hd"     '(apropos-documentation :which-key "apropos-documentation")
+    "he"     '(view-echo-area-messages :which-key "view-echo-area-messages")
+    "hf"     '(counsel-describe-function :which-key "counsel-describe-function")
+    "hf"     '(describe-function :which-key "describe-function")
+    "hg"     '(describe-gnu-project :which-key "describe-gnu-project")
+    "hh"     '(view-hello-file :which-key "view-hello-file")
+    "hi"     '(info :which-key "info")
+    "hk"     '(describe-key :which-key "describe-key")
+    "hk"     '(helpful-key :which-key "helpful-key")
+    "hl"     '(view-lossage :which-key "view-lossage")
+    "hm"     '(describe-mode :which-key "describe-mode")
+    "hn"     '(view-emacs-news :which-key "view-emacs-news")
+    "ho"     '(describe-symbol :which-key "describe-symbol")
+    "hp"     '(finder-by-keyword :which-key "finder-by-keyword")
+    "hq"     '(help-quit :which-key "help-quit")
+    "hr"     '(info-emacs-manual :which-key "info-emacs-manual")
+    "hs"     '(describe-syntax :which-key "describe-syntax")
+    "ht"     '(help-with-tutorial :which-key "help-with-tutorial")
+    "hv"     '(counsel-describe-variable :which-key "counsel-describe-variable")
+    "hv"     '(describe-variable :which-key "describe-variable")
+    "hw"     '(where-is :which-key "where-is")
+    )
+  
   (kaus/misc-keys
     "gg"  '(magit-status :which-key "magit-status")
     "ot"  '(vterm-toggle :which-key "vterm-toggle")
