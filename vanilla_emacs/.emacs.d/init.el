@@ -10,9 +10,6 @@
 
 ;; ------------------------------------------------------------------
 
-;; Make ESC or C-[ quit prompts to satisfy my addiction
-(define-key key-translation-map (kbd "ESC") (kbd "C-g"))
-
 ;; Stop cursor from jumping to the center while scrolling
 (setq scroll-conservatively 101)  ; A value above 100 prevents redisplaying to the center
 
