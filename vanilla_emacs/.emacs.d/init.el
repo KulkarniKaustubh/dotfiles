@@ -141,7 +141,7 @@
   :init (counsel-mode)
   :bind (("M-x" . counsel-M-x)
          ("C-x x" . counsel-M-x)
-         ("C-x b" . counsel-ibuffer)
+         ("C-x b" . counsel-switch-buffer)
          ("C-x C-f" . counsel-find-file)
          :map minibuffer-local-map
          ("C-r" . 'counsel-minibuffer-history)))
@@ -229,14 +229,15 @@
   :init
   :after evil
   :config
-  (general-evil-setup t)
   (general-def :states '(normal visual motion emacs) "SPC" nil)
+  (general-def :keymaps 'magit-mode-map "SPC" nil)
+  (general-evil-setup t)
 
   (general-create-definer kaus/test-keys
     :keymaps '(normal visual motion emacs)
     :prefix "SPC")
 
-  (general-create-definer kaus/mode-map-keys
+ (general-create-definer kaus/mode-map-keys
     :keymaps '(normal visual motion emacs)
     :prefix "SPC")
 
@@ -256,7 +257,7 @@
 
   (kaus/mode-map-keys
    "h" '(help-command :which-key "help-command")
-   "w" '(evil-window-map :which-key "evil-window-map")  
+   "w" '(evil-window-map :which-key "evil-window-map")
    )
 
   (kaus/buffer-keys
