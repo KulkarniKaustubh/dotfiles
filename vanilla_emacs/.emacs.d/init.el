@@ -286,4 +286,5 @@
     "ot"  '(vterm-toggle :which-key "vterm-toggle")
     "."   '(counsel-dired :which-key "counsel-dired")
     "RET" '(counsel-bookmark :which-key "counsel-bookmark")
+    "rf"  '(counsel-recentf :which-key "counsel-recentf")
     ))
