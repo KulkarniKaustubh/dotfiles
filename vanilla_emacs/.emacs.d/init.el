@@ -236,8 +236,9 @@
   :init
   :after evil
   :config
-  (general-def :states '(normal visual motion emacs) "SPC" nil)
-  (general-def :keymaps 'magit-mode-map "SPC" nil)
+  (general-def :states '(normal visual motion emacs) "SPC" nil)  ; Unbind SPC to work as a prefix
+  (general-def :keymaps 'magit-mode-map "SPC" nil)  ; Unbind the magit bind for SPC
+  (general-def :states 'normal :keymaps 'dired-mode-map "SPC" nil)  ; Unbind the dired bind for SPC
   (general-evil-setup t)
 
   (general-create-definer kaus/test-keys
