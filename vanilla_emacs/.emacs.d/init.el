@@ -233,52 +233,44 @@
   (general-def :states '(normal visual motion emacs) "SPC" nil)
 
   (general-create-definer kaus/test-keys
-    :states '(normal visual motion emacs)
-    :keymaps 'override
+    :keymaps '(normal visual motion emacs)
     :prefix "SPC")
 
-  (general-create-definer kaus/window-and-buffer-keys
-    :states '(normal visual motion emacs)
-    :keymaps 'override
+  (general-create-definer kaus/mode-map-keys
+    :keymaps '(normal visual motion emacs)
     :prefix "SPC")
+
+  (general-create-definer kaus/buffer-keys
+    :keymaps '(normal visual motion emacs)
+    :prefix "SPC")
+
+  (general-create-definer kaus/plugin-keys
+    :keymaps '(normal visual motion emacs))
 
   (general-create-definer kaus/misc-keys
-    :states '(normal visual motion emacs)
-    :keymaps 'override
+    :keymaps '(normal visual motion emacs)
     :prefix "SPC")
-
-  (general-define-key
-   :states '(normal visual motion emacs)
-   :prefix "SPC"
-   "h" 'help-command)
 
   (kaus/test-keys
     "t"   '(counsel-load-theme :which-key "choose theme"))
 
-  (kaus/window-and-buffer-keys
-    ;; Buffer keys
+  (kaus/mode-map-keys
+   "h" '(help-command :which-key "help-command")
+   "w" '(evil-window-map :which-key "evil-window-map")  
+   )
+
+  (kaus/buffer-keys
     "bk"  '(kill-current-buffer :which-key "kill-current-buffer")
     "bb"  '(counsel-ibuffer :which-key "counsel-ibuffer")
     ","   '(counsel-switch-buffer :which-key "counsel-switch-buffer")
     "bp"  '(previous-buffer :which-key "previous-buffer")
     "bn"  '(next-buffer :which-key "next-buffer")
-
-    ;; Evil window keys
-    "wh"  '(evil-window-left :which-key "evil-window-left")
-    "wj"  '(evil-window-down :which-key  "evil-window-down")
-    "wk"  '(evil-window-up :which-key  "evil-window-up")
-    "wl"  '(evil-window-right :which-key  "evil-window-right")
-
-    "wH"  '(evil-window-move-far-left :which-key "evil-window-move-far-left")
-    "wJ"  '(evil-window-move-very-down :which-key  "evil-window-move-very-down")
-    "wK"  '(evil-window-move-very-up :which-key  "evil-window-move-very-up")
-    "wL"  '(evil-window-move-far-right :which-key  "evil-window-move-far-right")
-
-    "wv"  '(evil-window-vsplit :which-key  "evil-window-vsplit")
-    "ws"  '(evil-window-split :which-key  "evil-window-split")
-
-    "wc"  '(evil-window-delete :which-key "evil-window-delete")
     )
+
+  (kaus/plugin-keys
+   "C-w M-m" '(whitespace-mode :which-key "whitespace-mode")
+   "C-c M-p" '(check-parens :which-key "check-parens")
+   )
 
   (kaus/misc-keys
     "gg"  '(magit-status :which-key "magit-status")
