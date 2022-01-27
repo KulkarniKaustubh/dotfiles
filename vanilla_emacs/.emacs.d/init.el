@@ -171,7 +171,9 @@
   :custom ((doom-modeline-height 15)))  ; This isn't working for values below 25
 
 ;; Install magit
-(use-package magit)
+(use-package magit
+  :hook
+  (git-commit-mode . evil-insert-state))
 
 ;; Install which-key
 (use-package which-key
