@@ -111,7 +111,14 @@
   (evil-set-undo-system 'undo-tree)
   (global-undo-tree-mode 1))
 
-;; Install swiper
+;; Install lsp
+(use-package lsp-mode
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :config
+  (lsp-enable-which-key-integration))
+
+;; Install swiper for searches
 (use-package swiper)
 
 ;; Install ivy
