@@ -115,5 +115,5 @@ alias e="emacsclient -c"
 
 # check and source machine specific/private .zsh files
 if compgen -G "$HOME/.dotfiles/zsh/.private_*.zsh" > /dev/null; then
-    source $HOME/.dotfiles/zsh/.private_*.zsh
+    source $HOME/.private_*.zsh
 fi
