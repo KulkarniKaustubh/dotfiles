@@ -113,6 +113,11 @@ alias envmerger="source envmerger"
 alias e="emacsclient -c"
 # end of aliases
 
+# ZSH key binds
+bindkey -s "^[e" "e . &; disown %1; ^M"
+bindkey -s "^[n" "nautilus . &; disown %1; ^M"
+# end
+
 # check and source machine specific/private .zsh files
 if compgen -G "$HOME/.dotfiles/zsh/.private_*.zsh" > /dev/null; then
     source $HOME/.private_*.zsh
