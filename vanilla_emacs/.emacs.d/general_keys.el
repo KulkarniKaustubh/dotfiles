@@ -44,8 +44,8 @@
     )
 
   (kaus/plugin-keys
-   "C-w M-m" '(whitespace-mode :which-key "whitespace-mode")
-   "C-c M-p" '(check-parens :which-key "check-parens")
+   "C-c w" '(whitespace-mode :which-key "whitespace-mode")
+   "C-c p" '(check-parens :which-key "check-parens")
    )
 
   (kaus/misc-keys
