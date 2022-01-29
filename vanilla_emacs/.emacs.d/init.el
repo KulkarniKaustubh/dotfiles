@@ -83,9 +83,12 @@
   (setq evil-want-C-i-jump nil)
   :config
   (evil-mode 1)
+
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
   (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
+  (define-key evil-normal-state-map [delete] 'evil-delete-char)
+  (define-key evil-insert-state-map [delete] 'delete-char)
 
   ;; Override evil-search-forward with swiper
   (define-key evil-motion-state-map (kbd "/") 'swiper)
@@ -110,13 +113,6 @@
   :config
   (evil-set-undo-system 'undo-tree)
   (global-undo-tree-mode 1))
-
-;; Install lsp
-(use-package lsp-mode
-  :init
-  (setq lsp-keymap-prefix "C-c l")
-  :config
-  (lsp-enable-which-key-integration))
 
 ;; Install swiper for searches
 (use-package swiper)
@@ -230,6 +226,40 @@
       evil-window-right
       evil-window-up
       evil-window-down))))
+
+;; Install lsp
+(use-package lsp-mode
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :commands (lsp lsp-deferred)
+  :hook
+  (python-mode . lsp-deferred)
+  :config
+  (lsp-ui-doc-show-with-cursor t)
+  (lsp-enable-which-key-integration t))
+
+;; Install lsp ui
+(use-package lsp-ui
+  :commands lsp-ui-mode
+  :hook (lsp-mode . lsp-ui-mode)
+  :custom
+  (lsp-ui-doc-position 'bottom))
+
+(use-package flycheck)
+
+(use-package company
+  :after lsp-mode
+  :hook (lsp-mode . company-mode)
+  :bind (:map company-active-map
+         ("<tab>" . company-complete-selection))
+        (:map lsp-mode-map
+         ("<tab>" . company-indent-or-complete-common))
+  :custom
+  (company-minimum-prefix-length 1)
+  (company-idle-delay 0.0))
+
+(use-package company-box
+  :hook (company-mode . company-box-mode))
 
 ;; Load my general package key bindings
 (load "~/.dotfiles/vanilla_emacs/.emacs.d/general_keys.el")
