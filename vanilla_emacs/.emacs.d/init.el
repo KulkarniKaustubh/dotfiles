@@ -245,8 +245,10 @@
   :custom
   (lsp-ui-doc-position 'bottom))
 
+;; To display warnings/errors, flycheck
 (use-package flycheck)
 
+;; For auto completion, company mode
 (use-package company
   :after lsp-mode
   :hook (lsp-mode . company-mode)
