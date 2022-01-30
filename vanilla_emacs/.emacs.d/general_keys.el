@@ -5,7 +5,10 @@
   :config
   (general-def :states '(normal visual motion emacs) "SPC" nil)  ; Unbind SPC to work as a prefix
   (general-def :keymaps 'magit-mode-map "SPC" nil)  ; Unbind the magit bind for SPC
+  (general-def :keymaps 'image-mode-map "SPC" nil)  ; Unbind the image mode map bind for SPC
   (general-def :states 'normal :keymaps 'dired-mode-map "SPC" nil)  ; Unbind the dired bind for SPC
+  (general-def :states 'normal :keymaps 'help-mode-map "SPC" nil)  ; Unbind the help mode map bind for SPC
+  (general-def :states 'normal :keymaps 'image-mode-map "SPC" nil)  ; Unbind the image mode map bind for SPC
   (general-evil-setup t)
 
   (general-create-definer kaus/test-keys
@@ -53,5 +56,5 @@
     "ot"  '(vterm-toggle :which-key "vterm-toggle")
     "."   '(counsel-find-file :which-key "counsel-find-file")
     "RET" '(counsel-bookmark :which-key "counsel-bookmark")
-    "rf"  '(counsel-recentf :which-key "counsel-recentf")
+    "fr"  '(counsel-recentf :which-key "counsel-recentf")
     ))
