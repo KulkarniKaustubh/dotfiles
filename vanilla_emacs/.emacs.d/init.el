@@ -235,7 +235,6 @@
   :hook
   (python-mode . lsp-deferred)
   :config
-  (lsp-ui-doc-show-with-cursor t)
   (lsp-enable-which-key-integration t))
 
 ;; Install lsp ui
