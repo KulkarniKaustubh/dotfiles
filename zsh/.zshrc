@@ -45,7 +45,7 @@ source $HOME/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 
 # add binaries to $PATH
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/cuda/bin
-export PATH=$PATH:/usr/local/cuda/bin:/home/kaustubh/.cargo/bin
+export PATH=$PATH:/usr/local/cuda/bin
 export PATH=$PATH:/home/kaustubh/.local/bin
 # end of $PATH exports
 
