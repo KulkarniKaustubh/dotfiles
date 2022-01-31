@@ -61,7 +61,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes '(default))
  '(package-selected-packages
-   '(company-box company flycheck lsp-ui lsp-mode golden-ratio vterm-toggle vterm evil-collection general smex helpful undo-tree counsel ivy-rich doom-themes which-key evil magit doom-modeline ivy use-package)))
+   '(pyvenv company-box company flycheck lsp-ui lsp-mode golden-ratio vterm-toggle vterm evil-collection general smex helpful undo-tree counsel ivy-rich doom-themes which-key evil magit doom-modeline ivy use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -72,6 +72,9 @@
 ;; ------------------------------------------------------------------
 ;;                     Package Installations
 ;; ------------------------------------------------------------------
+
+;; Fixing dired
+(setq dired-listing-switches "-lAX --group-directories-first")
 
 ;; Install evil mode
 (use-package evil
@@ -140,13 +143,15 @@
 
 ;; Install counsel
 (use-package counsel
-  :init (counsel-mode)
+  :init
   :bind (("M-x" . counsel-M-x)
          ("C-x x" . counsel-M-x)
          ("C-x b" . counsel-switch-buffer)
          ("C-x C-f" . counsel-find-file)
          :map minibuffer-local-map
-         ("C-r" . 'counsel-minibuffer-history)))
+         ("C-r" . 'counsel-minibuffer-history))
+  :config
+  (counsel-mode 1))
 
 ;; Install smart M-x
 (use-package smex)
@@ -242,6 +247,11 @@
   :hook (lsp-mode . lsp-ui-mode)
   :custom
   (lsp-ui-doc-position 'bottom))
+  
+;; For virtualenvironments, pyvenv
+;; (use-package pyvenv
+;;   :config
+;;   (pyvenv-mode 1))
 
 ;; To display warnings/errors, flycheck
 (use-package flycheck)
