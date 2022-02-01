@@ -251,8 +251,12 @@
   
 ;; For virtualenvironments, pyvenv
 (use-package pyvenv
+  :hook
+  (python-mode . pyvenv-mode)
   :config
-  (pyvenv-mode 1))
+  (pyvenv-mode 1)
+  (pyvenv-activate "~/Envs/lspenv")
+  )
 
 ;; To display warnings/errors, flycheck
 (use-package flycheck)
