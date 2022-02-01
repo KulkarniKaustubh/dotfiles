@@ -19,6 +19,10 @@ select-word-style bash
 bindkey ";5C" forward-word
 bindkey ";5D" backward-word
 
+# History search with same prefix
+bindkey "^[OA" history-search-backward
+bindkey "^[OB" history-search-forward
+
 # Add highlight enabled tab completion with colors
 zstyle ':completion:*' menu select
 eval "$(dircolors)"
