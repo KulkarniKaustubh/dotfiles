@@ -67,15 +67,6 @@ command_not_found_handler () {
     fi
 }
 
-# git aliases
-alias gst="git status"
-alias ga="git add"
-alias gcm="git commit -m"
-alias gl="git pull"
-alias gp="git push"
-alias gcl="git clone"
-# end of git aliases
-
 # getting Emacs tramp to work with zsh
 if [[ "$TERM" == "dumb" ]]
 then
@@ -86,6 +77,25 @@ then
     unfunction preexec
     PS1='$ '
 fi
+
+# git aliases
+alias gst="git status"
+alias ga="git add"
+alias gcm="git commit -m"
+alias gl="git pull"
+alias gp="git push"
+alias gcl="git clone"
+# end of git aliases
+
+# docker aliases
+alias dps="docker ps"
+alias dpsa="docker ps -a"
+alias di="docker images"
+alias drm="docker rm"
+alias drmi="docker rmi"
+alias dsi="docker start -i"
+alias dpl="docker pull"
+# end of docker aliases
 
 # start of aliases
 alias c='cd'
