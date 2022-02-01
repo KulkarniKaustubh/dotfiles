@@ -120,8 +120,7 @@ alias cls="clear"
 
 alias envmerger="source envmerger"
 
-alias crm="rm" # correct rm command
-alias rm="gio trash" # safe rm command
+alias srm="gio trash" # safe rm command
 
 # alias e="emacsclient -c"
 # end of aliases
