@@ -61,7 +61,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes '(default))
  '(package-selected-packages
-   '(pyvenv company-box company flycheck lsp-ui lsp-mode golden-ratio vterm-toggle vterm evil-collection general smex helpful undo-tree counsel ivy-rich doom-themes which-key evil magit doom-modeline ivy use-package)))
+   '(pyvenv rainbow-delimiters evil-collection evil company-box company flycheck lsp-ui lsp-mode golden-ratio vterm-toggle vterm general smex helpful undo-tree counsel ivy-rich doom-themes which-key magit doom-modeline ivy use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -250,9 +250,9 @@
   (lsp-ui-doc-position 'bottom))
   
 ;; For virtualenvironments, pyvenv
-;; (use-package pyvenv
-;;   :config
-;;   (pyvenv-mode 1))
+(use-package pyvenv
+  :config
+  (pyvenv-mode 1))
 
 ;; To display warnings/errors, flycheck
 (use-package flycheck)
