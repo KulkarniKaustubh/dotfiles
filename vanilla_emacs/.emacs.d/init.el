@@ -136,6 +136,7 @@
          ("C-k" . ivy-previous-line)
          ("C-d" . ivy-reverse-i-search-kill))
   :config
+  (setq ivy-wrap t)
   (ivy-mode 1))   ; Run ivy by default
 
 ;; Run to load all icons after ivy
