@@ -57,4 +57,5 @@
     "."   '(counsel-find-file :which-key "counsel-find-file")
     "RET" '(counsel-bookmark :which-key "counsel-bookmark")
     "fr"  '(counsel-recentf :which-key "counsel-recentf")
+    "bm"  '(bookmark-set :which-key "bookmark-set")
     ))
