@@ -91,6 +91,9 @@
   (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
   (define-key evil-normal-state-map [delete] 'evil-delete-char)
   (define-key evil-insert-state-map [delete] 'delete-char)
+  (setq evil-emacs-state-cursor '("yellow" box))
+  (setq evil-normal-state-cursor '("#c792ea" box))
+  (setq evil-visual-state-cursor '("cyan" box))
 
   ;; Override evil-search-forward with swiper
   (define-key evil-motion-state-map (kbd "/") 'swiper)
