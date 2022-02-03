@@ -142,6 +142,12 @@
 ;; Run to load all icons after ivy
 (use-package all-the-icons)
 
+;; Recentf always on
+(use-package recentf
+  :config
+  (recentf-mode 1)
+  (setq recentf-max-menu-items 25))
+
 ;; Install counsel
 (use-package counsel
   :init
