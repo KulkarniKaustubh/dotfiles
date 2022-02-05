@@ -8,6 +8,8 @@
 
 (menu-bar-mode -1)      ; Disable the menu bar
 
+(global-auto-revert-mode t)   ; All buffers always in sync with no unsaved changes
+
 ;; ------------------------------------------------------------------
 
 ;; Stop cursor from jumping to the center while scrolling
@@ -61,7 +63,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes '(default))
  '(package-selected-packages
-   '(pyvenv rainbow-delimiters evil-collection evil company-box company flycheck lsp-ui lsp-mode golden-ratio vterm-toggle vterm general smex helpful undo-tree counsel ivy-rich doom-themes which-key magit doom-modeline ivy use-package)))
+   '(iedit pyvenv rainbow-delimiters evil-collection evil company-box company flycheck lsp-ui lsp-mode golden-ratio vterm-toggle vterm general smex helpful undo-tree counsel ivy-rich doom-themes which-key magit doom-modeline ivy use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -285,5 +287,11 @@
 (use-package company-box
   :hook (company-mode . company-box-mode))
 
+;; To edit multiple occurences of region simultaneously, iedit
+(use-package iedit)
+
 ;; Load my general package key bindings
 (load "~/.dotfiles/vanilla_emacs/.emacs.d/general_keys.el")
+
+;; Disable narrow-to-region prompt
+(put 'narrow-to-region 'disabled nil)
