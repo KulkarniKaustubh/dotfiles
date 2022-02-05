@@ -95,6 +95,7 @@
   (define-key evil-insert-state-map [delete] 'delete-char)
   (setq evil-emacs-state-cursor '("yellow" box))
   (setq evil-normal-state-cursor '("#c792ea" box))
+  (setq evil-insert-state-cursor '("#c792ea" bar))
   (setq evil-visual-state-cursor '("cyan" box))
 
   ;; Override evil-search-forward with swiper
