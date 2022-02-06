@@ -15,3 +15,6 @@ eshell
 network-security.data
 smex-*
 bookmarks
+recentf
+history
+.lsp-session*
