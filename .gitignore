@@ -3,9 +3,6 @@
 *.*~
 *%*%*
 
-# ignore local .emacs.d because of git submodule
-emacs/.emacs.d
-
 # ignore zsh plugins and themes
 zsh/.zsh
 
