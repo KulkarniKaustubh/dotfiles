@@ -126,11 +126,11 @@ alias envmerger="source envmerger"
 
 alias srm="gio trash" # safe rm command
 
-# alias e="emacsclient -c"
+alias e="emacsclient -c"
 # end of aliases
 
 # ZSH key binds
-bindkey -s "^[e" "emacs . &; disown %1; ^M"
+bindkey -s "^[e" "emacsclient -c . &; disown %1; ^M"
 bindkey -s "^[n" "nautilus . &; disown %1; ^M"
 # end
 
