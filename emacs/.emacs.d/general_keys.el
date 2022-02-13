@@ -49,7 +49,7 @@
   (kaus/plugin-keys
    "C-c w" '(whitespace-mode :which-key "whitespace-mode")
    "C-c p" '(check-parens :which-key "check-parens")
-   "C-c t" '(delete-trailing-whitespace :which-key delete-trailing-whitespace)
+   "C-c t" '(delete-trailing-whitespace :which-key "delete-trailing-whitespace")
    )
 
   (kaus/misc-keys
