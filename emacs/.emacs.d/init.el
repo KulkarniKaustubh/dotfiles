@@ -63,7 +63,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes '(default))
  '(package-selected-packages
-   '(iedit pyvenv rainbow-delimiters evil-collection evil company-box company flycheck lsp-ui lsp-mode golden-ratio vterm-toggle vterm general smex helpful undo-tree counsel ivy-rich doom-themes which-key magit doom-modeline ivy use-package)))
+   '(persp-mode iedit pyvenv rainbow-delimiters evil-collection evil company-box company flycheck lsp-ui lsp-mode golden-ratio vterm-toggle vterm general smex helpful undo-tree counsel ivy-rich doom-themes which-key magit doom-modeline ivy use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -212,7 +212,7 @@
 
 ;; Install vterm (emacs27+ required)
 ;; Before the following line, run:
-;; sudo apt install cmake libtool libtool-bin 
+;; sudo apt install cmake libtool libtool-bin
 (use-package vterm
   :init)
 
@@ -260,7 +260,7 @@
   :hook (lsp-mode . lsp-ui-mode)
   :custom
   (lsp-ui-doc-position 'bottom))
-  
+
 ;; For virtualenvironments, pyvenv
 (use-package pyvenv
   :hook
@@ -290,6 +290,11 @@
 
 ;; To edit multiple occurences of region simultaneously, iedit
 (use-package iedit)
+
+;; For workspaces, perspective or persp-mode
+(use-package persp-mode
+  :config
+  (persp-mode 1))
 
 ;; Load my general package key bindings
 (load "~/.emacs.d/general_keys.el")
