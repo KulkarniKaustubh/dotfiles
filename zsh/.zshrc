@@ -5,6 +5,10 @@ SAVEHIST=1000
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
+# sugon
+figlet -f Speed "SugoN" | lolcat
+# end sugon
+
 # Fixing zsh history problems on multiple terminals
 setopt inc_append_history
 setopt share_history
@@ -167,7 +171,7 @@ alias srm="gio trash" # safe rm command
 
 alias e="emacsclient -c"
 
-alias erestart="emacsclient -e '(kill-emacs)'; emacs --daemon"
+alias erestart="emacsclient -e '(save-buffers-kill-emacs)'; emacs --daemon"
 # end of aliases
 
 # ZSH key binds
