@@ -40,10 +40,12 @@
 
   (kaus/buffer-keys
     "bk"  '(kill-current-buffer :which-key "kill-current-buffer")
+    "q"  '(kill-current-buffer :which-key "kill-current-buffer")
     "bb"  '(counsel-ibuffer :which-key "counsel-ibuffer")
     ","   '(counsel-switch-buffer :which-key "counsel-switch-buffer")
     "bp"  '(previous-buffer :which-key "previous-buffer")
     "bn"  '(next-buffer :which-key "next-buffer")
+    "s"  '(save-buffer :which-key "save-buffer")
     )
 
   (kaus/plugin-keys
@@ -59,5 +61,4 @@
     "RET" '(counsel-bookmark :which-key "counsel-bookmark")
     "fr"  '(counsel-recentf :which-key "counsel-recentf")
     "bm"  '(bookmark-set :which-key "bookmark-set")
-    "SPC"  '(save-buffer :which-key "save-buffer")
     ))
