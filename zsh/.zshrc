@@ -166,6 +166,8 @@ alias envmerger="source envmerger"
 alias srm="gio trash" # safe rm command
 
 alias e="emacsclient -c"
+
+alias erestart="emacsclient -e '(kill-emacs)'; emacs --daemon"
 # end of aliases
 
 # ZSH key binds
