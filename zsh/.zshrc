@@ -5,10 +5,6 @@ SAVEHIST=1000
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
-# sugon
-figlet -f Speed "SugoN" | lolcat
-# end sugon
-
 # Fixing zsh history problems on multiple terminals
 setopt inc_append_history
 setopt share_history
