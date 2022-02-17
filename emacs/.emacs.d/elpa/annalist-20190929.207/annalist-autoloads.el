@@ -6,8 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "annalist" "annalist.el" (0 0 0 0))
-;;; Generated autoloads from annalist.el
+;;;### (autoloads nil "annalist" "../../../../../.emacs.d/elpa/annalist-20190929.207/annalist.el"
+;;;;;;  "ea2923f8ff377855ba93c933ae89097c")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/annalist-20190929.207/annalist.el
 
 (autoload 'annalist-record "annalist" "\
 In the store for ANNALIST, TYPE, and LOCAL, record RECORD.
@@ -29,12 +30,21 @@ For example: (annalist-describe 'general 'keybindings) If VIEW is non-nil, use
 those settings for displaying recorded information instead of the defaults.
 
 \(fn ANNALIST TYPE &optional VIEW)" nil nil)
+
+;;;### (autoloads "actual autoloads are elsewhere" "annalist" "../../../../../.emacs.d/elpa/annalist-20190929.207/annalist.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/annalist-20190929.207/annalist.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "annalist" '("annalist-")))
 
 ;;;***
+
+;;;***
 
-;;;### (autoloads nil nil ("annalist-pkg.el") (0 0 0 0))
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/annalist-20190929.207/annalist-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/annalist-20190929.207/annalist-pkg.el"
+;;;;;;  "../../../../../.emacs.d/elpa/annalist-20190929.207/annalist.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 
