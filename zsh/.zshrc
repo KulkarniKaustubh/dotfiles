@@ -136,7 +136,8 @@ alias dpsa="docker ps -a"
 alias di="docker images"
 alias drm="docker rm"
 alias drmi="docker rmi"
-alias dsi="docker start -i"
+alias ds="docker start"
+alias de="docker exec -ti"
 alias dpl="docker pull"
 # end of docker aliases
 
