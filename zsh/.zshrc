@@ -121,6 +121,9 @@ then
     PS1='$ '
 fi
 
+# set bat config file
+export BAT_CONFIG_PATH=$HOME/.bat.conf
+
 # git aliases
 alias gst="git status"
 alias ga="git add"
@@ -156,7 +159,7 @@ alias lla='exa -laF'
 alias l="ls"
 alias c..='cd ..'
 
-alias cat="batcat"
+alias cat="bat"
 
 alias p="python"
 alias p3="python3"
