@@ -81,6 +81,9 @@
 ;; Change recenter positions toggle order
 (setq recenter-positions '(middle bottom top))
 
+;; Disable narrow-to-region prompt
+(put 'narrow-to-region 'disabled nil)
+
 ;; ------------------------------------------------------------------
 ;;                     Package Installations
 ;; ------------------------------------------------------------------
@@ -164,7 +167,7 @@
 (use-package recentf
   :config
   (recentf-mode 1)
-  (setq recentf-max-menu-items 25))
+  (setq recentf-max-menu-items 50))
 
 ;; Install counsel
 (use-package counsel
@@ -367,6 +370,3 @@
 
 ;; Load my general package key bindings
 (load "~/.emacs.d/general_keys.el")
-
-;; Disable narrow-to-region prompt
-(put 'narrow-to-region 'disabled nil)
