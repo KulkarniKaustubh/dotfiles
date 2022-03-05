@@ -210,6 +210,11 @@
   :hook
   (git-commit-mode . evil-insert-state))
 
+;; For merge conflicts, smerge-mode (in-built)
+(use-package smerge-mode
+  :init
+  (setq smerge-command-prefix (kbd "C-c v")))
+
 ;; Install which-key
 (use-package which-key
   :init (which-key-mode))
@@ -352,7 +357,6 @@
                      swiper
                      move-to-window-line-top-bottom
                      windmove-do-window-select
-                     evil-yank
                      evil-paste-after))
     (advice-add command :after #'pulse-line)))
 
