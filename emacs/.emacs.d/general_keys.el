@@ -40,18 +40,20 @@
 
   (kaus/buffer-keys
     "bk"  '(kill-current-buffer :which-key "kill-current-buffer")
-    "q"  '(kill-current-buffer :which-key "kill-current-buffer")
+    "q"   '(kill-current-buffer :which-key "kill-current-buffer")
     "bb"  '(counsel-ibuffer :which-key "counsel-ibuffer")
     ","   '(counsel-switch-buffer :which-key "counsel-switch-buffer")
     "bp"  '(previous-buffer :which-key "previous-buffer")
     "bn"  '(next-buffer :which-key "next-buffer")
-    "s"  '(save-buffer :which-key "save-buffer")
+    "s"   '(save-buffer :which-key "save-buffer")
     )
 
   (kaus/plugin-keys
-   "C-c w" '(whitespace-mode :which-key "whitespace-mode")
-   "C-c p" '(check-parens :which-key "check-parens")
-   "C-c t" '(delete-trailing-whitespace :which-key "delete-trailing-whitespace")
+   "C-c w"   '(whitespace-mode :which-key "whitespace-mode")
+   "C-c p"   '(check-parens :which-key "check-parens")
+   "C-c t"   '(delete-trailing-whitespace :which-key "delete-trailing-whitespace")
+   "C-c C-c" '(move-to-window-line-top-bottom :which-key "move-to-window-line-top-bottom")
+   "C-c r"   '(rg-dwim :which-key "rg-dwim")
    )
 
   (kaus/misc-keys
@@ -62,3 +64,5 @@
     "fr"  '(counsel-recentf :which-key "counsel-recentf")
     "bm"  '(bookmark-set :which-key "bookmark-set")
     ))
+
+  (general-nmap "Y" (general-simulate-key "y$")) ;; Remaps "Y" to "y$" liek neovim
