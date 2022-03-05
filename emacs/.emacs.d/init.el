@@ -69,7 +69,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(pulse-highlight-start-face ((t (:background "gray")))))
+ )
 
 ;; ------------------------------------------------------------------
 ;;                     Misc Package Configs
@@ -340,6 +340,7 @@
 ;; To highlight cursor postion after certain functions, pulse (in-built)
 (use-package pulse
   :config
+  (set-face-attribute 'pulse-highlight-start-face nil :background "gray") ;; Change pulse highlight color to gray
   (defun pulse-line (&rest _)
     (pulse-momentary-highlight-one-line (point)))
   (dolist (command '(evil-scroll-down
