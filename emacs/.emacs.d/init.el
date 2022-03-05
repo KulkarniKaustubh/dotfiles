@@ -63,20 +63,30 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes '(default))
  '(package-selected-packages
-   '(impatient-mode iedit pyvenv rainbow-delimiters evil-collection evil company-box company flycheck lsp-ui lsp-mode golden-ratio vterm-toggle vterm general smex helpful undo-tree counsel ivy-rich doom-themes which-key magit doom-modeline ivy use-package)))
+   '(rg restart-emacs blacken python-black ein impatient-mode iedit pyvenv rainbow-delimiters evil company-box company flycheck lsp-ui lsp-mode golden-ratio vterm-toggle vterm general smex helpful undo-tree counsel ivy-rich doom-themes which-key magit doom-modeline ivy use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+)
+
+;; ------------------------------------------------------------------
+;;                     Misc Package Configs
+;; ------------------------------------------------------------------
+
+;; Fixing dired
+(setq dired-listing-switches "-lAX --group-directories-first")
+
+;; Change recenter positions toggle order
+(setq recenter-positions '(middle bottom top))
 
 ;; ------------------------------------------------------------------
 ;;                     Package Installations
 ;; ------------------------------------------------------------------
 
-;; Fixing dired
-(setq dired-listing-switches "-lAX --group-directories-first")
+;; To restart emacs from within, restart-emacs
+(use-package restart-emacs)
 
 ;; Install evil mode
 (use-package evil
@@ -130,10 +140,11 @@
   :diminish
   :bind (("C-s" . swiper)
          :map ivy-minibuffer-map
-         ("TAB" . ivy-alt-done)
+         ("TAB" . ivy-partial)
          ("C-l" . ivy-alt-done)
          ("C-j" . ivy-next-line)
          ("C-k" . ivy-previous-line)
+         ("C-c C-c" . ivy-call)
          :map ivy-switch-buffer-map
          ("C-k" . ivy-previous-line)
          ("C-l" . ivy-done)
@@ -142,7 +153,8 @@
          ("C-k" . ivy-previous-line)
          ("C-d" . ivy-reverse-i-search-kill))
   :config
-  (setq ivy-wrap t)
+  (setq ivy-wrap t) ;; Enable menu to cycle through
+  (setq ivy-on-del-error-function 'ignore) ;; Stop backspace from closing ivy
   (ivy-mode 1))   ; Run ivy by default
 
 ;; Run to load all icons after ivy
@@ -297,10 +309,10 @@
 ;;   (persp-mode 1))
 
 (use-package impatient-mode
+  :commands impatient-mode
   :hook
   (markdown-mode . impatient-mode)
   (markdown-mode . httpd-start)
-  :functions markdown-html
   :config
   (defun impatient-github-markdown-filter (buffer)
     (princ
@@ -312,14 +324,43 @@
     <body><article class=\"markdown-body\" style=\"box-sizing: border-box;min-width: 200px;max-width: 980px;margin: 0 auto;padding: 45px;\">%s</article></body></html>" (buffer-string))))
     (current-buffer)))
 
-  (defun github-markdown-preview ()
-    "Github markdown preview."
-    (interactive)
-    (unless (process-status "httpd")
-        (httpd-start))
-    (impatient-mode)
-    (imp-set-user-filter 'impatient-github-markdown-filter)
-    (imp-visit-buffer))
+    (defun github-markdown-preview ()
+      "Github markdown preview."
+      (interactive)
+      (unless (process-status "httpd")
+          (httpd-start))
+      (impatient-mode)
+      (imp-set-user-filter #'impatient-github-markdown-filter)
+      (imp-visit-buffer))
+  )
+
+;; For jupyter notebooks, EIN
+(use-package ein)
+
+(use-package pulse
+  ;; Highlight cursor postion after movement
+  :config
+  (defun pulse-line (&rest _)
+    (pulse-momentary-highlight-one-line (point)))
+  (dolist (command '(evil-scroll-down
+                     evil-scroll-up
+                     recenter-top-bottom
+                     swiper
+                     move-to-window-line-top-bottom
+                     windmove-do-window-select
+                     evil-paste-after))
+    (advice-add command :after #'pulse-line)))
+
+;; To format python code, black
+(use-package blacken
+  :config
+  (setq blacken-line-length 79)
+  :hook (python-mode . blacken-mode))
+
+(use-package rg
+  :config
+  (setq rg-executable "rg") ;; use rg from PATH shell variable
+  (setq rg-default-alias-fallback "everything")
   )
 
 ;; Load my general package key bindings
