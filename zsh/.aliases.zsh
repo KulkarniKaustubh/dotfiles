@@ -21,7 +21,7 @@ alias cls="clear"
 alias srm="gio trash" # safe rm command
 
 alias ec="emacsclient -c"
-alias ecnw="emacsclient -c -nw"
+alias ecnw="TERM=xterm-direct emacsclient -c -nw"
 alias e="emacs"
 alias enw="TERM=xterm-direct emacs -nw"
 
