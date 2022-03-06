@@ -7,7 +7,7 @@
 zsh/.zsh
 
 # ignore machine specific/private .zsh files
-zsh/.private_*.zsh
+zsh/.*private*.zsh
 
 # ignore .emacs.d files
 transient
