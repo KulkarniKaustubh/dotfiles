@@ -121,62 +121,12 @@ then
     PS1='$ '
 fi
 
-# git aliases
-alias gst="git status"
-alias ga="git add"
-alias gcm="git commit -m"
-alias gl="git pull"
-alias gp="git push"
-alias gcl="git clone"
-# end of git aliases
-
-# docker aliases
-alias dps="docker ps"
-alias dpsa="docker ps -a"
-alias di="docker images"
-alias drm="docker rm"
-alias drmi="docker rmi"
-alias ds="docker start"
-alias de="docker exec -ti"
-alias dpl="docker pull"
-# end of docker aliases
-
-# start of aliases
-alias c='cd'
-
-# alias ll='ls -l'
-# alias la='ls -A'
-# alias l='ls -CF'
-# alias lla='ls -alF'
-
-alias ls='exa'
-alias ll='exa -l'
-alias la='exa -a'
-alias lla='exa -laF'
-alias l="ls"
-alias c..='cd ..'
-
-alias cat="bat"
-
-alias p="python"
-alias p3="python3"
-alias cls="clear"
-
-alias envmerger="source envmerger"
-
-alias srm="gio trash" # safe rm command
-
-alias e="emacsclient -c"
-
-alias erestart="emacsclient -e '(save-buffers-kill-emacs)'; emacs --daemon"
-# end of aliases
-
 # ZSH key binds
 bindkey -s "^[e" "emacsclient -c . &; disown %1; ^M"
 bindkey -s "^[n" "nautilus . &; disown %1; ^M"
 # end
 
-# check and source machine specific/private .zsh files
-if compgen -G "$HOME/.dotfiles/zsh/.private_*.zsh" > /dev/null; then
-    source $HOME/.private_*.zsh
-fi
+# loop through and source all aliases files
+for aliases_file in $(ls -a | grep -E "\.aliases.*\.zsh"); do
+    source $aliases_file
+done
