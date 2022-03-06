@@ -127,6 +127,6 @@ bindkey -s "^[n" "nautilus . &; disown %1; ^M"
 # end
 
 # loop through and source all aliases files
-for aliases_file in $(ls -a | grep -E "\.aliases.*\.zsh"); do
+for aliases_file in $(ls -a $HOME | grep -E "\.aliases.*\.zsh"); do
     source $aliases_file
 done
