@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "evil-collection" "evil-collection.el" (0 0
-;;;;;;  0 0))
-;;; Generated autoloads from evil-collection.el
+;;;### (autoloads nil "evil-collection" "../../../../../.emacs.d/elpa/evil-collection-20220306.609/evil-collection.el"
+;;;;;;  "aa51ceec31a2747f30720e1c6e10d5db")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/evil-collection-20220306.609/evil-collection.el
 
 (autoload 'evil-collection-translate-key "evil-collection" "\
 Translate keys in the keymap(s) corresponding to STATES and KEYMAPS.
@@ -66,12 +66,22 @@ If MODES is specified (as either one mode or a list of modes), use those modes
 instead of the modes in `evil-collection-mode-list'.
 
 \(fn &optional MODES)" t nil)
+
+;;;### (autoloads "actual autoloads are elsewhere" "evil-collection"
+;;;;;;  "../../../../../.emacs.d/elpa/evil-collection-20220306.609/evil-collection.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/evil-collection-20220306.609/evil-collection.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "evil-collection" '("evil-collection-")))
 
 ;;;***
+
+;;;***
 
-;;;### (autoloads nil nil ("evil-collection-pkg.el") (0 0 0 0))
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/evil-collection-20220306.609/evil-collection-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/evil-collection-20220306.609/evil-collection-pkg.el"
+;;;;;;  "../../../../../.emacs.d/elpa/evil-collection-20220306.609/evil-collection.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 
