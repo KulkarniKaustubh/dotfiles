@@ -63,7 +63,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes '(default))
  '(package-selected-packages
-   '(rg restart-emacs blacken python-black ein impatient-mode iedit pyvenv rainbow-delimiters company-box company flycheck lsp-ui lsp-mode golden-ratio vterm-toggle vterm general smex helpful undo-tree counsel ivy-rich doom-themes which-key magit doom-modeline ivy use-package)))
+   '(company-tabnine rg restart-emacs blacken python-black ein impatient-mode iedit pyvenv rainbow-delimiters company-box company flycheck lsp-ui lsp-mode golden-ratio vterm-toggle vterm general smex helpful undo-tree counsel ivy-rich doom-themes which-key magit doom-modeline ivy use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -308,6 +308,12 @@
 (use-package company-box
   :hook (company-mode . company-box-mode))
 
+(use-package company-tabnine
+  :hook (company-mode . company-tabnine)
+  :config
+  (setq company-show-numbers t)
+  (add-to-list 'company-backends #'company-tabnine))
+
 ;; To edit multiple occurences of region simultaneously, iedit
 (use-package iedit)
 
@@ -366,6 +372,7 @@
   (setq blacken-line-length 79)
   :hook (python-mode . blacken-mode))
 
+;; For quick searching, ripgrep (rg)
 (use-package rg
   :config
   (setq rg-executable "rg") ;; use rg from PATH shell variable
