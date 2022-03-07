@@ -42,7 +42,7 @@
     "bk"  '(kill-current-buffer :which-key "kill-current-buffer")
     "q"   '(kill-current-buffer :which-key "kill-current-buffer")
     "bb"  '(counsel-ibuffer :which-key "counsel-ibuffer")
-    ","   '(counsel-switch-buffer :which-key "counsel-switch-buffer")
+    ","   '(ivy-switch-buffer :which-key "ivy-switch-buffer")
     "bp"  '(previous-buffer :which-key "previous-buffer")
     "bn"  '(next-buffer :which-key "next-buffer")
     "s"   '(save-buffer :which-key "save-buffer")
@@ -65,4 +65,4 @@
     "bm"  '(bookmark-set :which-key "bookmark-set")
     ))
 
-  (general-nmap "Y" (general-simulate-key "y$")) ;; Remaps "Y" to "y$" liek neovim
+  (general-nmap "Y" (general-simulate-key "y$")) ;; Remaps "Y" to "y$" like neovim

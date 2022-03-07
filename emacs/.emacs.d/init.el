@@ -155,6 +155,8 @@
          :map ivy-reverse-i-search-map
          ("C-k" . ivy-previous-line)
          ("C-d" . ivy-reverse-i-search-kill))
+  :custom
+  (ivy-use-virtual-buffers t)
   :config
   (setq ivy-wrap t) ;; Enable menu to cycle through
   (setq ivy-on-del-error-function 'ignore) ;; Stop backspace from closing ivy
@@ -308,8 +310,8 @@
 (use-package company-box
   :hook (company-mode . company-box-mode))
 
+;; For smart completion using company and ML, company-tabnine
 (use-package company-tabnine
-  :hook (company-mode . company-tabnine)
   :config
   (setq company-show-numbers t)
   (add-to-list 'company-backends #'company-tabnine))
