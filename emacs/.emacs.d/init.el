@@ -39,6 +39,7 @@
 ;; Enable line numbers in files
 (column-number-mode)
 (global-display-line-numbers-mode t)
+(setq display-line-numbers-type 'relative)
 
 ;; Disable line numbers for some modes like shell mode
 (dolist (mode '(org-mode-hook
@@ -47,6 +48,13 @@
                 eshell-mode-hook
                 vterm-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+;; ------------------------------------------------------------------
+
+;; ------------------------------------------------------------------
+
+;; Auto scroll with a margin of 8 from either top or bottom
+(setq scroll-margin 8)
 
 ;; ------------------------------------------------------------------
 
