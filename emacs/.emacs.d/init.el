@@ -160,6 +160,7 @@
   :config
   (setq ivy-wrap t) ;; Enable menu to cycle through
   (setq ivy-on-del-error-function 'ignore) ;; Stop backspace from closing ivy
+  (setq ivy-virtual-abbreviate 'abbreviate)
   (ivy-mode 1))   ; Run ivy by default
 
 ;; Run to load all icons after ivy
