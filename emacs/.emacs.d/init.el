@@ -51,13 +51,6 @@
 
 ;; ------------------------------------------------------------------
 
-;; ------------------------------------------------------------------
-
-;; Auto scroll with a margin of 8 from either top or bottom
-(setq scroll-margin 8)
-
-;; ------------------------------------------------------------------
-
 ;; Fix tab spaces with spaces and not tabs
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
@@ -71,7 +64,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes '(default))
  '(package-selected-packages
-   '(company-tabnine rg restart-emacs blacken python-black ein impatient-mode iedit pyvenv rainbow-delimiters company-box company flycheck lsp-ui lsp-mode golden-ratio vterm-toggle vterm general smex helpful undo-tree counsel ivy-rich doom-themes which-key magit doom-modeline ivy use-package)))
+   '(smooth-scrolling company-tabnine rg restart-emacs blacken python-black ein impatient-mode iedit pyvenv rainbow-delimiters company-box company flycheck lsp-ui lsp-mode golden-ratio vterm-toggle vterm general smex helpful undo-tree counsel ivy-rich doom-themes which-key magit doom-modeline ivy use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -389,6 +382,12 @@
   (setq rg-executable "rg") ;; use rg from PATH shell variable
   (setq rg-default-alias-fallback "everything")
   )
+
+;; For auto smooth scrolling with a margin, smooth-scrolling
+(use-package smooth-scrolling
+  :config
+  (setq smooth-scroll-margin 8)
+  (smooth-scrolling-mode 1))
 
 ;; Load my general package key bindings
 (load "~/.emacs.d/general_keys.el")
