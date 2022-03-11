@@ -54,6 +54,7 @@
    "C-c t"   '(delete-trailing-whitespace :which-key "delete-trailing-whitespace")
    "C-c C-c" '(move-to-window-line-top-bottom :which-key "move-to-window-line-top-bottom")
    "C-c r"   '(rg-dwim :which-key "rg-dwim")
+   "C-c C-n" '(neotree-show :which-key "neotree-show")
    )
 
   (kaus/misc-keys

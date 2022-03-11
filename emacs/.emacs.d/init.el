@@ -64,7 +64,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes '(default))
  '(package-selected-packages
-   '(smooth-scrolling company-tabnine rg restart-emacs blacken python-black ein impatient-mode iedit pyvenv rainbow-delimiters company-box company flycheck lsp-ui lsp-mode golden-ratio vterm-toggle vterm general smex helpful undo-tree counsel ivy-rich doom-themes which-key magit doom-modeline ivy use-package)))
+   '(neotree smooth-scrolling company-tabnine rg restart-emacs blacken python-black ein impatient-mode iedit pyvenv rainbow-delimiters company flycheck lsp-ui lsp-mode golden-ratio vterm-toggle vterm general smex helpful undo-tree counsel ivy-rich doom-themes which-key magit doom-modeline ivy use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -84,6 +84,9 @@
 
 ;; Disable narrow-to-region prompt
 (put 'narrow-to-region 'disabled nil)
+
+;; Enable tabs
+(tab-bar-mode 1)
 
 ;; ------------------------------------------------------------------
 ;;                     Package Installations
@@ -307,10 +310,9 @@
          ("<tab>" . company-indent-or-complete-common))
   :custom
   (company-minimum-prefix-length 1)
-  (company-idle-delay 0.0))
-
-(use-package company-box
-  :hook (company-mode . company-box-mode))
+  (company-idle-delay 0.0)
+  :config
+  (global-company-mode))
 
 ;; For smart completion using company and ML, company-tabnine
 (use-package company-tabnine
@@ -388,6 +390,11 @@
   :config
   (setq smooth-scroll-margin 8)
   (smooth-scrolling-mode 1))
+
+(use-package neotree
+  :config
+  (setq neo-show-hidden-files t)
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
 
 ;; Load my general package key bindings
 (load "~/.emacs.d/general_keys.el")
