@@ -391,6 +391,7 @@
   (setq smooth-scroll-margin 8)
   (smooth-scrolling-mode 1))
 
+;; For a file-tree panel, neotree
 (use-package neotree
   :config
   (setq neo-show-hidden-files t)
