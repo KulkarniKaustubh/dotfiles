@@ -125,7 +125,7 @@ fi
 
 fzf-dir() {
     local dir ret=$?
-    dir=$(fdfind . $HOME -a --type directory | fzf)
+    dir=$(fdfind . $HOME /mnt /media -a --type directory | fzf)
     if [ -n "$dir" ]; then
         zle push-line
         cd $dir
