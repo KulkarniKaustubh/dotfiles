@@ -121,9 +121,26 @@ then
     PS1='$ '
 fi
 
-# ZSH key binds
+# custom ZSH keybinds
+
+fzf-dir() {
+    local dir ret=$?
+    dir=$(fdfind . $HOME -a --type directory | fzf)
+    if [ -n "$dir" ]; then
+        zle push-line
+        cd $dir
+        zle accept-line
+    fi
+    zle reset-prompt
+    return $ret
+}
+
+zle -N fzf-dir
+bindkey "^F" fzf-dir
+
 bindkey -s "^[e" "emacsclient -c . &; disown %1; ^M"
 bindkey -s "^[n" "nautilus . &; disown %1; ^M"
+
 # end
 
 # loop through and source all aliases files

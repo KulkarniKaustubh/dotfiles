@@ -1058,5 +1058,4 @@ key_bindings:
   - { key: PageDown,  mods: None,          action: ScrollPageDown, mode: ~Alt  }
   - { key: Home,      mods: Shift,         action: ScrollToTop,    mode: ~Alt  }
   - { key: End,       mods: Shift,         action: ScrollToBottom, mode: ~Alt  }
-  - { key: F,         mods: Control,       chars:  "cd ~/ && cd $(fdfind --type directory | fzf) \x0D",   }
   - { key: Period,         mods: Control,       chars:  "mxd \x0D",   }
