@@ -129,7 +129,7 @@ fi
 
 fzf-dir() {
     local dir ret=$?
-    dir=$(fdfind . $HOME /mnt /media -a --type directory | fzf --height=40%)
+    dir=$(fdfind . $HOME /mnt /media -Ha --type directory | fzf --height=40%)
     if [ -z "$dir" ]; then
         zle redisplay
         return 0
