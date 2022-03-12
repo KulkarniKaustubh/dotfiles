@@ -5,6 +5,10 @@ SAVEHIST=5000
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
+# sugon
+figlet -f Speed "SugoN" | lolcat
+# end sugon
+
 # Fixing zsh history problems on multiple terminals
 setopt inc_append_history
 setopt share_history
@@ -125,7 +129,7 @@ fi
 
 fzf-dir() {
     local dir ret=$?
-    dir=$(fdfind . $HOME /mnt /media -a --type directory | fzf)
+    dir=$(fdfind . $HOME /mnt /media -a --type directory | fzf --height=40%)
     if [ -n "$dir" ]; then
         zle push-line
         cd $dir
