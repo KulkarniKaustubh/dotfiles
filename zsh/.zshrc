@@ -130,24 +130,17 @@ fi
 fzf-dir() {
     local dir ret=$?
     dir=$(fdfind . $HOME /mnt /media -a --type directory | fzf --height=40%)
-
     if [ -z "$dir" ]; then
         zle redisplay
         return 0
     fi
-
     cd $dir
-
-    # precmd functions are the functions run everytime to reset the prompt
-    # p10k has its own precmd functions so this step is essential before
-    # zle reset-prompt
+    # precmd functions are the functions/hooks run everytime to reset the prompt
     local precmd
     for precmd in $precmd_functions; do
       $precmd
     done
-
     zle reset-prompt
-
     return $ret
 }
 
