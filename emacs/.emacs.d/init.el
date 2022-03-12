@@ -22,7 +22,6 @@
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("org" . "https://orgmode.org/elpa/")
                          ("elpa" . "https://elpa.gnu.org/packages/")))
-
 (package-initialize)
 (unless package-archive-contents
   (package-refresh-contents))
@@ -302,12 +301,8 @@
 
 ;; For auto completion, company mode
 (use-package company
-  :after lsp-mode
-  :hook (lsp-mode . company-mode)
   :bind (:map company-active-map
          ("<tab>" . company-complete-selection))
-        (:map lsp-mode-map
-         ("<tab>" . company-indent-or-complete-common))
   :custom
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0)
@@ -394,8 +389,9 @@
 ;; For a file-tree panel, neotree
 (use-package neotree
   :config
-  (setq neo-show-hidden-files t)
-  (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
+  (doom-themes-neotree-config)
+  (setq doom-themes-neotree-file-icons t)
+  (setq neo-show-hidden-files t))
 
 ;; Load my general package key bindings
 (load "~/.emacs.d/general_keys.el")
