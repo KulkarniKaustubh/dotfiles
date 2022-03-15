@@ -63,7 +63,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes '(default))
  '(package-selected-packages
-   '(neotree smooth-scrolling company-tabnine rg restart-emacs blacken python-black ein impatient-mode iedit pyvenv rainbow-delimiters company flycheck lsp-ui lsp-mode golden-ratio vterm-toggle vterm general smex helpful undo-tree counsel ivy-rich doom-themes which-key magit doom-modeline ivy use-package)))
+   '(perspective sudo-edit neotree smooth-scrolling company-tabnine rg restart-emacs blacken python-black ein impatient-mode iedit pyvenv rainbow-delimiters company flycheck lsp-ui lsp-mode golden-ratio vterm-toggle vterm general smex helpful undo-tree counsel ivy-rich doom-themes which-key magit doom-modeline ivy use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -292,7 +292,6 @@
   :hook
   (python-mode . pyvenv-mode)
   :config
-  (pyvenv-mode 1)
   (pyvenv-activate "~/Envs/lspenv")
   )
 
@@ -318,10 +317,10 @@
 ;; To edit multiple occurences of region simultaneously, iedit
 (use-package iedit)
 
-;; For workspaces, perspective or persp-mode
-;; (use-package persp-mode
-;;   :config
-;;   (persp-mode 1))
+;; For workspaces, perspective
+(use-package perspective
+  :config
+  (persp-mode 1))
 
 (use-package impatient-mode
   :commands impatient-mode
@@ -356,6 +355,7 @@
 (use-package pulse
   :config
   (set-face-attribute 'pulse-highlight-start-face nil :background "gray") ;; Change pulse highlight color to gray
+  (setq pulse-flag t)
   (defun pulse-line (&rest _)
     (pulse-momentary-highlight-one-line (point)))
   (dolist (command '(evil-scroll-down
@@ -392,6 +392,9 @@
   (doom-themes-neotree-config)
   (setq doom-themes-neotree-file-icons t)
   (setq neo-show-hidden-files t))
+
+;; To save already opened and edited read-only files, sudo-edit
+(use-package sudo-edit)
 
 ;; Load my general package key bindings
 (load "~/.emacs.d/general_keys.el")
