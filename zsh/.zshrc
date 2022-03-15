@@ -156,3 +156,6 @@ bindkey -s "^[n" "nautilus . &; disown %1; ^M"
 for aliases_file in $(ls -a $HOME | grep -E "\.aliases.*\.zsh"); do
     source $aliases_file
 done
+
+# set editor
+export EDITOR="/usr/bin/emacs"
