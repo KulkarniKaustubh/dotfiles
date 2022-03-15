@@ -34,15 +34,16 @@
     "t"   '(counsel-load-theme :which-key "choose theme"))
 
   (kaus/mode-map-keys
-   "h" '(help-command :which-key "help-command")
-   "w" '(evil-window-map :which-key "evil-window-map")
+   "h"   '(help-command :which-key "help-command")
+   "w"   '(evil-window-map :which-key "evil-window-map")
+   "TAB" '(perspective-map :which-key "perspective-map")
    )
 
   (kaus/buffer-keys
     "bk"  '(kill-current-buffer :which-key "kill-current-buffer")
     "q"   '(kill-current-buffer :which-key "kill-current-buffer")
     "bb"  '(counsel-ibuffer :which-key "counsel-ibuffer")
-    ","   '(ivy-switch-buffer :which-key "ivy-switch-buffer")
+    ","   '(persp-ivy-switch-buffer :which-key "persp-ivy-switch-buffer")
     "bp"  '(previous-buffer :which-key "previous-buffer")
     "bn"  '(next-buffer :which-key "next-buffer")
     "s"   '(save-buffer :which-key "save-buffer")
@@ -54,7 +55,7 @@
    "C-c t"   '(delete-trailing-whitespace :which-key "delete-trailing-whitespace")
    "C-c C-c" '(move-to-window-line-top-bottom :which-key "move-to-window-line-top-bottom")
    "C-c r"   '(rg-dwim :which-key "rg-dwim")
-   "C-c C-n" '(neotree-show :which-key "neotree-show")
+   "C-c n t" '(neotree-show :which-key "neotree-show")
    )
 
   (kaus/misc-keys
@@ -66,4 +67,7 @@
     "bm"  '(bookmark-set :which-key "bookmark-set")
     ))
 
-  (general-nmap "Y" (general-simulate-key "y$")) ;; Remaps "Y" to "y$" like neovim
+  (general-nmap "Y" (general-simulate-key "y $"
+                    :name general-Y-simulates-y$
+                    :docstring "Remaps Y to y$ like neovim"))
+  (general-nmap "M-p" (general-simulate-key "o C-g p")) ;; Maps "M-p" to paste line below
