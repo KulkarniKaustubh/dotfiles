@@ -49,7 +49,7 @@ keys = [
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
     Key(
         [mod],
-        "space",
+        "Tab",
         lazy.layout.next(),
         desc="Move window focus to other window",
     ),
@@ -105,7 +105,14 @@ keys = [
     ),
     Key([mod], "Return", lazy.spawn(my_terminal), desc="Launch terminal"),
     # Toggle between different layouts as defined below
-    Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
+    Key(
+        [mod, "shift"],
+        "Tab",
+        lazy.layout.rotate(),
+        lazy.layout.flip(),
+        desc="Switch which side main pane occupies (XmonadTall)",
+    ),
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
@@ -113,8 +120,10 @@ keys = [
     Key(
         [mod],
         "r",
-        lazy.spawn("dmenu_run -p 'Run: '"),
-        desc="Spawn a command using dmenu",
+        lazy.spawn("rofi -show run"),
+        # lazy.spawn("dmenu_run -p 'Run: '"),
+        desc="Run a command using rofi",
+        # desc="Spawn a command using dmenu",
     ),
     Key([mod], "c", lazy.spawn(my_browser), desc="Launch browser"),
     Key([mod], "e", lazy.spawn("emacsclient -c"), desc="Launch emacs client"),
@@ -145,24 +154,34 @@ keys = [
         lazy.spawn("rofi -show window"),
         desc="Open all open windows tabs",
     ),
+    Key(
+        [],
+        "XF86AudioLowerVolume",
+        lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -10%"),
+    ),
+    Key(
+        [],
+        "XF86AudioRaiseVolume",
+        lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +10%"),
+    ),
 ]
 
 group_names = [
-    ("one", {"layout": "monadtall"}),
-    ("two", {"layout": "monadtall"}),
+    (
+        "one",
+        {
+            "layout": "monadtall",
+            "spawn": ["alacritty", "emacsclient -c -a 'emacs'"],
+        },
+    ),
+    ("two", {"layout": "monadtall", "spawn": ["google-chrome-stable"]}),
     ("three", {"layout": "monadtall"}),
     ("four", {"layout": "monadtall"}),
     ("five", {"layout": "monadtall"}),
-    ("six", {"layout": "monadtall", "spawn": ["brave"]}),
-    (
-        "seven",
-        {
-            "layout": "monadtall",
-            "spawn": ["chromium https://www.youtube.com/"],
-        },
-    ),
+    ("six", {"layout": "monadtall"}),
+    ("seven", {"layout": "monadtall"}),
     ("eight", {"layout": "monadtall", "spawn": ["discord"]}),
-    ("nine", {"layout": "monadtall", "spawn": ["ferdi", "signal-desktop"]}),
+    ("nine", {"layout": "monadtall", "spawn": ["signal-desktop"]}),
 ]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
@@ -189,7 +208,7 @@ layouts = [
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
-    # layout.TreeTab(),
+    layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
 ]
@@ -225,15 +244,45 @@ screens = [
                 ),
                 # widget.TextBox("default config", name="default"),
                 # widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-                widget.Systray(),
                 widget.Clock(format="%d-%m-%Y %a %I:%M %p"),
                 widget.Spacer(length=bar.STRETCH),
+                widget.TextBox(
+                    text="APPS:",
+                    foreground="#add8e6",
+                    # background=colors[0],
+                    padding=2,
+                    fontsize=14,
+                ),
+                widget.Systray(),
+                widget.TextBox(
+                    text="| GPU Temp:",
+                    foreground="#add8e6",
+                    padding=2,
+                ),
+                widget.NvidiaSensors(
+                    foreground="#ffffff",
+                    format="{temp}°C",
+                ),
+                widget.TextBox(
+                    text="| CPU:",
+                    foreground="#add8e6",
+                    padding=2,
+                ),
+                widget.CPU(
+                    foreground="#ffffff",
+                    format="{load_percent}%",
+                    padding=None,
+                ),
+                widget.TextBox(
+                    text="|",
+                    foreground="#add8e6",
+                    padding=2,
+                ),
                 widget.TextBox(
                     text="MEM:",
                     foreground="#add8e6",
                     # background=colors[0],
                     padding=2,
-                    fontsize=14,
                 ),
                 widget.Memory(
                     foreground="#ffffff",
@@ -244,6 +293,20 @@ screens = [
                         )
                     },
                     padding=None,
+                ),
+                widget.TextBox(
+                    text="|",
+                    foreground="#add8e6",
+                    padding=2,
+                ),
+                widget.Volume(
+                    foreground="#ffffff",
+                    padding=5,
+                ),
+                widget.TextBox(
+                    text="|",
+                    foreground="#add8e6",
+                    padding=2,
                 ),
                 widget.CurrentLayout(
                     foreground="#add8e6",
