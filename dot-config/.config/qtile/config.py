@@ -339,7 +339,6 @@ layouts = [
         border_focus_stack=["#d75f5f", "#8f3d3d"], **layout_defaults
     ),
     layout.Max(),
-    layout.Floating(**layout_defaults),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
@@ -654,7 +653,8 @@ floating_layout = layout.Floating(
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
-    ]
+    ],
+    **layout_defaults,
 )
 auto_fullscreen = True
 focus_on_window_activation = "smart"
