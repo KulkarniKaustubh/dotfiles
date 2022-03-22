@@ -48,9 +48,25 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
+# wallpaper
 nitrogen --restore &
-picom -b
+
+# compositor
+/usr/bin/picom -b --config $HOME/.config/picom/picom.conf
+
+# disable mouse acceleration
+xinput --set-prop 8 'libinput Accel Profile Enabled' 0, 1
+
+# reduce mouse sensitivity
+xinput --set-prop 8 'libinput Accel Speed' -0.2
+
+# nvidia settings
+nvidia-settings --load-config-only
+
+# emacs server
 /usr/bin/emacs --daemon
+
+# qtile twm
 /usr/bin/qtile start
 
 # twm &
