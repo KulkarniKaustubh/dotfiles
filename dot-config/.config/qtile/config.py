@@ -37,143 +37,224 @@ from libqtile.lazy import lazy
 mod = "mod4"
 my_terminal = "alacritty"
 my_browser = "google-chrome-stable"
-# terminal = guess_terminal()
 
-keys = [
-    # A list of available commands that can be bound to keys can be found
-    # at https://docs.qtile.org/en/latest/manual/config/lazy.html
-    # Switch between windows
-    Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
-    Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
-    Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
-    Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-    Key(
-        [mod],
-        "Tab",
-        lazy.layout.next(),
-        desc="Move window focus to other window",
-    ),
-    # Move windows between left/right columns or move up/down in current stack.
-    # Moving out of range in Columns layout will create new column.
-    Key(
-        [mod, "shift"],
-        "h",
-        lazy.layout.shuffle_left(),
-        desc="Move window to the left",
-    ),
-    Key(
-        [mod, "shift"],
-        "l",
-        lazy.layout.shuffle_right(),
-        desc="Move window to the right",
-    ),
-    Key(
-        [mod, "shift"],
-        "j",
-        lazy.layout.shuffle_down(),
-        desc="Move window down",
-    ),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
-    # Grow windows. If current window is on the edge of screen and direction
-    # will be to screen edge - window would shrink.
-    Key(
-        [mod, "control"],
-        "h",
-        lazy.layout.grow_left(),
-        desc="Grow window to the left",
-    ),
-    Key(
-        [mod, "control"],
-        "l",
-        lazy.layout.grow_right(),
-        desc="Grow window to the right",
-    ),
-    Key(
-        [mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"
-    ),
-    Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
-    Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-    # Toggle between split and unsplit sides of stack.
-    # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Max layout, but still with
-    # multiple stack panes
-    Key(
-        [mod, "shift"],
-        "Return",
-        lazy.layout.toggle_split(),
-        desc="Toggle between split and unsplit sides of stack",
-    ),
-    Key([mod], "Return", lazy.spawn(my_terminal), desc="Launch terminal"),
-    # Toggle between different layouts as defined below
-    Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
-    Key(
-        [mod, "shift"],
-        "Tab",
-        lazy.layout.rotate(),
-        lazy.layout.flip(),
-        desc="Switch which side main pane occupies (XmonadTall)",
-    ),
-    Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
-    Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
-    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    # custom binds from here
-    Key(
-        [mod],
-        "r",
-        lazy.spawn("rofi -show run"),
-        # lazy.spawn("dmenu_run -p 'Run: '"),
-        desc="Run a command using rofi",
-        # desc="Spawn a command using dmenu",
-    ),
-    Key([mod], "c", lazy.spawn(my_browser), desc="Launch browser"),
-    Key([mod], "e", lazy.spawn("emacsclient -c"), desc="Launch emacs client"),
-    Key(
-        ["control", "shift"],
-        "e",
-        lazy.spawn("/usr/bin/emacs"),
-        desc="Launch emacs",
-    ),
-    Key([mod], "d", lazy.spawn("discord"), desc="Launch discord"),
-    Key([mod], "f", lazy.spawn("nautilus"), desc="Launch nautilus"),
-    Key(
-        [mod, "shift"],
-        "s",
-        lazy.spawn("flameshot gui"),
-        desc="Screenshot utility",
-    ),
-    Key(
-        [mod],
-        "m",
-        lazy.window.toggle_fullscreen(),
-        desc="Toggle fullscreen for a window",
-    ),
-    # mod1 is Alt
-    Key(
-        ["mod1"],
-        "Tab",
-        lazy.spawn("rofi -show window"),
-        desc="Open all open windows tabs",
-    ),
-    Key(
-        [],
-        "XF86AudioLowerVolume",
-        lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -10%"),
-    ),
-    Key(
-        [],
-        "XF86AudioRaiseVolume",
-        lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +10%"),
-    ),
-]
+# A list of available commands that can be bound to keys can be found
+# at https://docs.qtile.org/en/latest/manual/config/lazy.html
+keys = []
+
+
+def qtile_keys():
+    """Qtile function keys."""
+    qtile_keys = [
+        Key(
+            [mod, "control"],
+            "r",
+            lazy.reload_config(),
+            desc="Reload the config",
+        ),
+        Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    ]
+
+    return qtile_keys
+
+
+def layout_keys():
+    """All layout keys."""
+    layout_keys = [
+        Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
+        Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
+        Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
+        Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
+        Key(
+            [mod],
+            "Tab",
+            lazy.layout.next(),
+            desc="Move window focus to other window",
+        ),
+        # Move windows between left/right columns or move up/down in current
+        # stack.
+        # Moving out of range in Columns layout will create new column.
+        Key(
+            [mod, "shift"],
+            "h",
+            lazy.layout.shuffle_left(),
+            desc="Move window to the left",
+        ),
+        Key(
+            [mod, "shift"],
+            "l",
+            lazy.layout.shuffle_right(),
+            desc="Move window to the right",
+        ),
+        Key(
+            [mod, "shift"],
+            "j",
+            lazy.layout.shuffle_down(),
+            desc="Move window down",
+        ),
+        Key(
+            [mod, "shift"],
+            "k",
+            lazy.layout.shuffle_up(),
+            desc="Move window up",
+        ),
+        # Grow windows. If current window is on the edge of screen and
+        # direction
+        # will be to screen edge - window would shrink.
+        Key(
+            [mod, "control"],
+            "h",
+            lazy.layout.grow_left(),
+            desc="Grow window to the left",
+        ),
+        Key(
+            [mod, "control"],
+            "l",
+            lazy.layout.grow_right(),
+            desc="Grow window to the right",
+        ),
+        Key(
+            [mod, "control"],
+            "j",
+            lazy.layout.grow_down(),
+            desc="Grow window down",
+        ),
+        Key(
+            [mod, "control"],
+            "k",
+            lazy.layout.grow_up(),
+            desc="Grow window up",
+        ),
+        Key(
+            [mod, "control"],
+            "n",
+            lazy.layout.normalize(),
+            desc="Reset all window sizes",
+        ),
+        # Toggle between split and unsplit sides of stack.
+        # Split = all windows displayed
+        # Unsplit = 1 window displayed, like Max layout, but still with
+        # multiple stack panes
+        Key(
+            [mod, "shift"],
+            "Return",
+            lazy.layout.toggle_split(),
+            desc="Toggle between split and unsplit sides of stack",
+        ),
+        Key(
+            [mod],
+            "space",
+            lazy.next_layout(),
+            desc="Toggle between layouts",
+        ),
+        Key(
+            [mod, "shift"],
+            "space",
+            lazy.prev_layout(),
+            desc="Toggle between layouts",
+        ),
+        Key(
+            [mod, "shift"],
+            "Tab",
+            lazy.layout.rotate(),
+            lazy.layout.flip(),
+            desc="Switch which side main pane occupies (XmonadTall)",
+        ),
+        Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
+        Key(
+            [mod],
+            "m",
+            lazy.window.toggle_fullscreen(),
+            desc="Toggle fullscreen for a window",
+        ),
+        Key(
+            [mod],
+            "period",
+            lazy.next_screen(),
+            desc="Move focus to next monitor",
+        ),
+        Key(
+            [mod],
+            "comma",
+            lazy.prev_screen(),
+            desc="Move focus to prev monitor",
+        ),
+    ]
+
+    return layout_keys
+
+
+def spawn_keys():
+    """All spawn keys for lazy."""
+    spawn_keys = [
+        Key(
+            [mod],
+            "Return",
+            lazy.spawn(my_terminal),
+            desc="Launch terminal",
+        ),
+        Key(
+            [mod],
+            "t",
+            lazy.spawn(f"{my_terminal} -e tmux"),
+            desc="Launch terminal with tmux",
+        ),
+        Key(
+            [mod],
+            "r",
+            lazy.spawn("rofi -show run"),
+            # lazy.spawn("dmenu_run -p 'Run: '"),
+            desc="Run a command using rofi",
+            # desc="Spawn a command using dmenu",
+        ),
+        Key([mod], "c", lazy.spawn(my_browser), desc="Launch browser"),
+        Key(
+            [mod],
+            "e",
+            lazy.spawn("emacsclient -c"),
+            desc="Launch emacs client",
+        ),
+        Key(
+            ["control", "shift"],
+            "e",
+            lazy.spawn("/usr/bin/emacs"),
+            desc="Launch emacs",
+        ),
+        Key([mod], "d", lazy.spawn("discord"), desc="Launch discord"),
+        Key([mod], "f", lazy.spawn("nautilus"), desc="Launch nautilus"),
+        Key(
+            [mod, "shift"],
+            "s",
+            lazy.spawn("flameshot gui"),
+            desc="Screenshot utility",
+        ),
+        Key(
+            ["mod1"],  # mod1 is Alt
+            "Tab",
+            lazy.spawn("rofi -show window"),
+            desc="Open all open windows tabs",
+        ),
+        Key(
+            [],
+            "XF86AudioLowerVolume",
+            lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%"),
+        ),
+        Key(
+            [],
+            "XF86AudioRaiseVolume",
+            lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%"),
+        ),
+    ]
+
+    return spawn_keys
+
+
+keys.extend(qtile_keys())
+keys.extend(layout_keys())
+keys.extend(spawn_keys())
 
 group_names = [
-    (
-        "one",
-        {
-            "layout": "monadtall",
-            "spawn": ["alacritty", "emacsclient -c -a 'emacs'"],
-        },
-    ),
+    ("one", {"layout": "monadtall", "spawn": ["alacritty"]}),
     ("two", {"layout": "monadtall", "spawn": ["google-chrome-stable"]}),
     ("three", {"layout": "monadtall"}),
     ("four", {"layout": "monadtall"}),
@@ -182,25 +263,73 @@ group_names = [
     ("seven", {"layout": "monadtall"}),
     ("eight", {"layout": "monadtall", "spawn": ["discord"]}),
     ("nine", {"layout": "monadtall", "spawn": ["signal-desktop"]}),
+    ("ten", {"layout": "monadtall"}),
+]
+
+keys_screen_0 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+keys_screen_1 = [
+    "KP_End",
+    "KP_Down",
+    "KP_Page_Down",
+    "KP_Left",
+    "KP_Begin",
+    "KP_Right",
+    "KP_Home",
+    "KP_Up",
+    "KP_Page_Up",
+    "KP_Insert",
 ]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
-for i, (name, kwargs) in enumerate(group_names, 1):
+for i, (name, kwargs) in enumerate(group_names):
     keys.append(
-        Key([mod], str(i), lazy.group[name].toscreen())
+        Key([mod], keys_screen_0[i], lazy.group[name].toscreen(0))
     )  # Switch to another group
     keys.append(
         Key(
             [mod, "shift"],
-            str(i),
+            keys_screen_0[i],
+            lazy.window.togroup(name, switch_group=False),
+        )
+    )
+    keys.append(
+        Key([mod], keys_screen_1[i], lazy.group[name].toscreen(1))
+    )  # Switch to another group
+    keys.append(
+        Key(
+            [mod, "shift"],
+            keys_screen_1[i],
             lazy.window.togroup(name, switch_group=False),
         )
     )  # Send current window to another group
 
+layout_defaults = dict(
+    border_width=2,
+    border_focus="#add8e6",
+    margin=10,
+)
 layouts = [
-    layout.MonadTall(border_width=2, border_focus="#add8e6", margin=10),
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
+    layout.MonadTall(**layout_defaults),
+    layout.TreeTab(
+        active_bg="#add8e6",
+        active_fg="#000000",
+        inactive_bg="#152238",
+        inactive_fg="#ffffff",
+        padding_left=0,
+        padding_x=0,
+        padding_y=5,
+        section_top=10,
+        section_bottom=20,
+        level_shift=8,
+        vspace=3,
+        panel_width=200,
+        **layout_defaults,
+    ),
+    layout.Columns(
+        border_focus_stack=["#d75f5f", "#8f3d3d"], **layout_defaults
+    ),
     layout.Max(),
+    layout.Floating(**layout_defaults),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
@@ -208,7 +337,6 @@ layouts = [
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
-    layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
 ]
@@ -221,6 +349,20 @@ widget_defaults = dict(
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
+
+
+def pipe(fontsize=35, foreground="#add8e6", background=None, **kwargs):
+    """Render a pipe symbol in the qtile bar."""
+    return [
+        widget.TextBox(
+            text="\\",
+            foreground=foreground,
+            background=background,
+            fontsize=fontsize,
+            **kwargs,
+        ),
+    ]
+
 
 screens = [
     Screen(
@@ -236,82 +378,216 @@ screens = [
                 ),
                 widget.Prompt(),
                 widget.WindowName(foreground="#add8e6", max_chars=50),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                # widget.TextBox("default config", name="default"),
-                # widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 widget.Clock(format="%d-%m-%Y %a %I:%M %p"),
                 widget.Spacer(length=bar.STRETCH),
+                *pipe(),
                 widget.TextBox(
-                    text="APPS:",
+                    text="Apps:",
                     foreground="#add8e6",
-                    # background=colors[0],
-                    padding=2,
-                    fontsize=14,
+                    fontsize=10,
                 ),
-                widget.Systray(),
+                widget.Systray(
+                    iconsize=5,
+                ),
+                *pipe(),
                 widget.TextBox(
-                    text="| GPU Temp:",
+                    text="GPU Temp:",
                     foreground="#add8e6",
                     padding=2,
+                    fontsize=10,
                 ),
                 widget.NvidiaSensors(
                     foreground="#ffffff",
-                    format="{temp}°C",
+                    format="{temp} C",
+                    fontsize=10,
                 ),
+                *pipe(),
                 widget.TextBox(
-                    text="| CPU:",
+                    text="CPU:",
                     foreground="#add8e6",
                     padding=2,
+                    fontsize=10,
                 ),
                 widget.CPU(
                     foreground="#ffffff",
                     format="{load_percent}%",
                     padding=None,
+                    fontsize=10,
                 ),
                 widget.TextBox(
-                    text="|",
+                    text="RAM:",
                     foreground="#add8e6",
-                    padding=2,
-                ),
-                widget.TextBox(
-                    text="MEM:",
-                    foreground="#add8e6",
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn(
+                            f"{my_terminal} -e htop"
+                        )
+                    },
                     # background=colors[0],
                     padding=2,
+                    fontsize=10,
                 ),
                 widget.Memory(
                     foreground="#ffffff",
                     format="{MemUsed:.0f}{mm}/{MemTotal:.0f}{mm}",
                     mouse_callbacks={
                         "Button1": lambda: qtile.cmd_spawn(
-                            my_terminal + " -e htop"
+                            f"{my_terminal} -e htop"
                         )
                     },
+                    measure_mem="M",
                     padding=None,
+                    fontsize=10,
                 ),
                 widget.TextBox(
-                    text="|",
+                    text="Swap:",
+                    foreground="#add8e6",
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn(
+                            f"{my_terminal} -e htop"
+                        )
+                    },
+                    # background=colors[0],
+                    padding=2,
+                    fontsize=10,
+                ),
+                widget.Memory(
+                    foreground="#ffffff",
+                    format="{SwapUsed:.0f}{mm}/{SwapTotal:.0f}{mm}",
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn(
+                            f"{my_terminal} -e htop"
+                        )
+                    },
+                    measure_swap="M",
+                    padding=None,
+                    fontsize=10,
+                ),
+                *pipe(),
+                widget.TextBox(
+                    text="Vol:",
                     foreground="#add8e6",
                     padding=2,
+                    fontsize=10,
                 ),
                 widget.Volume(
                     foreground="#ffffff",
                     padding=5,
+                    fontsize=10,
                 ),
-                widget.TextBox(
-                    text="|",
-                    foreground="#add8e6",
-                    padding=2,
-                ),
+                *pipe(),
                 widget.CurrentLayout(
                     foreground="#add8e6",
+                    fontsize=10,
                 ),
                 # widget.QuickExit(),
+            ],
+            24,
+            # background="add8e6",
+            # background="50a6c2",
+            background="#152238",
+            opacity=1.0,
+            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
+            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+        ),
+    ),
+    Screen(
+        top=bar.Bar(
+            [
+                widget.GroupBox(
+                    # border="add8e6",
+                    active="#add8e6",
+                    inactive="#ffffff",
+                    highlight_method="line",
+                    highlight_color="#152238",
+                    border_width=3,
+                    fontsize=11,
+                ),
+                widget.Prompt(),
+                widget.WindowName(
+                    foreground="#add8e6", fontsize=11, max_chars=20
+                ),
+                # widget.TextBox("default config", name="default"),
+                # widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
+                widget.Clock(format="%d-%m-%Y %a %I:%M %p"),
+                widget.Spacer(length=bar.STRETCH),
+                *pipe(),
+                widget.TextBox(
+                    text="CPU:",
+                    foreground="#add8e6",
+                    padding=2,
+                    fontsize=10,
+                ),
+                widget.CPU(
+                    foreground="#ffffff",
+                    format="{load_percent}%",
+                    padding=None,
+                    fontsize=10,
+                ),
+                widget.TextBox(
+                    text="RAM:",
+                    foreground="#add8e6",
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn(
+                            f"{my_terminal} -e htop"
+                        )
+                    },
+                    # background=colors[0],
+                    padding=2,
+                    fontsize=10,
+                ),
+                widget.Memory(
+                    foreground="#ffffff",
+                    format="{MemUsed:.0f}{mm}/{MemTotal:.0f}{mm}",
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn(
+                            f"{my_terminal} -e htop"
+                        )
+                    },
+                    measure_mem="M",
+                    padding=None,
+                    fontsize=10,
+                ),
+                widget.TextBox(
+                    text="Swap:",
+                    foreground="#add8e6",
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn(
+                            f"{my_terminal} -e htop"
+                        )
+                    },
+                    # background=colors[0],
+                    padding=2,
+                    fontsize=10,
+                ),
+                widget.Memory(
+                    foreground="#ffffff",
+                    format="{SwapUsed:.0f}{mm}/{SwapTotal:.0f}{mm}",
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn(
+                            f"{my_terminal} -e htop"
+                        )
+                    },
+                    measure_swap="M",
+                    padding=None,
+                    fontsize=10,
+                ),
+                *pipe(),
+                widget.TextBox(
+                    text="Vol:",
+                    foreground="#add8e6",
+                    padding=2,
+                    fontsize=10,
+                ),
+                widget.Volume(
+                    foreground="#ffffff",
+                    padding=5,
+                    fontsize=10,
+                ),
+                *pipe(),
+                widget.CurrentLayout(
+                    foreground="#add8e6",
+                    fontsize=10,
+                ),
             ],
             24,
             # background="add8e6",
