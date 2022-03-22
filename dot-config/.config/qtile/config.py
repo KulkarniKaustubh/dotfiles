@@ -1,3 +1,14 @@
+"""My configuration for the Qtile Tiling Window Manager."""
+#
+# -----------
+#  _  ___  __
+# | |/ / |/ /
+# | ' /| ' /
+# | . \| . \
+# |_|\_\_|\_\
+#
+# -----------
+#
 # Copyright (c) 2010 Aldo Cortesi
 # Copyright (c) 2010, 2014 dequis
 # Copyright (c) 2012 Randall Ma
@@ -503,12 +514,8 @@ screens = [
                 # widget.QuickExit(),
             ],
             24,
-            # background="add8e6",
-            # background="50a6c2",
             background="#152238",
             opacity=1.0,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
     ),
     Screen(
@@ -527,8 +534,6 @@ screens = [
                 widget.WindowName(
                     foreground="#add8e6", fontsize=11, max_chars=20
                 ),
-                # widget.TextBox("default config", name="default"),
-                # widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 widget.Clock(format="%d-%m-%Y %a %I:%M %p"),
                 widget.Spacer(length=bar.STRETCH),
                 *pipe(),
@@ -611,12 +616,8 @@ screens = [
                 ),
             ],
             24,
-            # background="add8e6",
-            # background="50a6c2",
             background="#152238",
             opacity=1.0,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
     ),
 ]
