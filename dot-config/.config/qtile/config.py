@@ -283,7 +283,12 @@ keys_screen_1 = [
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 for i, (name, kwargs) in enumerate(group_names):
     keys.append(
-        Key([mod], keys_screen_0[i], lazy.group[name].toscreen(0))
+        Key(
+            [mod],
+            keys_screen_0[i],
+            lazy.group[name].toscreen(0),
+            lazy.to_screen(0),
+        )
     )  # Switch to another group
     keys.append(
         Key(
@@ -293,7 +298,12 @@ for i, (name, kwargs) in enumerate(group_names):
         )
     )
     keys.append(
-        Key([mod], keys_screen_1[i], lazy.group[name].toscreen(1))
+        Key(
+            [mod],
+            keys_screen_1[i],
+            lazy.group[name].toscreen(1),
+            lazy.to_screen(1),
+        )
     )  # Switch to another group
     keys.append(
         Key(
@@ -351,11 +361,24 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 
-def pipe(fontsize=35, foreground="#add8e6", background=None, **kwargs):
+def pipe(
+    direction="left",
+    fontsize=35,
+    foreground="#add8e6",
+    background=None,
+    **kwargs,
+):
     """Render a pipe symbol in the qtile bar."""
+    if direction == "straight":
+        text = "|"
+    elif direction == "left":
+        text = "\\"
+    elif direction == "right":
+        text = "/"
+
     return [
         widget.TextBox(
-            text="\\",
+            text=text,
             foreground=foreground,
             background=background,
             fontsize=fontsize,
@@ -376,7 +399,6 @@ screens = [
                     highlight_color="#152238",
                     border_width=3,
                 ),
-                widget.Prompt(),
                 widget.WindowName(foreground="#add8e6", max_chars=50),
                 widget.Clock(format="%d-%m-%Y %a %I:%M %p"),
                 widget.Spacer(length=bar.STRETCH),
