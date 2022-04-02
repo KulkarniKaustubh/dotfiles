@@ -51,7 +51,6 @@ my_browser = "google-chrome-stable"
 
 # A list of available commands that can be bound to keys can be found
 # at https://docs.qtile.org/en/latest/manual/config/lazy.html
-keys = []
 
 
 def qtile_keys():
@@ -207,7 +206,7 @@ def spawn_keys():
         Key(
             [mod],
             "t",
-            lazy.spawn(f"{my_terminal} -e tmux"),
+            lazy.spawn(f"{my_terminal} -e tmux -u"),
             desc="Launch terminal with tmux",
         ),
         Key(
@@ -260,10 +259,6 @@ def spawn_keys():
     return spawn_keys
 
 
-keys.extend(qtile_keys())
-keys.extend(layout_keys())
-keys.extend(spawn_keys())
-
 group_names = [
     ("one", {"layout": "monadtall", "spawn": ["alacritty"]}),
     ("two", {"layout": "monadtall", "spawn": ["google-chrome-stable"]}),
@@ -291,38 +286,39 @@ keys_screen_1 = [
     "KP_Insert",
 ]
 
+
+def group_keys(group_names, keys, screen_number):
+    """Keys to access screen groups."""
+    group_keys = []
+    for i, (name, kwargs) in enumerate(group_names):
+        group_keys.append(
+            Key(
+                [mod],
+                keys[i],
+                lazy.group[name].toscreen(screen_number),
+                lazy.to_screen(screen_number),
+            )
+        )  # Switch to another group
+        group_keys.append(
+            Key(
+                [mod, "shift"],
+                keys[i],
+                lazy.window.togroup(name, switch_group=False),
+            )
+        )
+
+    return group_keys
+
+
+keys = [
+    *qtile_keys(),
+    *layout_keys(),
+    *spawn_keys(),
+    *group_keys(group_names, keys=keys_screen_0, screen_number=0),
+    *group_keys(group_names, keys=keys_screen_1, screen_number=1),
+]
+
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
-for i, (name, kwargs) in enumerate(group_names):
-    keys.append(
-        Key(
-            [mod],
-            keys_screen_0[i],
-            lazy.group[name].toscreen(0),
-            lazy.to_screen(0),
-        )
-    )  # Switch to another group
-    keys.append(
-        Key(
-            [mod, "shift"],
-            keys_screen_0[i],
-            lazy.window.togroup(name, switch_group=False),
-        )
-    )
-    keys.append(
-        Key(
-            [mod],
-            keys_screen_1[i],
-            lazy.group[name].toscreen(1),
-            lazy.to_screen(1),
-        )
-    )  # Switch to another group
-    keys.append(
-        Key(
-            [mod, "shift"],
-            keys_screen_1[i],
-            lazy.window.togroup(name, switch_group=False),
-        )
-    )  # Send current window to another group
 
 layout_defaults = dict(
     border_width=2,
