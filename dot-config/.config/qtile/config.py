@@ -46,7 +46,8 @@ import subprocess
 # from libqtile.utils import guess_terminal
 
 
-mod = "mod4"
+super_key = "mod4"
+alt_key = "mod1"
 my_terminal = "alacritty"
 my_browser = "google-chrome-stable"
 
@@ -58,12 +59,14 @@ def qtile_keys():
     """Qtile function keys."""
     qtile_keys = [
         Key(
-            [mod, "control"],
+            [super_key, "control"],
             "r",
             lazy.reload_config(),
             desc="Reload the config",
         ),
-        Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+        Key(
+            [super_key, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"
+        ),
     ]
 
     return qtile_keys
@@ -72,18 +75,18 @@ def qtile_keys():
 def layout_keys():
     """All layout keys."""
     layout_keys = [
-        Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
-        Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
-        Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
-        Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
+        Key([super_key], "h", lazy.layout.left(), desc="Move focus to left"),
+        Key([super_key], "l", lazy.layout.right(), desc="Move focus to right"),
+        Key([super_key], "j", lazy.layout.down(), desc="Move focus down"),
+        Key([super_key], "k", lazy.layout.up(), desc="Move focus up"),
         Key(
-            [mod],
+            [super_key],
             "g",
             lazy.window.toggle_floating(),
             desc="Toggle floating window",
         ),
         Key(
-            [mod],
+            [super_key],
             "Tab",
             lazy.layout.next(),
             desc="Move window focus to other window",
@@ -92,25 +95,25 @@ def layout_keys():
         # stack.
         # Moving out of range in Columns layout will create new column.
         Key(
-            [mod, "shift"],
+            [super_key, "shift"],
             "h",
             lazy.layout.shuffle_left(),
             desc="Move window to the left",
         ),
         Key(
-            [mod, "shift"],
+            [super_key, "shift"],
             "l",
             lazy.layout.shuffle_right(),
             desc="Move window to the right",
         ),
         Key(
-            [mod, "shift"],
+            [super_key, "shift"],
             "j",
             lazy.layout.shuffle_down(),
             desc="Move window down",
         ),
         Key(
-            [mod, "shift"],
+            [super_key, "shift"],
             "k",
             lazy.layout.shuffle_up(),
             desc="Move window up",
@@ -119,31 +122,31 @@ def layout_keys():
         # direction
         # will be to screen edge - window would shrink.
         Key(
-            [mod, "control"],
+            [super_key, "control"],
             "h",
             lazy.layout.grow_left(),
             desc="Grow window to the left",
         ),
         Key(
-            [mod, "control"],
+            [super_key, "control"],
             "l",
             lazy.layout.grow_right(),
             desc="Grow window to the right",
         ),
         Key(
-            [mod, "control"],
+            [super_key, "control"],
             "j",
             lazy.layout.grow_down(),
             desc="Grow window down",
         ),
         Key(
-            [mod, "control"],
+            [super_key, "control"],
             "k",
             lazy.layout.grow_up(),
             desc="Grow window up",
         ),
         Key(
-            [mod, "control"],
+            [super_key, "control"],
             "n",
             lazy.layout.normalize(),
             desc="Reset all window sizes",
@@ -153,51 +156,51 @@ def layout_keys():
         # Unsplit = 1 window displayed, like Max layout, but still with
         # multiple stack panes
         Key(
-            [mod, "shift"],
+            [super_key, "shift"],
             "Return",
             lazy.layout.toggle_split(),
             desc="Toggle between split and unsplit sides of stack",
         ),
         Key(
-            [mod],
+            [super_key],
             "space",
             lazy.next_layout(),
             desc="Toggle between layouts",
         ),
         Key(
-            [mod, "shift"],
+            [super_key, "shift"],
             "space",
             lazy.prev_layout(),
             desc="Toggle between layouts",
         ),
         Key(
-            [mod, "shift"],
+            [super_key, "shift"],
             "Tab",
             lazy.layout.rotate(),
             lazy.layout.flip(),
             desc="Switch which side main pane occupies (XmonadTall)",
         ),
-        Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
+        Key([super_key], "q", lazy.window.kill(), desc="Kill focused window"),
         Key(
-            [mod],
+            [super_key],
             "m",
             lazy.window.toggle_fullscreen(),
             desc="Toggle fullscreen for a window",
         ),
         Key(
-            [mod],
+            [super_key],
             "period",
             lazy.next_screen(),
             desc="Move focus to next monitor",
         ),
         Key(
-            [mod],
+            [super_key],
             "comma",
             lazy.prev_screen(),
             desc="Move focus to prev monitor",
         ),
         KeyChord(
-            [mod],
+            [super_key],
             "w",
             [
                 Key(
@@ -262,28 +265,28 @@ def spawn_keys():
     """All spawn keys for lazy."""
     spawn_keys = [
         Key(
-            [mod],
+            [super_key],
             "Return",
             lazy.spawn(my_terminal),
             desc="Launch terminal",
         ),
         Key(
-            [mod],
+            [super_key],
             "t",
             lazy.spawn(f"{my_terminal} -e tmux -u"),
             desc="Launch terminal with tmux",
         ),
         Key(
-            [mod],
+            [super_key],
             "r",
             lazy.spawn("rofi -show run"),
             # lazy.spawn("dmenu_run -p 'Run: '"),
             desc="Run a command using rofi",
             # desc="Spawn a command using dmenu",
         ),
-        Key([mod], "c", lazy.spawn(my_browser), desc="Launch browser"),
+        Key([super_key], "c", lazy.spawn(my_browser), desc="Launch browser"),
         Key(
-            [mod],
+            [super_key],
             "e",
             lazy.spawn("emacsclient -c"),
             desc="Launch emacs client",
@@ -294,16 +297,16 @@ def spawn_keys():
             lazy.spawn("/usr/bin/emacs"),
             desc="Launch emacs",
         ),
-        Key([mod], "d", lazy.spawn("discord"), desc="Launch discord"),
-        Key([mod], "f", lazy.spawn("nautilus"), desc="Launch nautilus"),
+        Key([super_key], "d", lazy.spawn("discord"), desc="Launch discord"),
+        Key([super_key], "f", lazy.spawn("nautilus"), desc="Launch nautilus"),
         Key(
-            [mod, "shift"],
+            [super_key, "shift"],
             "s",
             lazy.spawn("flameshot gui"),
             desc="Screenshot utility",
         ),
         Key(
-            ["mod1"],  # mod1 is Alt
+            [alt_key],  # mod1 is Alt
             "Tab",
             lazy.spawn("rofi -show window"),
             desc="Open all open windows tabs",
@@ -357,7 +360,7 @@ def group_keys(group_names, keys, screen_number):
     for i, (name, kwargs) in enumerate(group_names):
         group_keys.append(
             Key(
-                [mod],
+                [super_key],
                 keys[i],
                 lazy.group[name].toscreen(screen_number),
                 lazy.to_screen(screen_number),
@@ -365,7 +368,7 @@ def group_keys(group_names, keys, screen_number):
         )  # Switch to another group
         group_keys.append(
             Key(
-                [mod, "shift"],
+                [super_key, "shift"],
                 keys[i],
                 lazy.window.togroup(name, switch_group=False),
             )
@@ -756,18 +759,18 @@ screens = [
 # Drag floating layouts.
 mouse = [
     Drag(
-        [mod],
+        [super_key],
         "Button1",
         lazy.window.set_position_floating(),
         start=lazy.window.get_position(),
     ),
     Drag(
-        [mod],
+        [super_key],
         "Button3",
         lazy.window.set_size_floating(),
         start=lazy.window.get_size(),
     ),
-    Click([mod], "Button2", lazy.window.bring_to_front()),
+    Click([super_key], "Button2", lazy.window.bring_to_front()),
 ]
 
 dgroups_key_binder = None
