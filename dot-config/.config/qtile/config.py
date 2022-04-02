@@ -78,6 +78,12 @@ def layout_keys():
         Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
         Key(
             [mod],
+            "g",
+            lazy.window.toggle_floating(),
+            desc="Toggle floating window",
+        ),
+        Key(
+            [mod],
             "Tab",
             lazy.layout.next(),
             desc="Move window focus to other window",
