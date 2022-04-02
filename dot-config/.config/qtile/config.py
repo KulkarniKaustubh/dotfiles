@@ -42,6 +42,7 @@ from libqtile import qtile, bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 import subprocess
+import os
 
 # from libqtile.utils import guess_terminal
 
@@ -279,7 +280,10 @@ def spawn_keys():
         Key(
             [super_key],
             "r",
-            lazy.spawn("rofi -show run"),
+            lazy.spawn(
+                f"rofi -show run -theme {os.environ['HOME']}/.config/rofi"
+                + "/launchers/colorful/style_7"
+            ),
             # lazy.spawn("dmenu_run -p 'Run: '"),
             desc="Run a command using rofi",
             # desc="Spawn a command using dmenu",
@@ -308,8 +312,19 @@ def spawn_keys():
         Key(
             [alt_key],  # mod1 is Alt
             "Tab",
-            lazy.spawn("rofi -show window"),
-            desc="Open all open windows tabs",
+            lazy.spawn(
+                f"rofi -show window -theme {os.environ['HOME']}/.config/rofi"
+                + "/launchers/colorful/style_7"
+            ),
+            desc="Open all open windows' tabs",
+        ),
+        Key(
+            [alt_key],  # mod1 is Alt
+            "F4",
+            lazy.spawn(
+                f"{os.environ['HOME']}/.config/rofi/bin/menu_powermenu"
+            ),
+            desc="Open shutdown menu",
         ),
         Key(
             [],
