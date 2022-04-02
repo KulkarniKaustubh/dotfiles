@@ -1,6 +1,6 @@
 #+TITLE: dotfiles
 
-All my config files
+All my config files.
 
 Using GNU Stow to link the dotfiles in the required directories
 
