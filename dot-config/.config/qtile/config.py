@@ -39,7 +39,7 @@ from typing import List  # noqa: F401
 
 
 from libqtile import qtile, bar, layout, widget
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 import subprocess
 
@@ -189,6 +189,63 @@ def layout_keys():
             "comma",
             lazy.prev_screen(),
             desc="Move focus to prev monitor",
+        ),
+        KeyChord(
+            [mod],
+            "w",
+            [
+                Key(
+                    [],
+                    "h",
+                    lazy.layout.shrink(),
+                    lazy.layout.decrease_nmaster(),
+                    desc="Shrink window (MonadTall), decrease in master pane",
+                ),
+                Key(
+                    [],
+                    "l",
+                    lazy.layout.grow(),
+                    lazy.layout.increase_nmaster(),
+                    desc="Expand window (MonadTall), increase in master pane",
+                ),
+                Key(
+                    [],
+                    "n",
+                    lazy.layout.reset(),
+                    desc="Reset window size ratios",
+                ),
+                Key(
+                    ["control"],
+                    "h",
+                    lazy.layout.grow_left(),
+                    desc="Grow window to the left",
+                ),
+                Key(
+                    ["control"],
+                    "l",
+                    lazy.layout.grow_right(),
+                    desc="Grow window to the right",
+                ),
+                Key(
+                    ["control"],
+                    "j",
+                    lazy.layout.grow_down(),
+                    desc="Grow window down",
+                ),
+                Key(
+                    ["control"],
+                    "k",
+                    lazy.layout.grow_up(),
+                    desc="Grow window up",
+                ),
+                Key(
+                    ["control"],
+                    "n",
+                    lazy.layout.normalize(),
+                    desc="Reset all window sizes",
+                ),
+            ],
+            mode="Window Resize Mode",
         ),
     ]
 
@@ -438,6 +495,9 @@ screens = [
                     highlight_color="#152238",
                     border_width=3,
                 ),
+                widget.chord.Chord(
+                    foreground="#152238", background="ffffff", fontsize=10
+                ),
                 widget.WindowName(foreground="#add8e6", max_chars=50),
                 widget.Clock(format="%d-%m-%Y %a %I:%M %p"),
                 widget.Spacer(length=bar.STRETCH),
@@ -594,6 +654,9 @@ screens = [
                     fontsize=11,
                 ),
                 widget.Prompt(),
+                widget.chord.Chord(
+                    foreground="#152238", background="ffffff", fontsize=10
+                ),
                 widget.WindowName(
                     foreground="#add8e6", fontsize=11, max_chars=20
                 ),
