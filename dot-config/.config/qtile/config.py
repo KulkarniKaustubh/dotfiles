@@ -41,6 +41,7 @@ from typing import List  # noqa: F401
 from libqtile import qtile, bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
+import subprocess
 
 # from libqtile.utils import guess_terminal
 
@@ -393,6 +394,38 @@ def pipe(
     ]
 
 
+def get_gpu_usage():
+    """Get GPU % usage."""
+    gpu = subprocess.Popen(
+        [
+            "nvidia-smi "
+            "--query-gpu=utilization.gpu --format=csv,nounits "
+            "| "
+            "awk '/[0-9]/ {print $1}'"
+        ],
+        stdout=subprocess.PIPE,
+        shell=True,
+    )
+    (out, err) = gpu.communicate()
+    return str(out.decode("utf-8").strip("\n")) + "% "
+
+
+def get_gpu_mem_usage():
+    """Get GPU VRAM usage."""
+    gpu = subprocess.Popen(
+        [
+            "nvidia-smi "
+            "--query-gpu=memory.used,memory.total --format=csv,nounits "
+            "| "
+            "awk '/[0-9]/ {printf \"%dM\",$1}'"
+        ],
+        stdout=subprocess.PIPE,
+        shell=True,
+    )
+    (out, err) = gpu.communicate()
+    return str(out.decode("utf-8").strip("\n"))
+
+
 screens = [
     Screen(
         top=bar.Bar(
@@ -427,6 +460,40 @@ screens = [
                 widget.NvidiaSensors(
                     foreground="#ffffff",
                     format="{temp} C",
+                    fontsize=10,
+                ),
+                widget.TextBox(
+                    text="GPU: ",
+                    foreground="#add8e6",
+                    padding=2,
+                    fontsize=10,
+                ),
+                widget.GenPollText(
+                    func=get_gpu_usage,
+                    update_interval=2,
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn(
+                            my_terminal + " -e nvtop"
+                        )
+                    },
+                    padding=0,
+                    fontsize=10,
+                ),
+                widget.TextBox(
+                    text="VRAM: ",
+                    foreground="#add8e6",
+                    padding=2,
+                    fontsize=10,
+                ),
+                widget.GenPollText(
+                    func=get_gpu_mem_usage,
+                    update_interval=2,
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn(
+                            my_terminal + " -e nvtop"
+                        )
+                    },
+                    padding=0,
                     fontsize=10,
                 ),
                 *pipe(),
@@ -534,17 +601,40 @@ screens = [
                 widget.Spacer(length=bar.STRETCH),
                 *pipe(),
                 widget.TextBox(
-                    text="CPU:",
+                    text="GPU: ",
                     foreground="#add8e6",
                     padding=2,
                     fontsize=10,
                 ),
-                widget.CPU(
-                    foreground="#ffffff",
-                    format="{load_percent}%",
-                    padding=None,
+                widget.GenPollText(
+                    func=get_gpu_usage,
+                    update_interval=2,
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn(
+                            my_terminal + " -e nvtop"
+                        )
+                    },
+                    padding=0,
                     fontsize=10,
                 ),
+                widget.TextBox(
+                    text="VRAM: ",
+                    foreground="#add8e6",
+                    padding=2,
+                    fontsize=10,
+                ),
+                widget.GenPollText(
+                    func=get_gpu_mem_usage,
+                    update_interval=2,
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn(
+                            my_terminal + " -e nvtop"
+                        )
+                    },
+                    padding=0,
+                    fontsize=10,
+                ),
+                *pipe(),
                 widget.TextBox(
                     text="RAM:",
                     foreground="#add8e6",
@@ -566,30 +656,6 @@ screens = [
                         )
                     },
                     measure_mem="M",
-                    padding=None,
-                    fontsize=10,
-                ),
-                widget.TextBox(
-                    text="Swap:",
-                    foreground="#add8e6",
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn(
-                            f"{my_terminal} -e htop"
-                        )
-                    },
-                    # background=colors[0],
-                    padding=2,
-                    fontsize=10,
-                ),
-                widget.Memory(
-                    foreground="#ffffff",
-                    format="{SwapUsed:.0f}{mm}/{SwapTotal:.0f}{mm}",
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn(
-                            f"{my_terminal} -e htop"
-                        )
-                    },
-                    measure_swap="M",
                     padding=None,
                     fontsize=10,
                 ),
