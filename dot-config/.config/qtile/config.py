@@ -38,7 +38,7 @@
 from typing import List  # noqa: F401
 
 
-from libqtile import qtile, bar, layout, widget
+from libqtile import qtile, bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 import subprocess
@@ -278,8 +278,8 @@ def spawn_keys():
             desc="Launch terminal with tmux",
         ),
         Key(
-            [super_key],
-            "r",
+            [alt_key],
+            "Return",
             lazy.spawn(
                 f"rofi -show run -theme {os.environ['HOME']}/.config/rofi"
                 + "/launchers/colorful/style_7"
@@ -348,7 +348,7 @@ group_names = [
     ("four", {"layout": "monadtall"}),
     ("five", {"layout": "monadtall"}),
     ("six", {"layout": "monadtall"}),
-    ("seven", {"layout": "monadtall"}),
+    ("seven", {"layout": "monadtall", "spawn": ["slack"]}),
     ("eight", {"layout": "monadtall", "spawn": ["discord"]}),
     ("nine", {"layout": "monadtall", "spawn": ["signal-desktop"]}),
     ("ten", {"layout": "monadtall"}),
@@ -519,10 +519,15 @@ screens = [
                     highlight_color="#152238",
                     border_width=3,
                 ),
+                *pipe(direction="right"),
+                widget.WindowName(
+                    foreground="#add8e6", max_chars=50, width=bar.CALCULATED
+                ),
+                *pipe(direction="right"),
                 widget.chord.Chord(
                     foreground="#152238", background="ffffff", fontsize=10
                 ),
-                widget.WindowName(foreground="#add8e6", max_chars=50),
+                widget.Spacer(length=bar.STRETCH),
                 widget.Clock(format="%d-%m-%Y %a %I:%M %p"),
                 widget.Spacer(length=bar.STRETCH),
                 *pipe(),
@@ -658,7 +663,17 @@ screens = [
                     foreground="#add8e6",
                     fontsize=10,
                 ),
-                # widget.QuickExit(),
+                widget.Sep(linewidth=2, padding=10),
+                widget.QuickExit(
+                    default_text="&#x23FB;",
+                    fontsize=20,
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn(
+                            f"{os.environ['HOME']}/.config/rofi/bin/"
+                            + "menu_powermenu"
+                        )
+                    },
+                ),
             ],
             24,
             background="#152238",
@@ -677,13 +692,15 @@ screens = [
                     border_width=3,
                     fontsize=11,
                 ),
-                widget.Prompt(),
+                *pipe(direction="right"),
+                widget.WindowName(
+                    foreground="#add8e6", max_chars=50, width=bar.CALCULATED
+                ),
+                *pipe(direction="right"),
                 widget.chord.Chord(
                     foreground="#152238", background="ffffff", fontsize=10
                 ),
-                widget.WindowName(
-                    foreground="#add8e6", fontsize=11, max_chars=20
-                ),
+                widget.Spacer(length=bar.STRETCH),
                 widget.Clock(format="%d-%m-%Y %a %I:%M %p"),
                 widget.Spacer(length=bar.STRETCH),
                 *pipe(),
@@ -823,3 +840,11 @@ auto_minimize = True
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
+
+
+# To autostart stuff that would normally be in .xinitrc
+@hook.subscribe.startup_once
+def start_once():
+    """Stuff to autostart with qtile."""
+    # subprocess.call([f"{os.environ['HOME']}/.config/qtile/autostart.sh"])
+    subprocess.call([f"{os.environ['HOME']}/.config/qtile/autostart.sh"])
