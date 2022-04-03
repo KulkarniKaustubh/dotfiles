@@ -551,10 +551,7 @@ screens = [
                     padding=10,
                     fontsize=10,
                 ),
-                widget.Systray(
-                    iconsize=5,
-                    padding=5,
-                ),
+                widget.Systray(padding=5),
                 widget.Sep(foreground="#152238", padding=10),
                 widget.TextBox(
                     text="GPU Temp",
