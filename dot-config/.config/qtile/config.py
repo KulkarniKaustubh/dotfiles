@@ -537,12 +537,12 @@ screens = [
                     fontsize=10,
                     padding=25,
                 ),
-                widget.Sep(foreground="#152238", padding=15),
+                widget.Sep(linewidth=0, padding=15),
                 widget.chord.Chord(
                     foreground="#152238", background="#ffffff", fontsize=10
                 ),
                 widget.Spacer(length=bar.STRETCH),
-                widget.Clock(format="%d-%m-%Y %a %I:%M %p"),
+                widget.Clock(format="%A | %I:%M | %B %d"),
                 widget.Spacer(length=bar.STRETCH),
                 widget.TextBox(
                     text="Apps",
@@ -552,7 +552,7 @@ screens = [
                     fontsize=10,
                 ),
                 widget.Systray(padding=5),
-                widget.Sep(foreground="#152238", padding=10),
+                widget.Sep(linewidth=0, padding=5),
                 widget.TextBox(
                     text="GPU Temp",
                     foreground="#152238",
@@ -607,7 +607,7 @@ screens = [
                     padding=2,
                     fontsize=10,
                 ),
-                widget.Sep(linewidth=0, padding=10),
+                widget.Sep(linewidth=0, padding=5),
                 widget.TextBox(
                     text="CPU",
                     foreground="#152238",
@@ -674,7 +674,7 @@ screens = [
                     padding=None,
                     fontsize=10,
                 ),
-                widget.Sep(linewidth=0, padding=10),
+                widget.Sep(linewidth=0, padding=5),
                 widget.TextBox(
                     text="Vol",
                     foreground="#152238",
@@ -685,17 +685,20 @@ screens = [
                 widget.Volume(
                     foreground="#152238",
                     background="#ffffe0",
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn("pavucontrol")
+                    },
                     padding=5,
                     fontsize=10,
                 ),
-                widget.Sep(linewidth=0, padding=10),
+                widget.Sep(linewidth=0, padding=5),
                 widget.CurrentLayout(
                     foreground="#152238",
                     background="#ffffff",
                     fontsize=10,
                     padding=15,
                 ),
-                widget.Sep(linewidth=0, padding=10),
+                widget.Sep(linewidth=0, padding=5),
                 widget.QuickExit(
                     default_text="&#x23FB;",
                     fontsize=20,
@@ -735,12 +738,12 @@ screens = [
                     fontsize=10,
                     padding=25,
                 ),
-                widget.Sep(foreground="#152238", padding=15),
+                widget.Sep(linewidth=0, padding=15),
                 widget.chord.Chord(
                     foreground="#152238", background="#ffffff", fontsize=10
                 ),
                 widget.Spacer(length=bar.STRETCH),
-                widget.Clock(format="%d-%m-%Y %a %I:%M %p"),
+                widget.Clock(format="%A | %I:%M | %B %d"),
                 widget.Spacer(length=bar.STRETCH),
                 widget.TextBox(
                     text="GPU Temp",
@@ -796,7 +799,7 @@ screens = [
                     padding=2,
                     fontsize=10,
                 ),
-                widget.Sep(linewidth=0, padding=10),
+                widget.Sep(linewidth=0, padding=5),
                 widget.TextBox(
                     text="CPU",
                     foreground="#152238",
@@ -863,7 +866,7 @@ screens = [
                     padding=None,
                     fontsize=10,
                 ),
-                widget.Sep(linewidth=0, padding=10),
+                widget.Sep(linewidth=0, padding=5),
                 widget.TextBox(
                     text="Vol",
                     foreground="#152238",
@@ -874,10 +877,13 @@ screens = [
                 widget.Volume(
                     foreground="#152238",
                     background="#ffffff",
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn("pavucontrol")
+                    },
                     padding=5,
                     fontsize=10,
                 ),
-                widget.Sep(linewidth=0, padding=10),
+                widget.Sep(linewidth=0, padding=5),
                 widget.CurrentLayout(
                     foreground="#152238",
                     background="#ffffff",
