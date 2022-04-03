@@ -522,7 +522,7 @@ screens = [
                 ),
                 widget.WindowName(
                     foreground="#152238",
-                    background="#add8e6",
+                    background="#dbf0fe",
                     max_chars=25,
                     width=bar.CALCULATED,
                     fontsize=10,
@@ -538,7 +538,7 @@ screens = [
                 widget.TextBox(
                     text="Apps",
                     foreground="#152238",
-                    background="#add8e6",
+                    background="#dbf0fe",
                     padding=10,
                     fontsize=10,
                 ),
@@ -556,7 +556,7 @@ screens = [
                 ),
                 widget.NvidiaSensors(
                     foreground="#152238",
-                    background="#ffffff",
+                    background="#defade",
                     format="{temp} C",
                     padding=2,
                     fontsize=10,
@@ -570,7 +570,7 @@ screens = [
                 ),
                 widget.GenPollText(
                     foreground="#152238",
-                    background="#ffffff",
+                    background="#defade",
                     func=get_gpu_usage,
                     update_interval=2,
                     mouse_callbacks={
@@ -590,7 +590,7 @@ screens = [
                 ),
                 widget.GenPollText(
                     foreground="#152238",
-                    background="#ffffff",
+                    background="#defade",
                     func=get_gpu_mem_usage,
                     update_interval=2,
                     mouse_callbacks={
@@ -611,7 +611,7 @@ screens = [
                 ),
                 widget.CPU(
                     foreground="#152238",
-                    background="#ffffff",
+                    background="#f7d3d6",
                     format="{load_percent}%",
                     padding=None,
                     fontsize=10,
@@ -631,7 +631,7 @@ screens = [
                 ),
                 widget.Memory(
                     foreground="#152238",
-                    background="#ffffff",
+                    background="#f7d3d6",
                     format="{MemUsed:.0f}{mm}",
                     mouse_callbacks={
                         "Button1": lambda: qtile.cmd_spawn(
@@ -657,7 +657,7 @@ screens = [
                 ),
                 widget.Memory(
                     foreground="#152238",
-                    background="#ffffff",
+                    background="#f7d3d6",
                     format="{SwapUsed:.0f}{mm}",
                     mouse_callbacks={
                         "Button1": lambda: qtile.cmd_spawn(
@@ -668,7 +668,6 @@ screens = [
                     padding=None,
                     fontsize=10,
                 ),
-                # *pipe(),
                 widget.Sep(linewidth=0, padding=10),
                 widget.TextBox(
                     text="Vol",
@@ -679,7 +678,7 @@ screens = [
                 ),
                 widget.Volume(
                     foreground="#152238",
-                    background="#ffffff",
+                    background="#ffffe0",
                     padding=5,
                     fontsize=10,
                 ),
@@ -695,7 +694,7 @@ screens = [
                     default_text="&#x23FB;",
                     fontsize=20,
                     foreground="#152238",
-                    background="#add8e6",
+                    background="#dbf0fe",
                     padding=10,
                     mouse_callbacks={
                         "Button1": lambda: qtile.cmd_spawn(
@@ -724,7 +723,7 @@ screens = [
                 ),
                 widget.WindowName(
                     foreground="#152238",
-                    background="#add8e6",
+                    background="#dbf0fe",
                     max_chars=25,
                     width=bar.CALCULATED,
                     fontsize=10,
@@ -738,6 +737,20 @@ screens = [
                 widget.Clock(format="%d-%m-%Y %a %I:%M %p"),
                 widget.Spacer(length=bar.STRETCH),
                 widget.TextBox(
+                    text="GPU Temp",
+                    foreground="#152238",
+                    background="#90ee90",
+                    padding=10,
+                    fontsize=10,
+                ),
+                widget.NvidiaSensors(
+                    foreground="#152238",
+                    background="#defade",
+                    format="{temp} C",
+                    padding=2,
+                    fontsize=10,
+                ),
+                widget.TextBox(
                     text="GPU",
                     foreground="#152238",
                     background="#90ee90",
@@ -746,7 +759,7 @@ screens = [
                 ),
                 widget.GenPollText(
                     foreground="#152238",
-                    background="#ffffff",
+                    background="#defade",
                     func=get_gpu_usage,
                     update_interval=2,
                     mouse_callbacks={
@@ -766,7 +779,7 @@ screens = [
                 ),
                 widget.GenPollText(
                     foreground="#152238",
-                    background="#ffffff",
+                    background="#defade",
                     func=get_gpu_mem_usage,
                     update_interval=2,
                     mouse_callbacks={
@@ -778,6 +791,20 @@ screens = [
                     fontsize=10,
                 ),
                 widget.Sep(linewidth=0, padding=10),
+                widget.TextBox(
+                    text="CPU",
+                    foreground="#152238",
+                    background="#ff6766",
+                    padding=10,
+                    fontsize=10,
+                ),
+                widget.CPU(
+                    foreground="#152238",
+                    background="#f7d3d6",
+                    format="{load_percent}%",
+                    padding=None,
+                    fontsize=10,
+                ),
                 widget.TextBox(
                     text="RAM",
                     foreground="#152238",
@@ -793,7 +820,7 @@ screens = [
                 ),
                 widget.Memory(
                     foreground="#152238",
-                    background="#ffffff",
+                    background="#f7d3d6",
                     format="{MemUsed:.0f}{mm}",
                     mouse_callbacks={
                         "Button1": lambda: qtile.cmd_spawn(
@@ -801,6 +828,32 @@ screens = [
                         )
                     },
                     measure_mem="M",
+                    padding=None,
+                    fontsize=10,
+                ),
+                widget.TextBox(
+                    text="Swap",
+                    foreground="#152238",
+                    background="#ff6766",
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn(
+                            f"{my_terminal} -e htop"
+                        )
+                    },
+                    # background=colors[0],
+                    padding=10,
+                    fontsize=10,
+                ),
+                widget.Memory(
+                    foreground="#152238",
+                    background="#f7d3d6",
+                    format="{SwapUsed:.0f}{mm}",
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn(
+                            f"{my_terminal} -e htop"
+                        )
+                    },
+                    measure_swap="M",
                     padding=None,
                     fontsize=10,
                 ),
