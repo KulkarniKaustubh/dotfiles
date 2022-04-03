@@ -498,7 +498,7 @@ def get_gpu_usage():
         shell=True,
     )
     (out, err) = gpu.communicate()
-    return str(out.decode("utf-8").strip("\n")) + "% "
+    return str(out.decode("utf-8").strip("\n")) + "%"
 
 
 def get_gpu_mem_usage():
@@ -552,7 +552,7 @@ screens = [
                     fontsize=10,
                 ),
                 widget.Systray(padding=5),
-                widget.Sep(linewidth=0, padding=5),
+                widget.Sep(linewidth=0, padding=3),
                 widget.TextBox(
                     text="GPU Temp",
                     foreground="#152238",
@@ -564,7 +564,7 @@ screens = [
                     foreground="#152238",
                     background="#defade",
                     format="{temp} C",
-                    padding=2,
+                    padding=3,
                     fontsize=10,
                 ),
                 widget.TextBox(
@@ -584,7 +584,7 @@ screens = [
                             my_terminal + " -e nvtop"
                         )
                     },
-                    padding=2,
+                    padding=3,
                     fontsize=10,
                 ),
                 widget.TextBox(
@@ -604,20 +604,20 @@ screens = [
                             my_terminal + " -e nvtop"
                         )
                     },
-                    padding=2,
+                    padding=3,
                     fontsize=10,
                 ),
-                widget.Sep(linewidth=0, padding=5),
+                widget.Sep(linewidth=0, padding=3),
                 widget.TextBox(
                     text="CPU",
                     foreground="#152238",
-                    background="#ff6766",
+                    background="#f095e4",
                     padding=10,
                     fontsize=10,
                 ),
                 widget.CPU(
                     foreground="#152238",
-                    background="#f7d3d6",
+                    background="#f5d0f0",
                     format="{load_percent}%",
                     padding=None,
                     fontsize=10,
@@ -625,7 +625,7 @@ screens = [
                 widget.TextBox(
                     text="RAM",
                     foreground="#152238",
-                    background="#ff6766",
+                    background="#f095e4",
                     mouse_callbacks={
                         "Button1": lambda: qtile.cmd_spawn(
                             f"{my_terminal} -e htop"
@@ -637,7 +637,7 @@ screens = [
                 ),
                 widget.Memory(
                     foreground="#152238",
-                    background="#f7d3d6",
+                    background="#f5d0f0",
                     format="{MemUsed:.0f}{mm}",
                     mouse_callbacks={
                         "Button1": lambda: qtile.cmd_spawn(
@@ -651,7 +651,7 @@ screens = [
                 widget.TextBox(
                     text="Swap",
                     foreground="#152238",
-                    background="#ff6766",
+                    background="#f095e4",
                     mouse_callbacks={
                         "Button1": lambda: qtile.cmd_spawn(
                             f"{my_terminal} -e htop"
@@ -663,7 +663,7 @@ screens = [
                 ),
                 widget.Memory(
                     foreground="#152238",
-                    background="#f7d3d6",
+                    background="#f5d0f0",
                     format="{SwapUsed:.0f}{mm}",
                     mouse_callbacks={
                         "Button1": lambda: qtile.cmd_spawn(
@@ -674,31 +674,31 @@ screens = [
                     padding=None,
                     fontsize=10,
                 ),
-                widget.Sep(linewidth=0, padding=5),
+                widget.Sep(linewidth=0, padding=3),
                 widget.TextBox(
                     text="Vol",
                     foreground="#152238",
-                    background="#ffd36e",
+                    background="#fdb35a",
                     padding=5,
                     fontsize=10,
                 ),
                 widget.Volume(
                     foreground="#152238",
-                    background="#ffffe0",
+                    background="#feddb6",
                     mouse_callbacks={
                         "Button1": lambda: qtile.cmd_spawn("pavucontrol")
                     },
                     padding=5,
                     fontsize=10,
                 ),
-                widget.Sep(linewidth=0, padding=5),
+                widget.Sep(linewidth=0, padding=3),
                 widget.CurrentLayout(
                     foreground="#152238",
                     background="#ffffff",
                     fontsize=10,
                     padding=15,
                 ),
-                widget.Sep(linewidth=0, padding=5),
+                widget.Sep(linewidth=0, padding=3),
                 widget.QuickExit(
                     default_text="&#x23FB;",
                     fontsize=20,
@@ -756,7 +756,7 @@ screens = [
                     foreground="#152238",
                     background="#defade",
                     format="{temp} C",
-                    padding=2,
+                    padding=3,
                     fontsize=10,
                 ),
                 widget.TextBox(
@@ -776,7 +776,7 @@ screens = [
                             my_terminal + " -e nvtop"
                         )
                     },
-                    padding=2,
+                    padding=3,
                     fontsize=10,
                 ),
                 widget.TextBox(
@@ -796,20 +796,20 @@ screens = [
                             my_terminal + " -e nvtop"
                         )
                     },
-                    padding=2,
+                    padding=3,
                     fontsize=10,
                 ),
-                widget.Sep(linewidth=0, padding=5),
+                widget.Sep(linewidth=0, padding=3),
                 widget.TextBox(
                     text="CPU",
                     foreground="#152238",
-                    background="#ff6766",
+                    background="#f095e4",
                     padding=10,
                     fontsize=10,
                 ),
                 widget.CPU(
                     foreground="#152238",
-                    background="#f7d3d6",
+                    background="#f5d0f0",
                     format="{load_percent}%",
                     padding=None,
                     fontsize=10,
@@ -817,7 +817,7 @@ screens = [
                 widget.TextBox(
                     text="RAM",
                     foreground="#152238",
-                    background="#ff6766",
+                    background="#f095e4",
                     mouse_callbacks={
                         "Button1": lambda: qtile.cmd_spawn(
                             f"{my_terminal} -e htop"
@@ -829,7 +829,7 @@ screens = [
                 ),
                 widget.Memory(
                     foreground="#152238",
-                    background="#f7d3d6",
+                    background="#f5d0f0",
                     format="{MemUsed:.0f}{mm}",
                     mouse_callbacks={
                         "Button1": lambda: qtile.cmd_spawn(
@@ -843,7 +843,7 @@ screens = [
                 widget.TextBox(
                     text="Swap",
                     foreground="#152238",
-                    background="#ff6766",
+                    background="#f095e4",
                     mouse_callbacks={
                         "Button1": lambda: qtile.cmd_spawn(
                             f"{my_terminal} -e htop"
@@ -855,7 +855,7 @@ screens = [
                 ),
                 widget.Memory(
                     foreground="#152238",
-                    background="#f7d3d6",
+                    background="#f5d0f0",
                     format="{SwapUsed:.0f}{mm}",
                     mouse_callbacks={
                         "Button1": lambda: qtile.cmd_spawn(
@@ -866,24 +866,24 @@ screens = [
                     padding=None,
                     fontsize=10,
                 ),
-                widget.Sep(linewidth=0, padding=5),
+                widget.Sep(linewidth=0, padding=3),
                 widget.TextBox(
                     text="Vol",
                     foreground="#152238",
-                    background="#ffd36e",
+                    background="#fdb35a",
                     padding=5,
                     fontsize=10,
                 ),
                 widget.Volume(
                     foreground="#152238",
-                    background="#ffffff",
+                    background="#feddb6",
                     mouse_callbacks={
                         "Button1": lambda: qtile.cmd_spawn("pavucontrol")
                     },
                     padding=5,
                     fontsize=10,
                 ),
-                widget.Sep(linewidth=0, padding=5),
+                widget.Sep(linewidth=0, padding=3),
                 widget.CurrentLayout(
                     foreground="#152238",
                     background="#ffffff",
