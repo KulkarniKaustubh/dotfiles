@@ -521,11 +521,14 @@ screens = [
                 ),
                 *pipe(direction="right"),
                 widget.WindowName(
-                    foreground="#add8e6", max_chars=50, width=bar.CALCULATED
+                    foreground="#add8e6",
+                    max_chars=50,
+                    width=bar.CALCULATED,
+                    fontsize=10,
                 ),
                 *pipe(direction="right"),
                 widget.chord.Chord(
-                    foreground="#152238", background="ffffff", fontsize=10
+                    foreground="#152238", background="#add8e6", fontsize=10
                 ),
                 widget.Spacer(length=bar.STRETCH),
                 widget.Clock(format="%d-%m-%Y %a %I:%M %p"),
@@ -663,10 +666,13 @@ screens = [
                     foreground="#add8e6",
                     fontsize=10,
                 ),
-                widget.Sep(linewidth=2, padding=10),
+                widget.Sep(linewidth=0, padding=10),
                 widget.QuickExit(
                     default_text="&#x23FB;",
                     fontsize=20,
+                    foreground="#152238",
+                    background="#add8e6",
+                    padding=10,
                     mouse_callbacks={
                         "Button1": lambda: qtile.cmd_spawn(
                             f"{os.environ['HOME']}/.config/rofi/bin/"
@@ -694,11 +700,14 @@ screens = [
                 ),
                 *pipe(direction="right"),
                 widget.WindowName(
-                    foreground="#add8e6", max_chars=50, width=bar.CALCULATED
+                    foreground="#add8e6",
+                    max_chars=50,
+                    width=bar.CALCULATED,
+                    fontsize=10,
                 ),
                 *pipe(direction="right"),
                 widget.chord.Chord(
-                    foreground="#152238", background="ffffff", fontsize=10
+                    foreground="#152238", background="#add8e6", fontsize=10
                 ),
                 widget.Spacer(length=bar.STRETCH),
                 widget.Clock(format="%d-%m-%Y %a %I:%M %p"),
@@ -846,5 +855,4 @@ wmname = "LG3D"
 @hook.subscribe.startup_once
 def start_once():
     """Stuff to autostart with qtile."""
-    # subprocess.call([f"{os.environ['HOME']}/.config/qtile/autostart.sh"])
     subprocess.call([f"{os.environ['HOME']}/.config/qtile/autostart.sh"])
