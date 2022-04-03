@@ -17,11 +17,15 @@ setopt share_history
 setopt histignorealldups
 
 # Fixing control + left/right in zsh
+# Fixing some keys inside zsh
 autoload -Uz select-word-style
 select-word-style bash
 
 bindkey ";5C" forward-word
 bindkey ";5D" backward-word
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+bindkey "^[[3~" delete-char
 
 # Add highlight enabled tab completion with colors
 zstyle ':completion:*' menu select
