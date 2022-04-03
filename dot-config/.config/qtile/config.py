@@ -310,6 +310,15 @@ def spawn_keys():
             desc="Screenshot utility",
         ),
         Key(
+            [super_key],  # mod1 is Alt
+            "p",
+            lazy.spawn(
+                f"rofi -show drun -theme {os.environ['HOME']}/.config/rofi"
+                + "/launchers/colorful/style_7"
+            ),
+            desc="Open menu for all applications",
+        ),
+        Key(
             [alt_key],  # mod1 is Alt
             "Tab",
             lazy.spawn(
