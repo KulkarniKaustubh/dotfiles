@@ -310,7 +310,7 @@ def spawn_keys():
             desc="Screenshot utility",
         ),
         Key(
-            [super_key],  # mod1 is Alt
+            [super_key],
             "p",
             lazy.spawn(
                 f"rofi -show drun -theme {os.environ['HOME']}/.config/rofi"
@@ -319,7 +319,13 @@ def spawn_keys():
             desc="Open menu for all applications",
         ),
         Key(
-            [alt_key],  # mod1 is Alt
+            [super_key],
+            "v",
+            lazy.spawn("gnome-calendar"),
+            desc="Open calendar",
+        ),
+        Key(
+            [alt_key],
             "Tab",
             lazy.spawn(
                 f"rofi -show window -theme {os.environ['HOME']}/.config/rofi"
@@ -328,7 +334,7 @@ def spawn_keys():
             desc="Open all open windows' tabs",
         ),
         Key(
-            [alt_key],  # mod1 is Alt
+            [alt_key],
             "F4",
             lazy.spawn(
                 f"{os.environ['HOME']}/.config/rofi/bin/menu_powermenu"
@@ -430,7 +436,7 @@ layouts = [
         section_bottom=20,
         level_shift=8,
         vspace=3,
-        panel_width=150,
+        panel_width=200,
         fontsize=10,
         **layout_defaults,
     ),
@@ -527,6 +533,10 @@ screens = [
                     inactive="#ffffff",
                     highlight_method="line",
                     highlight_color="#152238",
+                    other_current_screen_border="#215578",
+                    other_screen_border="#215578",
+                    this_current_screen_border="#dbf0fe",
+                    this_screen_border="#dbf0fe",
                     border_width=3,
                 ),
                 widget.WindowName(
@@ -555,6 +565,12 @@ screens = [
                     background="#dbf0fe",
                     padding=10,
                     fontsize=10,
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn(
+                            f"rofi -show drun -theme {os.environ['HOME']}/"
+                            + ".config/rofi/launchers/colorful/style_7"
+                        )
+                    },
                 ),
                 widget.Systray(padding=5),
                 widget.Sep(linewidth=0, padding=3),
@@ -562,6 +578,11 @@ screens = [
                     text="GPU Temp",
                     foreground="#152238",
                     background="#90ee90",
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn(
+                            my_terminal + " -e nvtop"
+                        )
+                    },
                     padding=10,
                     fontsize=10,
                 ),
@@ -576,6 +597,11 @@ screens = [
                     text="GPU",
                     foreground="#152238",
                     background="#90ee90",
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn(
+                            my_terminal + " -e nvtop"
+                        )
+                    },
                     padding=10,
                     fontsize=10,
                 ),
@@ -596,6 +622,11 @@ screens = [
                     text="VRAM",
                     foreground="#152238",
                     background="#90ee90",
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn(
+                            my_terminal + " -e nvtop"
+                        )
+                    },
                     padding=10,
                     fontsize=10,
                 ),
@@ -624,7 +655,7 @@ screens = [
                     foreground="#152238",
                     background="#f5d0f0",
                     format="{load_percent}%",
-                    padding=None,
+                    padding=3,
                     fontsize=10,
                 ),
                 widget.TextBox(
@@ -650,7 +681,7 @@ screens = [
                         )
                     },
                     measure_mem="M",
-                    padding=None,
+                    padding=3,
                     fontsize=10,
                 ),
                 widget.TextBox(
@@ -676,7 +707,7 @@ screens = [
                         )
                     },
                     measure_swap="M",
-                    padding=None,
+                    padding=3,
                     fontsize=10,
                 ),
                 widget.Sep(linewidth=0, padding=3),
@@ -732,8 +763,11 @@ screens = [
                     inactive="#ffffff",
                     highlight_method="line",
                     highlight_color="#152238",
+                    other_current_screen_border="#215578",
+                    other_screen_border="#215578",
+                    this_current_screen_border="#dbf0fe",
+                    this_screen_border="#dbf0fe",
                     border_width=3,
-                    fontsize=11,
                 ),
                 widget.WindowName(
                     foreground="#152238",
@@ -759,6 +793,11 @@ screens = [
                     text="GPU Temp",
                     foreground="#152238",
                     background="#90ee90",
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn(
+                            my_terminal + " -e nvtop"
+                        )
+                    },
                     padding=10,
                     fontsize=10,
                 ),
@@ -773,6 +812,11 @@ screens = [
                     text="GPU",
                     foreground="#152238",
                     background="#90ee90",
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn(
+                            my_terminal + " -e nvtop"
+                        )
+                    },
                     padding=10,
                     fontsize=10,
                 ),
@@ -793,6 +837,11 @@ screens = [
                     text="VRAM",
                     foreground="#152238",
                     background="#90ee90",
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn(
+                            my_terminal + " -e nvtop"
+                        )
+                    },
                     padding=10,
                     fontsize=10,
                 ),
@@ -821,7 +870,7 @@ screens = [
                     foreground="#152238",
                     background="#f5d0f0",
                     format="{load_percent}%",
-                    padding=None,
+                    padding=3,
                     fontsize=10,
                 ),
                 widget.TextBox(
@@ -847,7 +896,7 @@ screens = [
                         )
                     },
                     measure_mem="M",
-                    padding=None,
+                    padding=3,
                     fontsize=10,
                 ),
                 widget.TextBox(
@@ -873,7 +922,7 @@ screens = [
                         )
                     },
                     measure_swap="M",
-                    padding=None,
+                    padding=3,
                     fontsize=10,
                 ),
                 widget.Sep(linewidth=0, padding=3),
