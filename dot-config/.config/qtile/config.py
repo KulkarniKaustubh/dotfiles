@@ -45,6 +45,17 @@ import subprocess
 import os
 
 # from libqtile.utils import guess_terminal
+from bar_widgets import (
+    group_box,
+    window_name,
+    app_block,
+    gpu_block,
+    cpu_block,
+    volume_block,
+    current_layout,
+    # battery_block,
+    quick_exit,
+)
 
 
 super_key = "mod4"
@@ -491,469 +502,87 @@ def pipe(
     ]
 
 
-def get_gpu_usage():
-    """Get GPU % usage."""
-    gpu = subprocess.Popen(
+def primary_monitor_bar():
+    """Qtile bar for the primary monitor."""
+    return bar.Bar(
         [
-            "nvidia-smi "
-            "--query-gpu=utilization.gpu --format=csv,nounits "
-            "| "
-            "awk '/[0-9]/ {print $1}'"
+            *group_box(),
+            *window_name(),
+            widget.Sep(linewidth=0, padding=15),
+            widget.chord.Chord(
+                foreground="#152238",
+                background="#ffffff",
+                fontsize=10,
+                padding=10,
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                format="%A | %I:%M | %B %d",
+                mouse_callbacks={
+                    "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
+                },
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            *app_block(),
+            widget.Sep(linewidth=0, padding=3),
+            *gpu_block(),
+            widget.Sep(linewidth=0, padding=3),
+            *cpu_block(),
+            widget.Sep(linewidth=0, padding=3),
+            *volume_block(),
+            widget.Sep(linewidth=0, padding=3),
+            *current_layout(),
+            widget.Sep(linewidth=0, padding=3),
+            *quick_exit(),
         ],
-        stdout=subprocess.PIPE,
-        shell=True,
+        24,
+        background="#152238",
+        opacity=1.0,
     )
-    (out, err) = gpu.communicate()
-    return str(out.decode("utf-8").strip("\n")) + "%"
 
 
-def get_gpu_mem_usage():
-    """Get GPU VRAM usage."""
-    gpu = subprocess.Popen(
+def non_primary_monitor_bar():
+    """Qtile bar for all non-primary monitors."""
+    return bar.Bar(
         [
-            "nvidia-smi "
-            "--query-gpu=memory.used,memory.total --format=csv,nounits "
-            "| "
-            "awk '/[0-9]/ {printf \"%dM\",$1}'"
+            *group_box(),
+            *window_name(),
+            widget.Sep(linewidth=0, padding=15),
+            widget.chord.Chord(
+                foreground="#152238",
+                background="#ffffff",
+                fontsize=10,
+                padding=10,
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                format="%A | %I:%M | %B %d",
+                mouse_callbacks={
+                    "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
+                },
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            *gpu_block(),
+            widget.Sep(linewidth=0, padding=3),
+            *cpu_block(),
+            widget.Sep(linewidth=0, padding=3),
+            *volume_block(),
+            widget.Sep(linewidth=0, padding=3),
+            *current_layout(),
+            widget.Sep(linewidth=0, padding=3),
         ],
-        stdout=subprocess.PIPE,
-        shell=True,
+        24,
+        background="#152238",
+        opacity=1.0,
     )
-    (out, err) = gpu.communicate()
-    return str(out.decode("utf-8").strip("\n"))
 
 
 screens = [
     Screen(
-        top=bar.Bar(
-            [
-                widget.GroupBox(
-                    # border="add8e6",
-                    active="#add8e6",
-                    inactive="#ffffff",
-                    highlight_method="line",
-                    highlight_color="#152238",
-                    other_current_screen_border="#215578",
-                    other_screen_border="#215578",
-                    this_current_screen_border="#dbf0fe",
-                    this_screen_border="#dbf0fe",
-                    border_width=3,
-                ),
-                widget.WindowName(
-                    foreground="#152238",
-                    background="#dbf0fe",
-                    max_chars=25,
-                    width=bar.CALCULATED,
-                    fontsize=10,
-                    padding=25,
-                ),
-                widget.Sep(linewidth=0, padding=15),
-                widget.chord.Chord(
-                    foreground="#152238", background="#ffffff", fontsize=10
-                ),
-                widget.Spacer(length=bar.STRETCH),
-                widget.Clock(
-                    format="%A | %I:%M | %B %d",
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
-                    },
-                ),
-                widget.Spacer(length=bar.STRETCH),
-                widget.TextBox(
-                    text="Apps",
-                    foreground="#152238",
-                    background="#dbf0fe",
-                    padding=10,
-                    fontsize=10,
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn(
-                            f"rofi -show drun -theme {os.environ['HOME']}/"
-                            + ".config/rofi/launchers/colorful/style_7"
-                        )
-                    },
-                ),
-                widget.Systray(padding=5),
-                widget.Sep(linewidth=0, padding=3),
-                widget.TextBox(
-                    text="GPU Temp",
-                    foreground="#152238",
-                    background="#90ee90",
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn(
-                            my_terminal + " -e nvtop"
-                        )
-                    },
-                    padding=10,
-                    fontsize=10,
-                ),
-                widget.NvidiaSensors(
-                    foreground="#152238",
-                    background="#defade",
-                    format="{temp} C",
-                    padding=3,
-                    fontsize=10,
-                ),
-                widget.TextBox(
-                    text="GPU",
-                    foreground="#152238",
-                    background="#90ee90",
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn(
-                            my_terminal + " -e nvtop"
-                        )
-                    },
-                    padding=10,
-                    fontsize=10,
-                ),
-                widget.GenPollText(
-                    foreground="#152238",
-                    background="#defade",
-                    func=get_gpu_usage,
-                    update_interval=2,
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn(
-                            my_terminal + " -e nvtop"
-                        )
-                    },
-                    padding=3,
-                    fontsize=10,
-                ),
-                widget.TextBox(
-                    text="VRAM",
-                    foreground="#152238",
-                    background="#90ee90",
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn(
-                            my_terminal + " -e nvtop"
-                        )
-                    },
-                    padding=10,
-                    fontsize=10,
-                ),
-                widget.GenPollText(
-                    foreground="#152238",
-                    background="#defade",
-                    func=get_gpu_mem_usage,
-                    update_interval=2,
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn(
-                            my_terminal + " -e nvtop"
-                        )
-                    },
-                    padding=3,
-                    fontsize=10,
-                ),
-                widget.Sep(linewidth=0, padding=3),
-                widget.TextBox(
-                    text="CPU",
-                    foreground="#152238",
-                    background="#f095e4",
-                    padding=10,
-                    fontsize=10,
-                ),
-                widget.CPU(
-                    foreground="#152238",
-                    background="#f5d0f0",
-                    format="{load_percent}%",
-                    padding=3,
-                    fontsize=10,
-                ),
-                widget.TextBox(
-                    text="RAM",
-                    foreground="#152238",
-                    background="#f095e4",
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn(
-                            f"{my_terminal} -e htop"
-                        )
-                    },
-                    # background=colors[0],
-                    padding=10,
-                    fontsize=10,
-                ),
-                widget.Memory(
-                    foreground="#152238",
-                    background="#f5d0f0",
-                    format="{MemUsed:.0f}{mm}",
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn(
-                            f"{my_terminal} -e htop"
-                        )
-                    },
-                    measure_mem="M",
-                    padding=3,
-                    fontsize=10,
-                ),
-                widget.TextBox(
-                    text="Swap",
-                    foreground="#152238",
-                    background="#f095e4",
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn(
-                            f"{my_terminal} -e htop"
-                        )
-                    },
-                    # background=colors[0],
-                    padding=10,
-                    fontsize=10,
-                ),
-                widget.Memory(
-                    foreground="#152238",
-                    background="#f5d0f0",
-                    format="{SwapUsed:.0f}{mm}",
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn(
-                            f"{my_terminal} -e htop"
-                        )
-                    },
-                    measure_swap="M",
-                    padding=3,
-                    fontsize=10,
-                ),
-                widget.Sep(linewidth=0, padding=3),
-                widget.TextBox(
-                    text="Vol",
-                    foreground="#152238",
-                    background="#fdb35a",
-                    padding=5,
-                    fontsize=10,
-                ),
-                widget.Volume(
-                    foreground="#152238",
-                    background="#feddb6",
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn("pavucontrol")
-                    },
-                    padding=5,
-                    fontsize=10,
-                ),
-                widget.Sep(linewidth=0, padding=3),
-                widget.CurrentLayout(
-                    foreground="#152238",
-                    background="#ffffff",
-                    fontsize=10,
-                    padding=15,
-                ),
-                widget.Sep(linewidth=0, padding=3),
-                widget.QuickExit(
-                    default_text="&#x23FB;",
-                    fontsize=20,
-                    foreground="#152238",
-                    background="#dbf0fe",
-                    padding=10,
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn(
-                            f"{os.environ['HOME']}/.config/rofi/bin/"
-                            + "menu_powermenu"
-                        )
-                    },
-                ),
-            ],
-            24,
-            background="#152238",
-            opacity=1.0,
-        ),
+        top=primary_monitor_bar(),
     ),
     Screen(
-        top=bar.Bar(
-            [
-                widget.GroupBox(
-                    # border="add8e6",
-                    active="#add8e6",
-                    inactive="#ffffff",
-                    highlight_method="line",
-                    highlight_color="#152238",
-                    other_current_screen_border="#215578",
-                    other_screen_border="#215578",
-                    this_current_screen_border="#dbf0fe",
-                    this_screen_border="#dbf0fe",
-                    border_width=3,
-                ),
-                widget.WindowName(
-                    foreground="#152238",
-                    background="#dbf0fe",
-                    max_chars=25,
-                    width=bar.CALCULATED,
-                    fontsize=10,
-                    padding=25,
-                ),
-                widget.Sep(linewidth=0, padding=15),
-                widget.chord.Chord(
-                    foreground="#152238", background="#ffffff", fontsize=10
-                ),
-                widget.Spacer(length=bar.STRETCH),
-                widget.Clock(
-                    format="%A | %I:%M | %B %d",
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
-                    },
-                ),
-                widget.Spacer(length=bar.STRETCH),
-                widget.TextBox(
-                    text="GPU Temp",
-                    foreground="#152238",
-                    background="#90ee90",
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn(
-                            my_terminal + " -e nvtop"
-                        )
-                    },
-                    padding=10,
-                    fontsize=10,
-                ),
-                widget.NvidiaSensors(
-                    foreground="#152238",
-                    background="#defade",
-                    format="{temp} C",
-                    padding=3,
-                    fontsize=10,
-                ),
-                widget.TextBox(
-                    text="GPU",
-                    foreground="#152238",
-                    background="#90ee90",
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn(
-                            my_terminal + " -e nvtop"
-                        )
-                    },
-                    padding=10,
-                    fontsize=10,
-                ),
-                widget.GenPollText(
-                    foreground="#152238",
-                    background="#defade",
-                    func=get_gpu_usage,
-                    update_interval=2,
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn(
-                            my_terminal + " -e nvtop"
-                        )
-                    },
-                    padding=3,
-                    fontsize=10,
-                ),
-                widget.TextBox(
-                    text="VRAM",
-                    foreground="#152238",
-                    background="#90ee90",
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn(
-                            my_terminal + " -e nvtop"
-                        )
-                    },
-                    padding=10,
-                    fontsize=10,
-                ),
-                widget.GenPollText(
-                    foreground="#152238",
-                    background="#defade",
-                    func=get_gpu_mem_usage,
-                    update_interval=2,
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn(
-                            my_terminal + " -e nvtop"
-                        )
-                    },
-                    padding=3,
-                    fontsize=10,
-                ),
-                widget.Sep(linewidth=0, padding=3),
-                widget.TextBox(
-                    text="CPU",
-                    foreground="#152238",
-                    background="#f095e4",
-                    padding=10,
-                    fontsize=10,
-                ),
-                widget.CPU(
-                    foreground="#152238",
-                    background="#f5d0f0",
-                    format="{load_percent}%",
-                    padding=3,
-                    fontsize=10,
-                ),
-                widget.TextBox(
-                    text="RAM",
-                    foreground="#152238",
-                    background="#f095e4",
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn(
-                            f"{my_terminal} -e htop"
-                        )
-                    },
-                    # background=colors[0],
-                    padding=10,
-                    fontsize=10,
-                ),
-                widget.Memory(
-                    foreground="#152238",
-                    background="#f5d0f0",
-                    format="{MemUsed:.0f}{mm}",
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn(
-                            f"{my_terminal} -e htop"
-                        )
-                    },
-                    measure_mem="M",
-                    padding=3,
-                    fontsize=10,
-                ),
-                widget.TextBox(
-                    text="Swap",
-                    foreground="#152238",
-                    background="#f095e4",
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn(
-                            f"{my_terminal} -e htop"
-                        )
-                    },
-                    # background=colors[0],
-                    padding=10,
-                    fontsize=10,
-                ),
-                widget.Memory(
-                    foreground="#152238",
-                    background="#f5d0f0",
-                    format="{SwapUsed:.0f}{mm}",
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn(
-                            f"{my_terminal} -e htop"
-                        )
-                    },
-                    measure_swap="M",
-                    padding=3,
-                    fontsize=10,
-                ),
-                widget.Sep(linewidth=0, padding=3),
-                widget.TextBox(
-                    text="Vol",
-                    foreground="#152238",
-                    background="#fdb35a",
-                    padding=5,
-                    fontsize=10,
-                ),
-                widget.Volume(
-                    foreground="#152238",
-                    background="#feddb6",
-                    mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn("pavucontrol")
-                    },
-                    padding=5,
-                    fontsize=10,
-                ),
-                widget.Sep(linewidth=0, padding=3),
-                widget.CurrentLayout(
-                    foreground="#152238",
-                    background="#ffffff",
-                    fontsize=10,
-                    padding=15,
-                ),
-            ],
-            24,
-            background="#152238",
-            opacity=1.0,
-        ),
+        top=non_primary_monitor_bar(),
     ),
 ]
 
