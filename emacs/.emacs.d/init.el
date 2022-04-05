@@ -75,6 +75,8 @@
 ;;                     Misc Package Configs
 ;; ------------------------------------------------------------------
 
+(add-to-list 'exec-path "~/.local/bin")
+
 ;; Fixing dired
 (setq dired-listing-switches "-lAX --group-directories-first")
 
