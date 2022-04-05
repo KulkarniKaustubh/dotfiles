@@ -33,6 +33,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  done
  unset f
 fi
+
 # wallpaper
 nitrogen --restore &
 
@@ -50,6 +51,9 @@ nvidia-settings --load-config-only
 
 # emacs server
 /usr/bin/emacs --daemon
+
+# start the network manager GUI
+nm-applet &
 
 # qtile twm
 # /usr/bin/qtile start
