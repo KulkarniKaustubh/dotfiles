@@ -4,6 +4,8 @@ from libqtile import qtile, bar, widget
 import subprocess
 import os
 
+my_terminal = "alacritty"
+
 
 def get_gpu_usage():
     """Get GPU % usage."""
@@ -172,7 +174,7 @@ def cpu_block():
         widget.Memory(
             foreground="#152238",
             background="#f5d0f0",
-            format="{MemUsed:.0f}{mm}",
+            format="{MemUsed:.0f}{mm}/{MemTotal:.0f}{mm}",
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
             },
@@ -194,7 +196,7 @@ def cpu_block():
         widget.Memory(
             foreground="#152238",
             background="#f5d0f0",
-            format="{SwapUsed:.0f}{mm}",
+            format="{SwapUsed:.0f}{mm}/{SwapTotal:.0f}{mm}",
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
             },
