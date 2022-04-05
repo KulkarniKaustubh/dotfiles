@@ -293,7 +293,7 @@ def spawn_keys():
             "Return",
             lazy.spawn(
                 f"rofi -show run -theme {os.environ['HOME']}/.config/rofi"
-                + "/launchers/colorful/style_7"
+                + "/themes/launchers_colourful_style_7"
             ),
             # lazy.spawn("dmenu_run -p 'Run: '"),
             desc="Run a command using rofi",
@@ -325,7 +325,7 @@ def spawn_keys():
             "p",
             lazy.spawn(
                 f"rofi -show drun -theme {os.environ['HOME']}/.config/rofi"
-                + "/launchers/colorful/style_7"
+                + "/themes/launchers_colourful_style_7"
             ),
             desc="Open menu for all applications",
         ),
@@ -340,7 +340,7 @@ def spawn_keys():
             "Tab",
             lazy.spawn(
                 f"rofi -show window -theme {os.environ['HOME']}/.config/rofi"
-                + "/launchers/colorful/style_7"
+                + "/themes/launchers_colourful_style_7"
             ),
             desc="Open all open windows' tabs",
         ),
@@ -348,7 +348,7 @@ def spawn_keys():
             [alt_key],
             "F4",
             lazy.spawn(
-                f"{os.environ['HOME']}/.config/rofi/bin/menu_powermenu"
+                f"{os.environ['HOME']}/.config/rofi/scripts/menu_powermenu"
             ),
             desc="Open shutdown menu",
         ),
