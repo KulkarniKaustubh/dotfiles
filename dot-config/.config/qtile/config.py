@@ -53,7 +53,7 @@ from bar_widgets import (
     cpu_block,
     volume_block,
     current_layout,
-    # battery_block,
+    battery_block,
     quick_exit,
 )
 
@@ -523,13 +523,13 @@ def primary_monitor_bar():
                 },
             ),
             widget.Spacer(length=bar.STRETCH),
-            *app_block(),
-            widget.Sep(linewidth=0, padding=3),
             *gpu_block(),
             widget.Sep(linewidth=0, padding=3),
             *cpu_block(),
             widget.Sep(linewidth=0, padding=3),
             *volume_block(),
+            widget.Sep(linewidth=0, padding=3),
+            *app_block(),
             widget.Sep(linewidth=0, padding=3),
             *current_layout(),
             widget.Sep(linewidth=0, padding=3),
@@ -570,6 +570,45 @@ def non_primary_monitor_bar():
             widget.Sep(linewidth=0, padding=3),
             *current_layout(),
             widget.Sep(linewidth=0, padding=3),
+        ],
+        24,
+        background="#152238",
+        opacity=1.0,
+    )
+
+
+def laptop_monitor_bar():
+    """Qtile bar for laptop monitor."""
+    return bar.Bar(
+        [
+            *group_box(),
+            *window_name(),
+            widget.Sep(linewidth=0, padding=15),
+            widget.chord.Chord(
+                foreground="#152238",
+                background="#ffffff",
+                fontsize=10,
+                padding=10,
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                format="%A | %I:%M | %B %d",
+                mouse_callbacks={
+                    "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
+                },
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            *app_block(),
+            widget.Sep(linewidth=0, padding=3),
+            *cpu_block(),
+            widget.Sep(linewidth=0, padding=3),
+            *volume_block(),
+            widget.Sep(linewidth=0, padding=3),
+            *current_layout(),
+            widget.Sep(linewidth=0, padding=3),
+            *battery_block(),
+            widget.Sep(linewidth=0, padding=3),
+            *quick_exit(),
         ],
         24,
         background="#152238",
