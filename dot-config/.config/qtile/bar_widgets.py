@@ -243,7 +243,20 @@ def current_layout():
 
 def battery_block():
     """Display battery infromation."""
-    return [widget.Battery()]
+    return [
+        widget.Battery(
+            foreground="#152238",
+            low_foreground="#152238",
+            background="#90ee90",
+            low_background="#ff7f7f",
+            discharge_char="&#11167;",
+            charge_char="&#11165; | Charging",
+            low_percentage=0.25,
+            format="{char} | {percent:2.1%}",
+            update_delay=5,
+            padding=10,
+        )
+    ]
 
 
 def quick_exit():
