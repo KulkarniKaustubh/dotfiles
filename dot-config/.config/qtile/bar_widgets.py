@@ -72,19 +72,6 @@ def window_name():
 def app_block():
     """Open apps."""
     return [
-        widget.TextBox(
-            text="Apps",
-            foreground="#152238",
-            background="#dbf0fe",
-            padding=10,
-            fontsize=10,
-            mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(
-                    f"rofi -show drun -theme {os.environ['HOME']}/"
-                    + ".config/rofi/launchers/colorful/style_7"
-                )
-            },
-        ),
         widget.Systray(padding=5),
     ]
 
