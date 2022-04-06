@@ -264,7 +264,7 @@ def quick_exit():
             padding=5,
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(
-                    f"{os.environ['HOME']}/.config/rofi/bin/"
+                    f"{os.environ['HOME']}/.config/rofi/scripts/"
                     + "menu_powermenu"
                 )
             },
