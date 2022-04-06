@@ -46,6 +46,7 @@ import os
 
 # from libqtile.utils import guess_terminal
 from bar_widgets import (
+    powerline_symbol,
     group_box,
     window_name,
     app_block,
@@ -53,6 +54,7 @@ from bar_widgets import (
     cpu_block,
     volume_block,
     current_layout,
+    brightness_block,
     battery_block,
     quick_exit,
 )
@@ -488,11 +490,10 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="FuraMono NF",
-    fontsize=12,
+    font="sans",
+    fontsize=10,
     foreground="#ffffff",
-    # foreground="000000",
-    padding=3,
+    padding=5,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -537,26 +538,59 @@ def primary_monitor_bar():
                 padding=10,
             ),
             widget.Spacer(length=bar.STRETCH),
+            widget.Sep(linewidth=0, padding=3),
+            *powerline_symbol(
+                direction="left",
+                foreground="#90ee90",
+                background="#152238",
+            ),
+            *gpu_block(),
+            *powerline_symbol(
+                direction="left",
+                foreground="#f5d0f0",
+                background="#90ee90",
+            ),
+            *cpu_block(),
+            *powerline_symbol(
+                direction="left",
+                foreground="#ff8886",
+                background="#f5d0f0",
+            ),
+            *volume_block(),
+            *powerline_symbol(
+                direction="left",
+                foreground="#d3d3d3",
+                background="#ff8886",
+            ),
             widget.Clock(
                 format="%A | %I:%M | %B %d",
+                foreground="#000000",
+                background="#d3d3d3",
                 mouse_callbacks={
                     "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
                 },
+                fontsize=11,
             ),
-            widget.Spacer(length=bar.STRETCH),
-            *gpu_block(),
-            widget.Sep(linewidth=0, padding=3),
-            *cpu_block(),
-            widget.Sep(linewidth=0, padding=3),
-            *volume_block(),
-            widget.Sep(linewidth=0, padding=3),
+            *powerline_symbol(
+                direction="left",
+                foreground="#000000",
+                background="#d3d3d3",
+            ),
             *app_block(),
-            widget.Sep(linewidth=0, padding=3),
+            *powerline_symbol(
+                direction="left",
+                foreground="#ffffff",
+                background="#000000",
+            ),
             *current_layout(),
-            widget.Sep(linewidth=0, padding=3),
+            *powerline_symbol(
+                direction="left",
+                foreground="#dbf0fe",
+                background="#ffffff",
+            ),
             *quick_exit(),
         ],
-        24,
+        25,
         background="#152238",
         opacity=1.0,
     )
@@ -576,23 +610,58 @@ def non_primary_monitor_bar():
                 padding=10,
             ),
             widget.Spacer(length=bar.STRETCH),
+            widget.Sep(linewidth=0, padding=3),
+            *powerline_symbol(
+                direction="left",
+                foreground="#90ee90",
+                background="#152238",
+            ),
+            *gpu_block(),
+            *powerline_symbol(
+                direction="left",
+                foreground="#f5d0f0",
+                background="#90ee90",
+            ),
+            *cpu_block(),
+            *powerline_symbol(
+                direction="left",
+                foreground="#ff8886",
+                background="#f5d0f0",
+            ),
+            *volume_block(),
+            *powerline_symbol(
+                direction="left",
+                foreground="#000000",
+                background="#ff8886",
+            ),
             widget.Clock(
                 format="%A | %I:%M | %B %d",
+                foreground="#ffffff",
+                background="#000000",
                 mouse_callbacks={
                     "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
                 },
+                fontsize=11,
             ),
-            widget.Spacer(length=bar.STRETCH),
-            *gpu_block(),
-            widget.Sep(linewidth=0, padding=3),
-            *cpu_block(),
-            widget.Sep(linewidth=0, padding=3),
-            *volume_block(),
-            widget.Sep(linewidth=0, padding=3),
+            *powerline_symbol(
+                direction="left",
+                foreground="#3d2814",
+                background="#000000",
+            ),
+            *powerline_symbol(
+                direction="left",
+                foreground="#ffffff",
+                background="#3d2814",
+            ),
             *current_layout(),
-            widget.Sep(linewidth=0, padding=3),
+            *powerline_symbol(
+                direction="left",
+                foreground="#dbf0fe",
+                background="#ffffff",
+            ),
+            *quick_exit(),
         ],
-        24,
+        25,
         background="#152238",
         opacity=1.0,
     )
@@ -672,7 +741,8 @@ bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(
     float_rules=[
-        # Run the utility of `xprop` to see the wm class and name of an X client.
+        # Run the utility of `xprop`
+        # to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
         Match(wm_class="gnome-calendar"),  # Calendar app
         Match(wm_class="gnome-calculator"),  # Calculator app

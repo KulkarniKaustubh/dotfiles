@@ -39,6 +39,24 @@ def get_gpu_mem_usage():
     return str(out.decode("utf-8").strip("\n"))
 
 
+def powerline_symbol(direction, foreground, background, fontsize=25):
+    """Powerline arrow key symbol."""
+    if direction == "left":
+        text = ""
+    elif direction == "right":
+        text = "▸"
+    return [
+        widget.TextBox(
+            text=text,
+            foreground=foreground,
+            background=background,
+            fontsize=fontsize,
+            padding=0,
+            font="MesloLGS NF",
+        ),
+    ]
+
+
 def group_box():
     """Workspaces."""
     return [
@@ -53,6 +71,7 @@ def group_box():
             this_current_screen_border="#dbf0fe",
             this_screen_border="#dbf0fe",
             border_width=3,
+            fontsize=11,
         ),
     ]
 
@@ -74,41 +93,27 @@ def window_name():
 def app_block():
     """Open apps."""
     return [
-        widget.Systray(padding=5),
+        widget.Systray(background="#000000", padding=5),
     ]
 
 
 def gpu_block():
     """GPU information."""
     return [
-        widget.TextBox(
-            text="GPU Temp",
-            foreground="#152238",
-            background="#90ee90",
-            mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(my_terminal + " -e nvtop")
-            },
-            padding=10,
-            fontsize=10,
-        ),
         widget.NvidiaSensors(
             foreground="#152238",
-            background="#defade",
-            format="{temp} C",
-            padding=3,
+            background="#90ee90",
+            format="GPU Temp | {temp} C",
+            padding=5,
             fontsize=10,
         ),
-        widget.TextBox(
-            text="GPU",
-            foreground="#152238",
+        *powerline_symbol(
+            direction="left",
+            foreground="#defade",
             background="#90ee90",
-            mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(my_terminal + " -e nvtop")
-            },
-            padding=10,
-            fontsize=10,
         ),
         widget.GenPollText(
+            fmt="GPU | {}",
             foreground="#152238",
             background="#defade",
             func=get_gpu_usage,
@@ -116,28 +121,24 @@ def gpu_block():
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(my_terminal + " -e nvtop")
             },
-            padding=3,
+            padding=5,
             fontsize=10,
         ),
-        widget.TextBox(
-            text="VRAM",
-            foreground="#152238",
-            background="#90ee90",
-            mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(my_terminal + " -e nvtop")
-            },
-            padding=10,
-            fontsize=10,
+        *powerline_symbol(
+            direction="left",
+            foreground="#90ee90",
+            background="#defade",
         ),
         widget.GenPollText(
+            fmt="VRAM | {}",
             foreground="#152238",
-            background="#defade",
+            background="#90ee90",
             func=get_gpu_mem_usage,
             update_interval=2,
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(my_terminal + " -e nvtop")
             },
-            padding=3,
+            padding=5,
             fontsize=10,
         ),
     ]
@@ -146,62 +147,43 @@ def gpu_block():
 def cpu_block():
     """CPU information."""
     return [
-        widget.TextBox(
-            text="CPU",
-            foreground="#152238",
-            background="#f095e4",
-            padding=10,
-            fontsize=10,
-        ),
         widget.CPU(
             foreground="#152238",
             background="#f5d0f0",
-            format="{load_percent}%",
-            padding=3,
+            format="CPU | {load_percent}%",
+            padding=5,
             fontsize=10,
         ),
-        widget.TextBox(
-            text="RAM",
-            foreground="#152238",
-            background="#f095e4",
-            mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
-            },
-            # background=colors[0],
-            padding=10,
-            fontsize=10,
+        *powerline_symbol(
+            direction="left",
+            foreground="#f095e4",
+            background="#f5d0f0",
         ),
         widget.Memory(
             foreground="#152238",
-            background="#f5d0f0",
-            format="{MemUsed:.0f}{mm}/{MemTotal:.0f}{mm}",
+            background="#f095e4",
+            format="RAM | {MemUsed:.0f}{mm}/{MemTotal:.0f}{mm}",
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
             },
             measure_mem="M",
-            padding=3,
+            padding=5,
             fontsize=10,
         ),
-        widget.TextBox(
-            text="Swap",
-            foreground="#152238",
+        *powerline_symbol(
+            direction="left",
+            foreground="#f5d0f0",
             background="#f095e4",
-            mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
-            },
-            # background=colors[0],
-            padding=10,
-            fontsize=10,
         ),
         widget.Memory(
             foreground="#152238",
             background="#f5d0f0",
-            format="{SwapUsed:.0f}{mm}/{SwapTotal:.0f}{mm}",
+            format="Swap | {SwapUsed:.0f}{mm}/{SwapTotal:.0f}{mm}",
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
             },
             measure_swap="M",
-            padding=3,
+            padding=5,
             fontsize=10,
         ),
     ]
@@ -210,16 +192,10 @@ def cpu_block():
 def volume_block():
     """Volume information."""
     return [
-        widget.TextBox(
-            text="Vol",
-            foreground="#152238",
-            background="#fdb35a",
-            padding=5,
-            fontsize=10,
-        ),
         widget.Volume(
+            fmt="Vol | {}",
             foreground="#152238",
-            background="#feddb6",
+            background="#ff8886",
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn("pavucontrol")
             },
@@ -259,7 +235,7 @@ def current_layout():
             foreground="#152238",
             background="#ffffff",
             fontsize=10,
-            padding=15,
+            padding=5,
         ),
     ]
 
@@ -272,6 +248,7 @@ def battery_block():
             low_foreground="#152238",
             background="#90ee90",
             low_background="#ff7f7f",
+            # battery char '\uF240'
             discharge_char="&#11167;",
             charge_char="&#11165; | Charging",
             low_percentage=0.25,
@@ -287,10 +264,10 @@ def quick_exit():
     return [
         widget.QuickExit(
             default_text="&#x23FB;",
-            fontsize=20,
+            fontsize=15,
             foreground="#152238",
             background="#dbf0fe",
-            padding=10,
+            padding=5,
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(
                     f"{os.environ['HOME']}/.config/rofi/bin/"
