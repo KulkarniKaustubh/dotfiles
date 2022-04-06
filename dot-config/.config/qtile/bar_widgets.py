@@ -242,9 +242,8 @@ def battery_block():
             low_foreground="#152238",
             background="#90ee90",
             low_background="#ff7f7f",
-            # battery char '\uF240'
-            discharge_char="&#11167;",
-            charge_char="&#11165; | Charging",
+            discharge_char="\uF240",
+            charge_char="\uF240 | Charging",
             low_percentage=0.25,
             format="{char} | {percent:2.1%}",
             update_delay=5,

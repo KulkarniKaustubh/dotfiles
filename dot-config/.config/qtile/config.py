@@ -721,8 +721,14 @@ def laptop_monitor_bar():
             *app_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#ffffff",
+                foreground="#90ee90",
                 background="#000000",
+            ),
+            *battery_block(),
+            *powerline_symbol(
+                direction="left",
+                foreground="#ffffff",
+                background="#90ee90",
             ),
             *current_layout(),
             *powerline_symbol(
