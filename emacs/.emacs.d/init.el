@@ -402,10 +402,10 @@
   )
 
 ;; For auto smooth scrolling with a margin, smooth-scrolling
-(use-package smooth-scrolling
-  :config
-  (setq smooth-scroll-margin 8)
-  (smooth-scrolling-mode 1))
+;; (use-package smooth-scrolling
+;;   :config
+;;   (setq smooth-scroll-margin 8)
+;;   (smooth-scrolling-mode 1))
 
 ;; For a file-tree panel, neotree
 (use-package neotree
