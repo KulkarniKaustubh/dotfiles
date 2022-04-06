@@ -355,7 +355,7 @@ def spawn_keys():
         Key(
             [],
             "XF86AudioMute",
-            lazy.spawn("pactl set-sink-mute 0 toggle"),
+            lazy.spawn("pactl set-sink-mute @DEFDEFAULT_SINK@ toggle"),
         ),
         Key(
             [],
