@@ -175,6 +175,7 @@
 (use-package recentf
   :config
   (recentf-mode 1)
+  (run-at-time nil (* 1 30) 'recentf-save-list)
   (setq recentf-max-menu-items 50))
 
 ;; Install counsel
@@ -260,17 +261,35 @@
                  (reusable-frames . visible)
                  (window-height . 0.3))))
 
-;; Install golden-ration for automatice resizing of windows
+;; Install golden-ration for automatic resizing of windows
 (use-package golden-ratio
   :config
   (golden-ratio-mode 1)
   (setq golden-ratio-auto-scale t)
   (setq golden-ratio-extra-commands
   (append golden-ratio-extra-commands
-    '(evil-window-left
+    '(evil-avy-goto-word-or-subword-1
+      evil-avy-goto-line
+      evil-window-delete
+      evil-window-split
+      evil-window-vsplit
+      evil-window-left
       evil-window-right
       evil-window-up
-      evil-window-down))))
+      evil-window-down
+      evil-window-bottom-right
+      evil-window-top-left
+      evil-window-mru
+      evil-window-next
+      evil-window-prev
+      evil-window-new
+      evil-window-vnew
+      evil-window-rotate-upwards
+      evil-window-rotate-downwards
+      evil-window-move-very-top
+      evil-window-move-far-left
+      evil-window-move-far-right
+      evil-window-move-very-bottom))))
 
 ;; Install lsp
 (use-package lsp-mode
