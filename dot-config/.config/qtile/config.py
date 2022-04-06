@@ -354,6 +354,11 @@ def spawn_keys():
         ),
         Key(
             [],
+            "XF86AudioMute",
+            lazy.spawn("pactl set-sink-mute 0 toggle"),
+        ),
+        Key(
+            [],
             "XF86AudioLowerVolume",
             lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%"),
         ),
