@@ -339,8 +339,9 @@ def spawn_keys():
             [alt_key],
             "Tab",
             lazy.spawn(
-                f"rofi -show window -theme {os.environ['HOME']}/.config/rofi"
-                + "/themes/launchers_colourful_style_7"
+                f"rofi -theme {os.environ['HOME']}/.config/rofi"
+                + "/themes/launchers_colourful_style_7 "
+                + "-combi-modi window,drun -show combi"
             ),
             desc="Open all open windows' tabs",
         ),
