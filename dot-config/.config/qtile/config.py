@@ -362,6 +362,16 @@ def spawn_keys():
             "XF86AudioRaiseVolume",
             lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%"),
         ),
+        Key(
+            [],
+            "XF86MonBrightnessDown",
+            lazy.spawn("xbacklight -dec 5"),
+        ),
+        Key(
+            [],
+            "XF86MonBrightnessUp",
+            lazy.spawn("xbacklight -inc 5"),
+        ),
     ]
 
     return spawn_keys
