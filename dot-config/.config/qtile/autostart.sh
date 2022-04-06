@@ -55,5 +55,8 @@ nvidia-settings --load-config-only
 # start the network manager GUI
 nm-applet &
 
+# start the bluetooth manager GUI
+blueman-applet &
+
 # qtile twm
 # /usr/bin/qtile start
