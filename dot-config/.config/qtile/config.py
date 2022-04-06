@@ -617,6 +617,8 @@ def laptop_monitor_bar():
             widget.Sep(linewidth=0, padding=3),
             *volume_block(),
             widget.Sep(linewidth=0, padding=3),
+            *brightness_block(),
+            widget.Sep(linewidth=0, padding=3),
             *app_block(),
             widget.Sep(linewidth=0, padding=3),
             *battery_block(),

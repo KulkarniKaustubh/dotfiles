@@ -229,6 +229,29 @@ def volume_block():
     ]
 
 
+def brightness_block():
+    """Volume information."""
+    return [
+        widget.TextBox(
+            text="Brightness",
+            foreground="#ffffff",
+            background="#4a4a4a",
+            padding=5,
+            fontsize=10,
+        ),
+        widget.Backlight(
+            backlight_name="intel_backlight",
+            foreground="#ffffff",
+            background="#6d6d6d",
+            mouse_callbacks={
+                "Button1": lambda: qtile.cmd_spawn("pavucontrol")
+            },
+            padding=5,
+            fontsize=10,
+        ),
+    ]
+
+
 def current_layout():
     """Show current Qtile layout."""
     return [
