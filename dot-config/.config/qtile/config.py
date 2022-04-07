@@ -645,13 +645,8 @@ def non_primary_monitor_bar():
             ),
             *powerline_symbol(
                 direction="left",
-                foreground="#3d2814",
-                background="#000000",
-            ),
-            *powerline_symbol(
-                direction="left",
                 foreground="#ffffff",
-                background="#3d2814",
+                background="#000000",
             ),
             *current_layout(),
             *powerline_symbol(
