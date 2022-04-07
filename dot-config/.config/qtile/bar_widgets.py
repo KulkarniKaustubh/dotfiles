@@ -212,7 +212,7 @@ def brightness_block():
             fmt="Brightness | {}",
             backlight_name="intel_backlight",
             foreground="#152238",
-            background="#fffbc8",
+            background="#ffff99",
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn("pavucontrol")
             },

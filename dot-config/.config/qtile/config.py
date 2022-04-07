@@ -690,19 +690,19 @@ def laptop_monitor_bar():
             *volume_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#fffbc8",
+                foreground="#ffff99",
                 background="#ff8886",
             ),
             *brightness_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#ffff99",
-                background="#fffbc8",
+                foreground="#d3d3d3",
+                background="#ffff99",
             ),
             widget.Clock(
                 format="%A | %I:%M | %B %d",
                 foreground="#000000",
-                background="#ffff99",
+                background="#d3d3d3",
                 mouse_callbacks={
                     "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
                 },
@@ -711,7 +711,7 @@ def laptop_monitor_bar():
             *powerline_symbol(
                 direction="left",
                 foreground="#000000",
-                background="#ffff99",
+                background="#d3d3d3",
             ),
             *app_block(),
             *powerline_symbol(
@@ -741,11 +741,11 @@ def laptop_monitor_bar():
 
 screens = [
     Screen(
-        top=primary_monitor_bar(),
+        top=laptop_monitor_bar(),
     ),
-    Screen(
-        top=non_primary_monitor_bar(),
-    ),
+    # Screen(
+    #     top=non_primary_monitor_bar(),
+    # ),
 ]
 
 # Drag floating layouts.
