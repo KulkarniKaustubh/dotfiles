@@ -714,25 +714,41 @@ def laptop_monitor_bar():
             *cpu_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#ff8886",
+                foreground="#152238",
                 background="#f5d0f0",
+            ),
+            *powerline_symbol(
+                direction="left",
+                foreground="#ff8886",
+                background="#152238",
             ),
             *volume_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#ffff99",
+                foreground="#ffaf7a",
                 background="#ff8886",
             ),
             *brightness_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#d3d3d3",
-                background="#ffff99",
+                foreground="#90ee90",
+                background="#ffaf7a",
+            ),
+            *battery_block(),
+            *powerline_symbol(
+                direction="left",
+                foreground="#152238",
+                background="#90ee90",
+            ),
+            *powerline_symbol(
+                direction="left",
+                foreground="#ffff99",
+                background="#152238",
             ),
             widget.Clock(
                 format="%A | %I:%M | %B %d",
-                foreground="#000000",
-                background="#d3d3d3",
+                foreground="#152238",
+                background="#ffff99",
                 mouse_callbacks={
                     "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
                 },
@@ -741,19 +757,13 @@ def laptop_monitor_bar():
             *powerline_symbol(
                 direction="left",
                 foreground="#000000",
-                background="#d3d3d3",
+                background="#ffff99",
             ),
             *app_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#90ee90",
-                background="#000000",
-            ),
-            *battery_block(),
-            *powerline_symbol(
-                direction="left",
                 foreground="#ffffff",
-                background="#90ee90",
+                background="#000000",
             ),
             *current_layout(),
             *powerline_symbol(
