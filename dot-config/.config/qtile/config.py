@@ -559,13 +559,13 @@ def primary_monitor_bar():
             *volume_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#d3d3d3",
+                foreground="#ffff99",
                 background="#ff8886",
             ),
             widget.Clock(
                 format="%A | %I:%M | %B %d",
-                foreground="#000000",
-                background="#d3d3d3",
+                foreground="#152238",
+                background="#ffff99",
                 mouse_callbacks={
                     "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
                 },
@@ -574,7 +574,7 @@ def primary_monitor_bar():
             *powerline_symbol(
                 direction="left",
                 foreground="#000000",
-                background="#d3d3d3",
+                background="#ffff99",
             ),
             *app_block(),
             *powerline_symbol(
@@ -701,13 +701,13 @@ def laptop_monitor_bar():
             *brightness_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#d3d3d3",
+                foreground="#ffff99",
                 background="#fffbc8",
             ),
             widget.Clock(
                 format="%A | %I:%M | %B %d",
                 foreground="#000000",
-                background="#d3d3d3",
+                background="#ffff99",
                 mouse_callbacks={
                     "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
                 },
@@ -716,7 +716,7 @@ def laptop_monitor_bar():
             *powerline_symbol(
                 direction="left",
                 foreground="#000000",
-                background="#d3d3d3",
+                background="#ffff99",
             ),
             *app_block(),
             *powerline_symbol(
