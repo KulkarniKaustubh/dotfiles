@@ -547,20 +547,35 @@ def primary_monitor_bar():
             *gpu_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#f5d0f0",
+                foreground="#152238",
                 background="#90ee90",
+            ),
+            *powerline_symbol(
+                direction="left",
+                foreground="#f5d0f0",
+                background="#152238",
             ),
             *cpu_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#ff8886",
+                foreground="#152238",
                 background="#f5d0f0",
+            ),
+            *powerline_symbol(
+                direction="left",
+                foreground="#ff8886",
+                background="#152238",
             ),
             *volume_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#ffff99",
+                foreground="#152238",
                 background="#ff8886",
+            ),
+            *powerline_symbol(
+                direction="left",
+                foreground="#ffff99",
+                background="#152238",
             ),
             widget.Clock(
                 format="%A | %I:%M | %B %d",
@@ -619,25 +634,40 @@ def non_primary_monitor_bar():
             *gpu_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#f5d0f0",
+                foreground="#152238",
                 background="#90ee90",
+            ),
+            *powerline_symbol(
+                direction="left",
+                foreground="#f5d0f0",
+                background="#152238",
             ),
             *cpu_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#ff8886",
+                foreground="#152238",
                 background="#f5d0f0",
+            ),
+            *powerline_symbol(
+                direction="left",
+                foreground="#ff8886",
+                background="#152238",
             ),
             *volume_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#000000",
+                foreground="#152238",
                 background="#ff8886",
+            ),
+            *powerline_symbol(
+                direction="left",
+                foreground="#ffff99",
+                background="#152238",
             ),
             widget.Clock(
                 format="%A | %I:%M | %B %d",
-                foreground="#ffffff",
-                background="#000000",
+                foreground="#152238",
+                background="#ffff99",
                 mouse_callbacks={
                     "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
                 },
@@ -646,7 +676,7 @@ def non_primary_monitor_bar():
             *powerline_symbol(
                 direction="left",
                 foreground="#ffffff",
-                background="#000000",
+                background="#ffff99",
             ),
             *current_layout(),
             *powerline_symbol(
