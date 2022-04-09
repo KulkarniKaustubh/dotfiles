@@ -62,6 +62,7 @@ from bar_widgets import (
 
 super_key = "mod4"
 alt_key = "mod1"
+
 my_terminal = "alacritty"
 my_browser = "google-chrome-stable"
 
@@ -104,6 +105,24 @@ def layout_keys():
             "Tab",
             lazy.layout.next(),
             desc="Move window focus to other window",
+        ),
+        Key(
+            ["control"],
+            "Tab",
+            lazy.screen.next_group(),
+            desc="Move to next workspace",
+        ),
+        Key(
+            ["control", "shift"],
+            "Tab",
+            lazy.screen.prev_group(),
+            desc="Move to prev workspace",
+        ),
+        Key(
+            ["shift"],
+            "Tab",
+            lazy.screen.toggle_group(),
+            desc="Toggle workspaces",
         ),
         # Move windows between left/right columns or move up/down in current
         # stack.
