@@ -158,7 +158,7 @@ bindkey -s "^[n" "nautilus . &; disown %1; ^M"
 
 # loop through and source all aliases files
 for aliases_file in $(ls -a $HOME | grep -E "\.aliases.*\.zsh"); do
-    source $aliases_file
+    source $HOME/$aliases_file
 done
 
 # set editor
