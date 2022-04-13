@@ -410,7 +410,7 @@ def spawn_keys():
 
 
 group_names = [
-    ("one", {"layout": "monadtall", "spawn": ["alacritty"]}),
+    ("one", {"layout": "monadtall", "spawn": ["alacritty -e tmux -u"]}),
     ("two", {"layout": "monadtall", "spawn": ["google-chrome-stable"]}),
     ("three", {"layout": "monadtall"}),
     ("four", {"layout": "monadtall"}),
