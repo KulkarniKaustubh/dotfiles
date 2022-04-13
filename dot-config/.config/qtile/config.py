@@ -107,19 +107,19 @@ def layout_keys():
             desc="Move window focus to other window",
         ),
         Key(
-            ["control"],
-            "Tab",
+            ["control", "shift"],
+            "w",
             lazy.screen.next_group(),
             desc="Move to next workspace",
         ),
         Key(
             ["control", "shift"],
-            "Tab",
+            "b",
             lazy.screen.prev_group(),
             desc="Move to prev workspace",
         ),
         Key(
-            ["shift"],
+            [alt_key, "control"],
             "Tab",
             lazy.screen.toggle_group(),
             desc="Toggle workspaces",
@@ -300,14 +300,14 @@ def spawn_keys():
         Key(
             [super_key],
             "Return",
-            lazy.spawn(my_terminal),
-            desc="Launch terminal",
+            lazy.spawn(f"{my_terminal} -e tmux -u"),
+            desc="Launch terminal with tmux",
         ),
         Key(
             [super_key],
             "t",
-            lazy.spawn(f"{my_terminal} -e tmux -u"),
-            desc="Launch terminal with tmux",
+            lazy.spawn(my_terminal),
+            desc="Launch terminal",
         ),
         Key(
             [alt_key],
@@ -800,11 +800,11 @@ def laptop_monitor_bar():
 
 screens = [
     Screen(
-        top=laptop_monitor_bar(),
+        top=primary_monitor_bar(),
     ),
-    # Screen(
-    #     top=non_primary_monitor_bar(),
-    # ),
+    Screen(
+        top=non_primary_monitor_bar(),
+    ),
 ]
 
 # Drag floating layouts.
