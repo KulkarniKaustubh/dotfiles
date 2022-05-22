@@ -42,7 +42,7 @@ def get_gpu_mem_usage():
 def powerline_symbol(direction, foreground, background, fontsize=25):
     """Powerline arrow key symbol."""
     if direction == "left":
-        text = ""
+        text = ""
     elif direction == "right":
         text = "▸"
     return [
@@ -82,7 +82,7 @@ def window_name():
         widget.WindowName(
             foreground="#152238",
             background="#dbf0fe",
-            max_chars=25,
+            max_chars=50,
             width=bar.CALCULATED,
             fontsize=10,
             padding=25,
