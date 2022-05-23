@@ -41,6 +41,7 @@ from typing import List  # noqa: F401
 from libqtile import qtile, bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
+from libqtile.popup import Popup
 import subprocess
 import os
 
@@ -53,6 +54,7 @@ from bar_widgets import (
     gpu_block,
     cpu_block,
     volume_block,
+    clock_block,
     current_layout,
     brightness_block,
     battery_block,
@@ -108,13 +110,13 @@ def layout_keys():
         ),
         Key(
             ["control", "shift"],
-            "w",
+            "l",
             lazy.screen.next_group(),
             desc="Move to next workspace",
         ),
         Key(
             ["control", "shift"],
-            "b",
+            "h",
             lazy.screen.prev_group(),
             desc="Move to prev workspace",
         ),
@@ -313,8 +315,9 @@ def spawn_keys():
             [alt_key],
             "Return",
             lazy.spawn(
-                f"rofi -show run -theme {os.environ['HOME']}/.config/rofi"
-                + "/themes/launchers_colourful_style_7"
+                f"rofi -theme {os.environ['HOME']}/.config/rofi"
+                + "/themes/launchers_colourful_style_7 "
+                + '-show run -display-run "Run Command"'
             ),
             # lazy.spawn("dmenu_run -p 'Run: '"),
             desc="Run a command using rofi",
@@ -362,9 +365,10 @@ def spawn_keys():
             lazy.spawn(
                 f"rofi -theme {os.environ['HOME']}/.config/rofi"
                 + "/themes/launchers_colourful_style_7 "
-                + "-combi-modi window,drun -show combi"
+                + "-combi-modi window,drun -show combi "
+                + '-display-combi "Apps"'
             ),
-            desc="Open all open windows' tabs",
+            desc="Display all open tabs and runable applications",
         ),
         Key(
             [alt_key],
@@ -378,48 +382,79 @@ def spawn_keys():
             [],
             "XF86AudioMute",
             lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle"),
+            desc="Mute audio",
         ),
         Key(
             [],
             "XF86AudioLowerVolume",
             lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%"),
+            desc="Reduce volume",
         ),
         Key(
             [],
             "XF86AudioRaiseVolume",
             lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%"),
+            desc="Increase volume",
         ),
         Key(
             [],
             "XF86Calculator",
             lazy.spawn("gnome-calculator -m advanced"),
+            desc="Open calculator",
         ),
         Key(
             [],
             "XF86MonBrightnessDown",
             lazy.spawn("xbacklight -dec 5"),
+            desc="Decrease brightness",
         ),
         Key(
             [],
             "XF86MonBrightnessUp",
             lazy.spawn("xbacklight -inc 5"),
+            desc="Increase brightness",
         ),
     ]
 
     return spawn_keys
 
 
+workspace_names = {
+    "zero": "\u0030",
+    "one": "\u0031",
+    "two": "\u0032",
+    "three": "\u0033",
+    "four": "\u0034",
+    "five": "\u0035",
+    "six": "\u0036",
+    "seven": "\u0037",
+    "eight": "\u0038",
+    "nine": "\u0039",
+}
+
 group_names = [
-    ("one", {"layout": "monadtall", "spawn": ["alacritty -e tmux -u"]}),
-    ("two", {"layout": "monadtall", "spawn": ["google-chrome-stable"]}),
-    ("three", {"layout": "monadtall"}),
-    ("four", {"layout": "monadtall"}),
-    ("five", {"layout": "monadtall"}),
-    ("six", {"layout": "monadtall"}),
-    ("seven", {"layout": "monadtall", "spawn": ["slack"]}),
-    ("eight", {"layout": "monadtall", "spawn": ["discord"]}),
-    ("nine", {"layout": "monadtall", "spawn": ["signal-desktop"]}),
-    ("ten", {"layout": "monadtall"}),
+    (
+        workspace_names["one"],
+        {"layout": "monadtall", "spawn": ["alacritty -e tmux -u"]},
+    ),
+    (
+        workspace_names["two"],
+        {"layout": "monadtall", "spawn": ["google-chrome-stable"]},
+    ),
+    (workspace_names["three"], {"layout": "monadtall"}),
+    (workspace_names["four"], {"layout": "monadtall"}),
+    (workspace_names["five"], {"layout": "monadtall"}),
+    (workspace_names["six"], {"layout": "monadtall"}),
+    (workspace_names["seven"], {"layout": "monadtall", "spawn": ["slack"]}),
+    (workspace_names["eight"], {"layout": "monadtall", "spawn": ["discord"]}),
+    (
+        workspace_names["nine"],
+        {"layout": "monadtall", "spawn": ["signal-desktop"]},
+    ),
+    (
+        workspace_names["one"] + workspace_names["zero"],
+        {"layout": "monadtall"},
+    ),
 ]
 
 keys_screen_0 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
@@ -447,6 +482,7 @@ def group_keys(group_names, keys, screen_number):
                 keys[i],
                 lazy.group[name].toscreen(screen_number),
                 lazy.to_screen(screen_number),
+                desc=f"Switch to group {name}",
             )
         )  # Switch to another group
         group_keys.append(
@@ -454,6 +490,7 @@ def group_keys(group_names, keys, screen_number):
                 [super_key, "shift"],
                 keys[i],
                 lazy.window.togroup(name, switch_group=False),
+                desc=f"Send active to window to group {name}",
             )
         )
 
@@ -468,12 +505,74 @@ keys = [
     *group_keys(group_names, keys=keys_screen_1, screen_number=1),
 ]
 
+
+def show_keys():
+    key_help = ""
+    for k in keys:
+        mods = ""
+
+        for m in k.modifiers:
+            if m == "mod4":
+                mods += "Super + "
+            else:
+                mods += m.capitalize() + " + "
+
+        if len(k.key) > 1:
+            mods += k.key.capitalize()
+        else:
+            mods += k.key
+
+        try:
+            desc = k.desc
+        except:
+            desc = "dummy desc"
+
+        key_help += "{:<30} {}".format(mods, desc + "\n")
+
+    return key_help
+
+
+pop_obj = Popup(qtile=qtile)
+
+keys.extend(
+    [
+        # Key(
+        #     [super_key, "shift"],
+        #     "k",
+        #     lazy.spawn(
+        #         "sh -c 'echo \""
+        #         # + show_keys(keys)
+        #         + show_keys()
+        #         + '" | rofi -dmenu -i -mesg "Keyboard shortcuts"\''
+        #     ),
+        #     desc="Print keyboard bindings",
+        # )
+        # Key(
+        #     [super_key, "shift"],
+        #     "k",
+        #     lazy.spawn(
+        #         "alacritty -e sh -c 'echo \""
+        #         + show_keys()
+        #         + "\" && sleep infinity'"
+        #         # + show_keys()
+        #         # + '" && sleep infinity'
+        #     ),
+        #     desc="Print keyboard bindings",
+        # )
+        # Key(
+        #     [super_key, "shift"],
+        #     "k",
+        #     lazy.function(pop_obj.unhide),
+        # )
+    ]
+)
+
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
 layout_defaults = dict(
     border_width=2,
     border_focus="#add8e6",
-    margin=10,
+    margin=5,
 )
 layouts = [
     layout.MonadTall(**layout_defaults),
@@ -548,8 +647,9 @@ def primary_monitor_bar():
     return bar.Bar(
         [
             *group_box(),
-            *window_name(),
             widget.Sep(linewidth=0, padding=15),
+            *window_name(),
+            widget.Sep(linewidth=0, padding=5),
             widget.chord.Chord(
                 foreground="#152238",
                 background="#ffffff",
@@ -557,64 +657,37 @@ def primary_monitor_bar():
                 padding=10,
             ),
             widget.Spacer(length=bar.STRETCH),
-            widget.Sep(linewidth=0, padding=3),
+            widget.Sep(linewidth=0, padding=5),
+            *app_block(),
+            widget.Sep(linewidth=0, padding=5),
             *powerline_symbol(
                 direction="left",
                 foreground="#90ee90",
-                background="#152238",
+                background="#00000000",
             ),
             *gpu_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#152238",
-                background="#90ee90",
-            ),
-            *powerline_symbol(
-                direction="left",
                 foreground="#f5d0f0",
-                background="#152238",
+                background="#90ee90",
             ),
             *cpu_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#152238",
-                background="#f5d0f0",
-            ),
-            *powerline_symbol(
-                direction="left",
                 foreground="#ff8886",
-                background="#152238",
+                background="#f5d0f0",
             ),
             *volume_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#152238",
+                foreground="#ffff99",
                 background="#ff8886",
             ),
-            *powerline_symbol(
-                direction="left",
-                foreground="#ffff99",
-                background="#152238",
-            ),
-            widget.Clock(
-                format="%A | %I:%M | %B %d",
-                foreground="#152238",
-                background="#ffff99",
-                mouse_callbacks={
-                    "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
-                },
-                fontsize=11,
-            ),
-            *powerline_symbol(
-                direction="left",
-                foreground="#000000",
-                background="#ffff99",
-            ),
-            *app_block(),
+            *clock_block(),
             *powerline_symbol(
                 direction="left",
                 foreground="#ffffff",
-                background="#000000",
+                background="#ffff99",
             ),
             *current_layout(),
             *powerline_symbol(
@@ -623,9 +696,15 @@ def primary_monitor_bar():
                 background="#ffffff",
             ),
             *quick_exit(),
+            *powerline_symbol(
+                direction="right",
+                foreground="#dbf0fe",
+                background="#00000000",
+            ),
         ],
         25,
-        background="#152238",
+        background="#00000000",
+        # background="#152238",
         opacity=1.0,
     )
 
@@ -635,8 +714,9 @@ def non_primary_monitor_bar():
     return bar.Bar(
         [
             *group_box(),
-            *window_name(),
             widget.Sep(linewidth=0, padding=15),
+            *window_name(),
+            widget.Sep(linewidth=0, padding=5),
             widget.chord.Chord(
                 foreground="#152238",
                 background="#ffffff",
@@ -644,54 +724,32 @@ def non_primary_monitor_bar():
                 padding=10,
             ),
             widget.Spacer(length=bar.STRETCH),
-            widget.Sep(linewidth=0, padding=3),
+            widget.Sep(linewidth=0, padding=5),
+            widget.Sep(linewidth=0, padding=5),
             *powerline_symbol(
                 direction="left",
                 foreground="#90ee90",
-                background="#152238",
+                background="#00000000",
             ),
             *gpu_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#152238",
-                background="#90ee90",
-            ),
-            *powerline_symbol(
-                direction="left",
                 foreground="#f5d0f0",
-                background="#152238",
+                background="#90ee90",
             ),
             *cpu_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#152238",
-                background="#f5d0f0",
-            ),
-            *powerline_symbol(
-                direction="left",
                 foreground="#ff8886",
-                background="#152238",
+                background="#f5d0f0",
             ),
             *volume_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#152238",
+                foreground="#ffff99",
                 background="#ff8886",
             ),
-            *powerline_symbol(
-                direction="left",
-                foreground="#ffff99",
-                background="#152238",
-            ),
-            widget.Clock(
-                format="%A | %I:%M | %B %d",
-                foreground="#152238",
-                background="#ffff99",
-                mouse_callbacks={
-                    "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
-                },
-                fontsize=11,
-            ),
+            *clock_block(),
             *powerline_symbol(
                 direction="left",
                 foreground="#ffffff",
@@ -704,9 +762,15 @@ def non_primary_monitor_bar():
                 background="#ffffff",
             ),
             *quick_exit(),
+            *powerline_symbol(
+                direction="right",
+                foreground="#dbf0fe",
+                background="#00000000",
+            ),
         ],
         25,
-        background="#152238",
+        background="#00000000",
+        # background="#152238",
         opacity=1.0,
     )
 
@@ -717,7 +781,7 @@ def laptop_monitor_bar():
         [
             *group_box(),
             *window_name(),
-            widget.Sep(linewidth=0, padding=15),
+            widget.Sep(linewidth=0, padding=5),
             widget.chord.Chord(
                 foreground="#152238",
                 background="#ffffff",
@@ -764,15 +828,7 @@ def laptop_monitor_bar():
                 foreground="#ffff99",
                 background="#152238",
             ),
-            widget.Clock(
-                format="%A | %I:%M | %B %d",
-                foreground="#152238",
-                background="#ffff99",
-                mouse_callbacks={
-                    "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
-                },
-                fontsize=11,
-            ),
+            *clock_block(),
             *powerline_symbol(
                 direction="left",
                 foreground="#000000",
