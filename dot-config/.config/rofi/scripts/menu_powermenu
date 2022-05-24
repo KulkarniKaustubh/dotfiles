@@ -20,7 +20,7 @@ memory=$($HOME/.config/rofi/scripts/usedram)
 # Options
 shutdown=""
 reboot=""
-# lock=""
+lock=""
 # suspend=""
 logout=""
 
@@ -40,7 +40,7 @@ logout=""
 
 # Variable passed to rofi
 # options="$shutdown\n$reboot\n$lock\n$suspend\n$logout"
-options="$shutdown\n$reboot\n$logout"
+options="$shutdown\n$reboot\n$lock\n$logout"
 
 chosen="$(echo -e "$options" | $rofi_command -p "祥  $uptime  |     $cpu  |  ﬙  $memory " -dmenu -selected-row 2)"
 case $chosen in
@@ -67,11 +67,12 @@ case $chosen in
         systemctl reboot
         ;;
     $lock)
-		if [[ -f /usr/bin/i3lock ]]; then
-			i3lock
-		elif [[ -f /usr/bin/betterlockscreen ]]; then
-			betterlockscreen -l
-		fi
+		# if [[ -f /usr/bin/i3lock ]]; then
+		# 	i3lock
+		# elif [[ -f /usr/bin/betterlockscreen ]]; then
+		# 	betterlockscreen -l
+		# fi
+        betterlockscreen -l dimblur
         ;;
     $suspend)
 		ans=$(confirm_exit &)
