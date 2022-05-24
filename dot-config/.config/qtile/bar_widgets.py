@@ -18,6 +18,8 @@ colors = {
     "dark_pink": "#f28fad",
     "light_pink": "#f5d0f0",
     "dark_orange": "#ff8886",
+    "orange": "#ffaf7a",
+    "red": "#ff7f7f",
     "yellow": "#ffff99",
     "transparent": "#00000000",
 }
@@ -29,6 +31,8 @@ backgrounds = {
     "cpu_block": colors["dark_pink"],
     "memory_block": colors["light_pink"],
     "volume_block": colors["dark_orange"],
+    "brightness_block": colors["orange"],
+    "battery_block": colors["green"],
     "clock_block": colors["yellow"],
     "current_layout": colors["white"],
     "quick_exit": colors["lighter_blue"],
@@ -291,11 +295,20 @@ def clock_block():
 def brightness_block():
     """Brightness information."""
     return [
+        widget.TextBox(
+            text="\u2600",
+            foreground=colors["black"],
+            background=backgrounds["brightness_block"],
+            fontsize=15,
+            mouse_callbacks={
+                "Button1": lambda: qtile.cmd_spawn("pavucontrol")
+            },
+        ),
         widget.Backlight(
-            fmt="Brightness | {}",
+            fmt="{}",
             backlight_name="intel_backlight",
-            foreground="#152238",
-            background="#ffaf7a",
+            foreground=colors["black"],
+            background=backgrounds["brightness_block"],
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn("pavucontrol")
             },
@@ -330,12 +343,14 @@ def battery_block():
         widget.Battery(
             foreground=colors["black"],
             low_foreground=colors["black"],
-            background="#90ee90",
-            low_background="#ff7f7f",
-            discharge_char="\uF240",
-            charge_char="\u26A1 | Charging",
+            background=backgrounds["battery_block"],
+            low_background=colors["red"],
+            discharge_char="",
+            charge_char="",
+            full_char="",
+            empty_char="",
             low_percentage=0.25,
-            format="{char} | {percent:2.1%}",
+            format="{char}   {percent:2.1%}",
             update_delay=5,
             padding=10,
         )
@@ -408,11 +423,6 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
             background=backgrounds["memory_block"],
         ),
         *volume_block(),
-        *powerline_symbol(
-            direction="left",
-            foreground=backgrounds["clock_block"],
-            background=backgrounds["volume_block"],
-        ),
         *clock_block(),
         *powerline_symbol(
             direction="left",
@@ -434,28 +444,31 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
     ]
 
     if laptop:
-        widgets[16:16] = [
+        widgets[19:19] = [
             *powerline_symbol(
                 direction="left",
-                foreground="#ffaf7a",
-                background="#ff8886",
+                foreground=backgrounds["brightness_block"],
+                background=backgrounds["volume_block"],
             ),
             *brightness_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#90ee90",
-                background="#ffaf7a",
+                foreground=backgrounds["battery_block"],
+                background=backgrounds["brightness_block"],
             ),
             *battery_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#152238",
-                background="#90ee90",
+                foreground=backgrounds["clock_block"],
+                background=backgrounds["battery_block"],
             ),
+        ]
+    else:
+        widgets[19:19] = [
             *powerline_symbol(
                 direction="left",
-                foreground="#ffff99",
-                background="#152238",
+                foreground=backgrounds["clock_block"],
+                background=backgrounds["volume_block"],
             ),
         ]
 
