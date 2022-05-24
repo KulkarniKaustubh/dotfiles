@@ -246,6 +246,9 @@ def volume_block():
             foreground=colors["black"],
             background=backgrounds["volume_block"],
             fontsize=15,
+            mouse_callbacks={
+                "Button1": lambda: qtile.cmd_spawn("pavucontrol")
+            },
         ),
         widget.Volume(
             fmt="{}",
