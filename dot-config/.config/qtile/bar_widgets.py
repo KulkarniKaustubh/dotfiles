@@ -89,6 +89,7 @@ def group_box():
             border_width=3,
             fontsize=11,
             background=bg,
+            padding=10,
         ),
         *powerline_symbol(
             direction="right",
@@ -137,8 +138,7 @@ def gpu_block():
     return [
         widget.Sep(linewidth=0, padding=5, background="#90ee90"),
         widget.Image(
-            filename=f"{os.environ['HOME']}/.config/qtile/icons/"
-            + "icons8-gpu-64.png",
+            filename=f"{os.environ['HOME']}/.config/qtile/icons/gpu.png",
             background="#90ee90",
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(my_terminal + " -e nvtop")
