@@ -603,32 +603,6 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 
-def pipe(
-    direction="left",
-    fontsize=35,
-    foreground="#add8e6",
-    background=None,
-    **kwargs,
-):
-    """Render a pipe symbol in the qtile bar."""
-    if direction == "straight":
-        text = "|"
-    elif direction == "left":
-        text = "\\"
-    elif direction == "right":
-        text = "/"
-
-    return [
-        widget.TextBox(
-            text=text,
-            foreground=foreground,
-            background=background,
-            fontsize=fontsize,
-            **kwargs,
-        ),
-    ]
-
-
 screens = [
     Screen(
         top=get_bar_widgets(primary=True, laptop=False),
