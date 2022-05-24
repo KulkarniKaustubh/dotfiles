@@ -53,6 +53,7 @@ from bar_widgets import (
     app_block,
     gpu_block,
     cpu_block,
+    memory_block,
     volume_block,
     clock_block,
     current_layout,
@@ -60,6 +61,8 @@ from bar_widgets import (
     battery_block,
     quick_exit,
 )
+
+from bar_widgets import colors, backgrounds
 
 
 super_key = "mod4"
@@ -420,16 +423,16 @@ def spawn_keys():
 
 
 workspace_names = {
-    "zero": "\u0030",
-    "one": "\u0031",
-    "two": "\u0032",
-    "three": "\u0033",
-    "four": "\u0034",
-    "five": "\u0035",
-    "six": "\u0036",
-    "seven": "\u0037",
-    "eight": "\u0038",
-    "nine": "\u0039",
+    "one": "1",
+    "two": "2",
+    "three": "3",
+    "four": "4",
+    "five": "5",
+    "six": "6",
+    "seven": "7",
+    "eight": "8",
+    "nine": "9",
+    "ten": "10",
 }
 
 group_names = [
@@ -452,7 +455,7 @@ group_names = [
         {"layout": "monadtall", "spawn": ["signal-desktop"]},
     ),
     (
-        workspace_names["one"] + workspace_names["zero"],
+        workspace_names["ten"],
         {"layout": "monadtall"},
     ),
 ]
@@ -646,13 +649,33 @@ def primary_monitor_bar():
     """Qtile bar for the primary monitor."""
     return bar.Bar(
         [
+            *powerline_symbol(
+                direction="left",
+                foreground=backgrounds["group_box"],
+                background=colors["transparent"],
+            ),
             *group_box(),
+            *powerline_symbol(
+                direction="right",
+                foreground=backgrounds["group_box"],
+                background=colors["transparent"],
+            ),
             widget.Sep(linewidth=0, padding=15),
+            *powerline_symbol(
+                direction="left",
+                foreground=backgrounds["window_name"],
+                background=colors["transparent"],
+            ),
             *window_name(),
-            widget.Sep(linewidth=0, padding=5),
+            *powerline_symbol(
+                direction="right",
+                foreground=backgrounds["window_name"],
+                background=colors["transparent"],
+            ),
+            widget.Sep(linewidth=0, padding=15),
             widget.chord.Chord(
-                foreground="#152238",
-                background="#ffffff",
+                foreground=colors["black"],
+                background=colors["white"],
                 fontsize=10,
                 padding=10,
             ),
@@ -662,16 +685,22 @@ def primary_monitor_bar():
             widget.Sep(linewidth=0, padding=5),
             *powerline_symbol(
                 direction="left",
-                foreground="#90ee90",
-                background="#00000000",
+                foreground=backgrounds["gpu_block"],
+                background=colors["transparent"],
             ),
             *gpu_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#f5d0f0",
-                background="#90ee90",
+                foreground=backgrounds["cpu_block"],
+                background=backgrounds["gpu_block"],
             ),
             *cpu_block(),
+            *powerline_symbol(
+                direction="left",
+                foreground=backgrounds["memory_block"],
+                background=backgrounds["cpu_block"],
+            ),
+            *memory_block(),
             *powerline_symbol(
                 direction="left",
                 foreground="#ff8886",
@@ -699,12 +728,11 @@ def primary_monitor_bar():
             *powerline_symbol(
                 direction="right",
                 foreground="#dbf0fe",
-                background="#00000000",
+                background=colors["transparent"],
             ),
         ],
         25,
-        background="#00000000",
-        # background="#152238",
+        background=colors["transparent"],
         opacity=1.0,
     )
 
@@ -716,7 +744,7 @@ def non_primary_monitor_bar():
             *group_box(),
             widget.Sep(linewidth=0, padding=15),
             *window_name(),
-            widget.Sep(linewidth=0, padding=5),
+            widget.Sep(linewidth=0, padding=15),
             widget.chord.Chord(
                 foreground="#152238",
                 background="#ffffff",
@@ -729,15 +757,16 @@ def non_primary_monitor_bar():
             *powerline_symbol(
                 direction="left",
                 foreground="#90ee90",
-                background="#00000000",
+                background=colors["transparent"],
             ),
             *gpu_block(),
             *powerline_symbol(
                 direction="left",
-                foreground="#f5d0f0",
+                foreground="#f28fad",
                 background="#90ee90",
             ),
             *cpu_block(),
+            *memory_block(),
             *powerline_symbol(
                 direction="left",
                 foreground="#ff8886",
@@ -765,12 +794,11 @@ def non_primary_monitor_bar():
             *powerline_symbol(
                 direction="right",
                 foreground="#dbf0fe",
-                background="#00000000",
+                background=colors["transparent"],
             ),
         ],
         25,
-        background="#00000000",
-        # background="#152238",
+        background=colors["transparent"],
         opacity=1.0,
     )
 

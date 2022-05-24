@@ -8,10 +8,30 @@ my_terminal = "alacritty"
 
 colors = {
     "black": "#000000",
-    "gray0": "#6e6c7e",
+    "gray": "#6e6c7e",
     "white": "#ffffff",
     "teal": "#b5e8e0",
+    "lighter_blue": "#dbf0fe",
+    "light_blue": "#add8e6",
     "dark_blue": "#152238",
+    "green": "#90ee90",
+    "dark_pink": "#f28fad",
+    "light_pink": "#f5d0f0",
+    "dark_orange": "#ff8886",
+    "yellow": "#ffff99",
+    "transparent": "#00000000",
+}
+
+backgrounds = {
+    "group_box": colors["dark_blue"],
+    "window_name": colors["teal"],
+    "gpu_block": colors["green"],
+    "cpu_block": colors["dark_pink"],
+    "memory_block": colors["light_pink"],
+    "volume_block": colors["dark_orange"],
+    "clock_block": colors["yellow"],
+    "current_layout": colors["white"],
+    "quick_exit": colors["lighter_blue"],
 }
 
 
@@ -67,14 +87,7 @@ def powerline_symbol(direction, foreground, background, fontsize=25):
 
 def group_box():
     """Workspaces."""
-    bg = colors["dark_blue"]
-
     return [
-        *powerline_symbol(
-            direction="left",
-            foreground=bg,
-            background="#00000000",
-        ),
         widget.GroupBox(
             # border="add8e6",
             active="#add8e6",
@@ -88,13 +101,8 @@ def group_box():
             this_screen_border="#dbf0fe",
             border_width=3,
             fontsize=11,
-            background=bg,
+            background=backgrounds["group_box"],
             padding=10,
-        ),
-        *powerline_symbol(
-            direction="right",
-            foreground=bg,
-            background="#00000000",
         ),
     ]
 
@@ -102,26 +110,13 @@ def group_box():
 def window_name():
     """Active window name."""
     return [
-        *powerline_symbol(
-            direction="left",
-            foreground="#b5e8e0",
-            background="#00000000",
-        ),
         widget.WindowName(
-            foreground="#152238",
-            # background="#dbf0fe",
-            # foreground="#dbf0fe",
-            background="#b5e8e0",
-            # background="#152238",
+            foreground=colors["black"],
+            background=backgrounds["window_name"],
             max_chars=50,
             width=bar.CALCULATED,
             fontsize=10,
             padding=20,
-        ),
-        *powerline_symbol(
-            direction="right",
-            foreground="#b5e8e0",
-            background="#00000000",
         ),
     ]
 
@@ -129,25 +124,29 @@ def window_name():
 def app_block():
     """Open apps."""
     return [
-        widget.Systray(background="#00000000", padding=5),
+        widget.Systray(background=colors["transparent"], padding=5),
     ]
 
 
 def gpu_block():
     """GPU information."""
     return [
-        widget.Sep(linewidth=0, padding=5, background="#90ee90"),
+        widget.Sep(
+            linewidth=0, padding=5, background=backgrounds["gpu_block"]
+        ),
         widget.Image(
             filename=f"{os.environ['HOME']}/.config/qtile/icons/gpu.png",
-            background="#90ee90",
+            background=backgrounds["gpu_block"],
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(my_terminal + " -e nvtop")
             },
         ),
-        widget.Sep(linewidth=0, padding=5, background="#90ee90"),
+        widget.Sep(
+            linewidth=0, padding=5, background=backgrounds["gpu_block"]
+        ),
         widget.NvidiaSensors(
             foreground="#152238",
-            background="#90ee90",
+            background=backgrounds["gpu_block"],
             format="{temp} C",
             padding=10,
             fontsize=10,
@@ -155,7 +154,7 @@ def gpu_block():
         widget.GenPollText(
             fmt="{}",
             foreground="#152238",
-            background="#90ee90",
+            background=backgrounds["gpu_block"],
             func=get_gpu_usage,
             update_interval=2,
             mouse_callbacks={
@@ -167,7 +166,7 @@ def gpu_block():
         widget.GenPollText(
             fmt="{}",
             foreground="#152238",
-            background="#90ee90",
+            background=backgrounds["gpu_block"],
             func=get_gpu_mem_usage,
             update_interval=2,
             mouse_callbacks={
@@ -183,24 +182,40 @@ def cpu_block():
     """CPU information."""
     return [
         widget.TextBox(
-            text="",
-            foreground="#152238",
-            background="#f5d0f0",
+            text="",
+            foreground=colors["black"],
+            background=backgrounds["cpu_block"],
             fontsize=15,
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
             },
         ),
         widget.CPU(
-            foreground="#152238",
-            background="#f5d0f0",
+            foreground=colors["black"],
+            background=backgrounds["cpu_block"],
+            # background="#f5d0f0",
             format="{load_percent}%",
             padding=10,
             fontsize=10,
         ),
+    ]
+
+
+def memory_block():
+    """RAM and Swap information."""
+    return [
+        widget.TextBox(
+            text="﬙",
+            foreground=colors["black"],
+            background=backgrounds["memory_block"],
+            fontsize=15,
+            mouse_callbacks={
+                "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
+            },
+        ),
         widget.Memory(
-            foreground="#152238",
-            background="#f5d0f0",
+            foreground=colors["black"],
+            background=backgrounds["memory_block"],
             format="{MemUsed:.1f}{mm}/{MemTotal:.1f}{mm}",
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
@@ -210,9 +225,9 @@ def cpu_block():
             fontsize=10,
         ),
         widget.Memory(
-            foreground="#152238",
-            background="#f5d0f0",
-            format=" {SwapUsed:.1f}{ms}/{SwapTotal:.1f}{ms}",
+            foreground=colors["black"],
+            background=backgrounds["memory_block"],
+            format="{SwapUsed:.1f}{ms}/{SwapTotal:.1f}{ms}",
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
             },
@@ -228,14 +243,14 @@ def volume_block():
     return [
         widget.TextBox(
             text="墳",
-            foreground="#152238",
-            background="#ff8886",
+            foreground=colors["black"],
+            background=backgrounds["volume_block"],
             fontsize=15,
         ),
         widget.Volume(
             fmt="{}",
-            foreground="#152238",
-            background="#ff8886",
+            foreground=colors["black"],
+            background=backgrounds["volume_block"],
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn("pavucontrol")
             },
@@ -250,8 +265,8 @@ def clock_block():
     return [
         widget.TextBox(
             text="",
-            foreground="#152238",
-            background="#ffff99",
+            foreground=colors["black"],
+            background=backgrounds["clock_block"],
             fontsize=15,
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
@@ -259,8 +274,8 @@ def clock_block():
         ),
         widget.Clock(
             format="%I:%M  %A  %B %d",
-            foreground="#152238",
-            background="#ffff99",
+            foreground=colors["black"],
+            background=backgrounds["clock_block"],
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
             },
@@ -271,7 +286,7 @@ def clock_block():
 
 
 def brightness_block():
-    """Volume information."""
+    """Brightness information."""
     return [
         widget.Backlight(
             fmt="Brightness | {}",
@@ -292,14 +307,14 @@ def current_layout():
     return [
         widget.CurrentLayoutIcon(
             scale=0.6,
-            foreground="#152238",
-            background="#ffffff",
+            foreground=colors["black"],
+            background=backgrounds["current_layout"],
             custom_icon_paths=[f"{os.environ['HOME']}/.config/qtile/icons/"],
             padding=5,
         ),
         widget.CurrentLayout(
-            foreground="#152238",
-            background="#ffffff",
+            foreground=colors["black"],
+            background=backgrounds["current_layout"],
             fontsize=10,
             padding=5,
         ),
@@ -310,8 +325,8 @@ def battery_block():
     """Display battery infromation."""
     return [
         widget.Battery(
-            foreground="#152238",
-            low_foreground="#152238",
+            foreground=colors["black"],
+            low_foreground=colors["black"],
             background="#90ee90",
             low_background="#ff7f7f",
             discharge_char="\uF240",
@@ -328,10 +343,10 @@ def quick_exit():
     """Shutdown button."""
     return [
         widget.QuickExit(
-            default_text="&#x23FB;",
+            default_text="&#x23FB;",  # utf8 for the power symbol
             fontsize=15,
             foreground="#152238",
-            background="#dbf0fe",
+            background=backgrounds["quick_exit"],
             padding=5,
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(
