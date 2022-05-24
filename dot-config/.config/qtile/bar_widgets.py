@@ -356,3 +356,147 @@ def quick_exit():
             },
         ),
     ]
+
+
+def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
+    """Return an object of bar.Bar."""
+    widgets = [
+        *powerline_symbol(
+            direction="left",
+            foreground=backgrounds["group_box"],
+            background=colors["transparent"],
+        ),
+        *group_box(),
+        *powerline_symbol(
+            direction="right",
+            foreground=backgrounds["group_box"],
+            background=colors["transparent"],
+        ),
+        widget.Sep(linewidth=0, padding=15),
+        *powerline_symbol(
+            direction="left",
+            foreground=backgrounds["window_name"],
+            background=colors["transparent"],
+        ),
+        *window_name(),
+        *powerline_symbol(
+            direction="right",
+            foreground=backgrounds["window_name"],
+            background=colors["transparent"],
+        ),
+        widget.Sep(linewidth=0, padding=15),
+        widget.chord.Chord(
+            foreground=colors["black"],
+            background=colors["white"],
+            fontsize=10,
+            padding=10,
+        ),
+        widget.Spacer(length=bar.STRETCH),
+        *cpu_block(),
+        *powerline_symbol(
+            direction="left",
+            foreground=backgrounds["memory_block"],
+            background=backgrounds["cpu_block"],
+        ),
+        *memory_block(),
+        *powerline_symbol(
+            direction="left",
+            foreground=backgrounds["volume_block"],
+            background=backgrounds["memory_block"],
+        ),
+        *volume_block(),
+        *powerline_symbol(
+            direction="left",
+            foreground=backgrounds["clock_block"],
+            background=backgrounds["volume_block"],
+        ),
+        *clock_block(),
+        *powerline_symbol(
+            direction="left",
+            foreground=backgrounds["current_layout"],
+            background=backgrounds["clock_block"],
+        ),
+        *current_layout(),
+        *powerline_symbol(
+            direction="left",
+            foreground=backgrounds["quick_exit"],
+            background=backgrounds["current_layout"],
+        ),
+        *quick_exit(),
+        *powerline_symbol(
+            direction="right",
+            foreground=backgrounds["quick_exit"],
+            background=colors["transparent"],
+        ),
+    ]
+
+    if laptop:
+        widgets[16:16] = [
+            *powerline_symbol(
+                direction="left",
+                foreground="#ffaf7a",
+                background="#ff8886",
+            ),
+            *brightness_block(),
+            *powerline_symbol(
+                direction="left",
+                foreground="#90ee90",
+                background="#ffaf7a",
+            ),
+            *battery_block(),
+            *powerline_symbol(
+                direction="left",
+                foreground="#152238",
+                background="#90ee90",
+            ),
+            *powerline_symbol(
+                direction="left",
+                foreground="#ffff99",
+                background="#152238",
+            ),
+        ]
+
+    # Add the GPU block if it exists on the machine
+    p1 = subprocess.Popen(
+        ["lspci"], stdout=subprocess.PIPE, stderr=subprocess.PIPE
+    )
+    p2 = subprocess.Popen(
+        ["grep", "-ci", "nvidia"],
+        stdin=p1.stdout,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    num_occurences = int(p2.communicate()[0].strip().decode())
+
+    if num_occurences > 0:
+        widgets[10:10] = [
+            *powerline_symbol(
+                direction="left",
+                foreground=backgrounds["gpu_block"],
+                background=colors["transparent"],
+            ),
+            *gpu_block(),
+            *powerline_symbol(
+                direction="left",
+                foreground=backgrounds["cpu_block"],
+                background=backgrounds["gpu_block"],
+            ),
+        ]
+    else:
+        widgets[10:10] = [
+            *powerline_symbol(
+                direction="left",
+                foreground=backgrounds["cpu_block"],
+                background=colors["transparent"],
+            ),
+        ]
+
+    # Add systray only on one primary monitor to avoid systray crash
+    if primary:
+        widgets[10:10] = [
+            widget.Sep(linewidth=0, padding=5),
+            *app_block(),
+            widget.Sep(linewidth=0, padding=5),
+        ]
+
+    return bar.Bar(widgets, 25, background=colors["transparent"], opacity=1.0)

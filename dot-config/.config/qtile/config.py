@@ -63,6 +63,7 @@ from bar_widgets import (
 )
 
 from bar_widgets import colors, backgrounds
+from bar_widgets import get_bar_widgets
 
 
 super_key = "mod4"
@@ -645,164 +646,6 @@ def pipe(
     ]
 
 
-def primary_monitor_bar():
-    """Qtile bar for the primary monitor."""
-    return bar.Bar(
-        [
-            *powerline_symbol(
-                direction="left",
-                foreground=backgrounds["group_box"],
-                background=colors["transparent"],
-            ),
-            *group_box(),
-            *powerline_symbol(
-                direction="right",
-                foreground=backgrounds["group_box"],
-                background=colors["transparent"],
-            ),
-            widget.Sep(linewidth=0, padding=15),
-            *powerline_symbol(
-                direction="left",
-                foreground=backgrounds["window_name"],
-                background=colors["transparent"],
-            ),
-            *window_name(),
-            *powerline_symbol(
-                direction="right",
-                foreground=backgrounds["window_name"],
-                background=colors["transparent"],
-            ),
-            widget.Sep(linewidth=0, padding=15),
-            widget.chord.Chord(
-                foreground=colors["black"],
-                background=colors["white"],
-                fontsize=10,
-                padding=10,
-            ),
-            widget.Spacer(length=bar.STRETCH),
-            widget.Sep(linewidth=0, padding=5),
-            *app_block(),
-            widget.Sep(linewidth=0, padding=5),
-            *powerline_symbol(
-                direction="left",
-                foreground=backgrounds["gpu_block"],
-                background=colors["transparent"],
-            ),
-            *gpu_block(),
-            *powerline_symbol(
-                direction="left",
-                foreground=backgrounds["cpu_block"],
-                background=backgrounds["gpu_block"],
-            ),
-            *cpu_block(),
-            *powerline_symbol(
-                direction="left",
-                foreground=backgrounds["memory_block"],
-                background=backgrounds["cpu_block"],
-            ),
-            *memory_block(),
-            *powerline_symbol(
-                direction="left",
-                foreground="#ff8886",
-                background="#f5d0f0",
-            ),
-            *volume_block(),
-            *powerline_symbol(
-                direction="left",
-                foreground="#ffff99",
-                background="#ff8886",
-            ),
-            *clock_block(),
-            *powerline_symbol(
-                direction="left",
-                foreground="#ffffff",
-                background="#ffff99",
-            ),
-            *current_layout(),
-            *powerline_symbol(
-                direction="left",
-                foreground="#dbf0fe",
-                background="#ffffff",
-            ),
-            *quick_exit(),
-            *powerline_symbol(
-                direction="right",
-                foreground="#dbf0fe",
-                background=colors["transparent"],
-            ),
-        ],
-        25,
-        background=colors["transparent"],
-        opacity=1.0,
-    )
-
-
-def non_primary_monitor_bar():
-    """Qtile bar for all non-primary monitors."""
-    return bar.Bar(
-        [
-            *group_box(),
-            widget.Sep(linewidth=0, padding=15),
-            *window_name(),
-            widget.Sep(linewidth=0, padding=15),
-            widget.chord.Chord(
-                foreground="#152238",
-                background="#ffffff",
-                fontsize=10,
-                padding=10,
-            ),
-            widget.Spacer(length=bar.STRETCH),
-            widget.Sep(linewidth=0, padding=5),
-            widget.Sep(linewidth=0, padding=5),
-            *powerline_symbol(
-                direction="left",
-                foreground="#90ee90",
-                background=colors["transparent"],
-            ),
-            *gpu_block(),
-            *powerline_symbol(
-                direction="left",
-                foreground="#f28fad",
-                background="#90ee90",
-            ),
-            *cpu_block(),
-            *memory_block(),
-            *powerline_symbol(
-                direction="left",
-                foreground="#ff8886",
-                background="#f5d0f0",
-            ),
-            *volume_block(),
-            *powerline_symbol(
-                direction="left",
-                foreground="#ffff99",
-                background="#ff8886",
-            ),
-            *clock_block(),
-            *powerline_symbol(
-                direction="left",
-                foreground="#ffffff",
-                background="#ffff99",
-            ),
-            *current_layout(),
-            *powerline_symbol(
-                direction="left",
-                foreground="#dbf0fe",
-                background="#ffffff",
-            ),
-            *quick_exit(),
-            *powerline_symbol(
-                direction="right",
-                foreground="#dbf0fe",
-                background=colors["transparent"],
-            ),
-        ],
-        25,
-        background=colors["transparent"],
-        opacity=1.0,
-    )
-
-
 def laptop_monitor_bar():
     """Qtile bar for laptop monitor."""
     return bar.Bar(
@@ -884,10 +727,10 @@ def laptop_monitor_bar():
 
 screens = [
     Screen(
-        top=primary_monitor_bar(),
+        top=get_bar_widgets(primary=True, laptop=False),
     ),
     Screen(
-        top=non_primary_monitor_bar(),
+        top=get_bar_widgets(primary=False, laptop=False),
     ),
 ]
 
