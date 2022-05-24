@@ -38,7 +38,7 @@
 from typing import List  # noqa: F401
 
 
-from libqtile import qtile, bar, layout, widget, hook
+from libqtile import qtile, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.popup import Popup
@@ -46,23 +46,6 @@ import subprocess
 import os
 
 # from libqtile.utils import guess_terminal
-from bar_widgets import (
-    powerline_symbol,
-    group_box,
-    window_name,
-    app_block,
-    gpu_block,
-    cpu_block,
-    memory_block,
-    volume_block,
-    clock_block,
-    current_layout,
-    brightness_block,
-    battery_block,
-    quick_exit,
-)
-
-from bar_widgets import colors, backgrounds
 from bar_widgets import get_bar_widgets
 
 
