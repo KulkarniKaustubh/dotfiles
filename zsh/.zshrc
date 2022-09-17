@@ -6,7 +6,11 @@ bindkey -e
 # End of lines configured by zsh-newuser-install
 
 # sugon
-figlet -f Speed "SugoN" | lolcat
+if command -v "figlet" &> /dev/null &&
+   command -v "lolcat" &> /dev/null;
+then
+    figlet -f Speed "SugoN" | lolcat
+fi
 # end sugon
 
 # Fixing zsh history problems on multiple terminals
@@ -16,7 +20,6 @@ setopt share_history
 # Ignore duplicate commands in history file
 setopt histignorealldups
 
-# Fixing control + left/right in zsh
 # Fixing some keys inside zsh
 autoload -Uz select-word-style
 select-word-style bash
@@ -78,8 +81,8 @@ fi
 
 source $HOME/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 # enabling up and down arrow keys to use the plugin
-bindkey "^[OA" history-substring-search-up
-bindkey "^[OB" history-substring-search-down
+bindkey "^[[A" history-substring-search-up
+bindkey "^[[B" history-substring-search-down
 
 # end
 
@@ -96,7 +99,7 @@ bindkey "^[OB" history-substring-search-down
 
 # add binaries to $PATH
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/cuda/bin
-export PATH=$PATH:/usr/local/cuda/bin
+export PATH=$PATH:/usr/local/cuda/bin:/opt/cuda/bin
 export PATH=$PATH:/home/kaustubh/.local/bin
 # end of $PATH exports
 
@@ -132,8 +135,16 @@ fi
 # custom ZSH keybinds
 
 fzf-dir() {
+    if ! command -v "fd" &> /dev/null; then
+        echo "Install fd (or fd-find) for this feature to work."
+        return -1
+    fi
+    if ! command -v "fzf" &> /dev/null; then
+        echo "Install fzf for this feature to work."
+        return -1
+    fi
     local dir ret=$?
-    dir=$(fdfind . $HOME /mnt /media -Ha --type directory | fzf --height=40%)
+    dir=$(fd . $HOME -Ha --type directory | fzf --height=40%)
     if [ -z "$dir" ]; then
         zle redisplay
         return 0
