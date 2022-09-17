@@ -35,6 +35,6 @@ Once you open your terminal for the first time after switching to `zsh`, the cor
 
 - Hitting `Ctrl-f` will enable you to go from any directory to any other directory within the home directory with a fuzzy finding menu.
 - `Ctrl-r` will show up a fuzzy menu with a list of your previous commands.
-- A bunch of useful aliases you can find in the three `.alias.*` files.
+- A bunch of useful aliases you can find in the three `.aliases*.zsh` files.
 - Issues with emacs tramp will not occur (a common issue with non-bash shells).
 - You will get bash's command not found helper.
