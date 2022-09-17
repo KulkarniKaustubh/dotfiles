@@ -12,8 +12,7 @@ Recommended:
 - `figlet`
 - `lolcat`
 
-Also install the fonts from the `fonts` directory.
-`sudo cp ./fonts/Speed.flf /usr/share/figlet/fonts/` or figure out where the fonts are using the `whereis figlet` command.
+Also install the fonts from the `fonts` directory. `Speed.flf` is a `figlet` font, and `MesloLGS NF Regular.ttf` is a system font. Change your terminal's font to "MesloLGS NF Regular".
 
 Steps:
 
@@ -28,7 +27,7 @@ $ chsh -s $(which zsh)
 
 Log out and log in after this.
 
-This will produce results as good as `oh-my-zsh` with zero bloat.
+This will produce results as good as `oh-my-zsh` without any of the bloat.
 
 Once you open your terminal for the first time after switching to `zsh`, the correct git repositories as well as directories will be created.
 
@@ -37,5 +36,5 @@ Once you open your terminal for the first time after switching to `zsh`, the cor
 - Hitting `Ctrl-f` will enable you to go from any directory to any other directory within the home directory with a fuzzy finding menu.
 - `Ctrl-r` will show up a fuzzy menu with a list of your previous commands.
 - A bunch of useful aliases you can find in the three `.alias.*` files.
-- Issues with emacs tramp will not occur (a common issue with non-bash shells)
-- You will get bash's command not found helper
+- Issues with emacs tramp will not occur (a common issue with non-bash shells).
+- You will get bash's command not found helper.
