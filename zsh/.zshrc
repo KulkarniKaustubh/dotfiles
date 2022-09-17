@@ -46,7 +46,7 @@ bashcompinit
 if [ ! -d "$HOME/.zsh" ]; then
     echo "Creating a .zsh folder in $HOME"
     echo "This can be copied elsewhere and then linked, preferrably using GNU stow"
-    mkdir .zsh
+    mkdir $HOME/.zsh
 fi
 
 # check if p10k exists
@@ -95,12 +95,12 @@ bindkey "^[[B" history-substring-search-down
 # source /opt/ros/noetic/setup.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
 
 # add binaries to $PATH
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/cuda/bin
 export PATH=$PATH:/usr/local/cuda/bin:/opt/cuda/bin
-export PATH=$PATH:/home/kaustubh/.local/bin
+export PATH=$PATH:$HOME/.local/bin
 # end of $PATH exports
 
 # bash's command not found auto suggest
@@ -162,8 +162,8 @@ fzf-dir() {
 zle -N fzf-dir
 bindkey "^F" fzf-dir
 
-bindkey -s "^[e" "emacsclient -c . &; disown %1; ^M"
-bindkey -s "^[n" "nautilus . &; disown %1; ^M"
+if command -v "emacs" &> /dev/null; then bindkey -s "^[e" "emacsclient -c . &; disown %1; ^M"; fi
+if command -v "nautilus" &> /dev/null; then bindkey -s "^[n" "nautilus . &; disown %1; ^M"; fi
 
 # end
 
