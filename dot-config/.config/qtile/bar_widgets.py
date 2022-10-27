@@ -1,8 +1,11 @@
 """My widget customizations stuff."""
 
-from libqtile import qtile, bar, widget
+from libqtile import qtile, bar, widget  # , hook
+
+# from libqtile.log_utils import logger
 import subprocess
 import os
+from custom_widgets import MyWindowName
 
 my_terminal = "alacritty"
 
@@ -24,9 +27,10 @@ colors = {
     "transparent": "#00000000",
 }
 
+
 backgrounds = {
     "group_box": colors["dark_blue"],
-    "window_name": colors["teal"],
+    "window_name": colors["transparent"],
     "gpu_block": colors["green"],
     "cpu_block": colors["dark_pink"],
     "memory_block": colors["light_pink"],
@@ -114,8 +118,16 @@ def group_box():
 def window_name():
     """Active window name."""
     return [
-        widget.WindowName(
-            foreground=colors["black"],
+        # widget.WindowName(
+        #     foreground=colors["white"],
+        #     background=backgrounds["window_name"],
+        #     max_chars=50,
+        #     width=bar.CALCULATED,
+        #     fontsize=10,
+        #     padding=20,
+        # ),
+        MyWindowName(
+            foreground=colors["white"],
             background=backgrounds["window_name"],
             max_chars=50,
             width=bar.CALCULATED,
@@ -515,4 +527,11 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
             widget.Sep(linewidth=0, padding=5),
         ]
 
-    return bar.Bar(widgets, 25, background=colors["transparent"], opacity=1.0)
+    return bar.Bar(
+        widgets,
+        25,
+        background=colors["transparent"],
+        opacity=1.0,
+        # margin=[5, 5, 5, 5],
+        margin=7,
+    )

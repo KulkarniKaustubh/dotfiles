@@ -38,7 +38,7 @@
 from typing import List  # noqa: F401
 
 
-from libqtile import qtile, layout, widget, hook
+from libqtile import qtile, layout, hook
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.popup import Popup
@@ -53,7 +53,7 @@ super_key = "mod4"
 alt_key = "mod1"
 
 my_terminal = "alacritty"
-my_browser = "google-chrome-stable"
+my_browser = "firefox"
 
 # A list of available commands that can be bound to keys can be found
 # at https://docs.qtile.org/en/latest/manual/config/lazy.html
@@ -229,14 +229,12 @@ def layout_keys():
                     [],
                     "h",
                     lazy.layout.shrink(),
-                    lazy.layout.decrease_nmaster(),
                     desc="Shrink window (MonadTall), decrease in master pane",
                 ),
                 Key(
                     [],
                     "l",
                     lazy.layout.grow(),
-                    lazy.layout.increase_nmaster(),
                     desc="Expand window (MonadTall), increase in master pane",
                 ),
                 Key(
@@ -422,17 +420,17 @@ workspace_names = {
 group_names = [
     (
         workspace_names["one"],
-        {"layout": "monadtall", "spawn": ["alacritty -e tmux -u"]},
+        {"layout": "monadtall", "spawn": [f"{my_terminal} -e tmux -u"]},
     ),
     (
         workspace_names["two"],
-        {"layout": "monadtall", "spawn": ["google-chrome-stable"]},
+        {"layout": "monadtall", "spawn": [my_browser]},
     ),
     (workspace_names["three"], {"layout": "monadtall"}),
     (workspace_names["four"], {"layout": "monadtall"}),
     (workspace_names["five"], {"layout": "monadtall"}),
     (workspace_names["six"], {"layout": "monadtall"}),
-    (workspace_names["seven"], {"layout": "monadtall", "spawn": ["slack"]}),
+    (workspace_names["seven"], {"layout": "monadtall"}),
     (workspace_names["eight"], {"layout": "monadtall", "spawn": ["discord"]}),
     (
         workspace_names["nine"],
@@ -638,7 +636,7 @@ floating_layout = layout.Floating(
     float_rules=[
         # Run the utility of `xprop`
         # to see the wm class and name of an X client.
-        *layout.Floating.default_float_rules,
+        # *layout.Floating.default_float_rules,
         Match(wm_class="gnome-calendar"),  # Calendar app
         Match(wm_class="gnome-calculator"),  # Calculator app
         Match(wm_class="confirmreset"),  # gitk
