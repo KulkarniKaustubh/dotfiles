@@ -78,7 +78,7 @@
 (add-to-list 'exec-path "~/.local/bin")
 
 ;; Fixing dired
-(setq dired-listing-switches "-lAX --group-directories-first")
+(setq dired-listing-switches "-lAhX --group-directories-first")
 
 ;; Change recenter positions toggle order
 (setq recenter-positions '(middle bottom top))
@@ -416,6 +416,10 @@
 
 ;; To save already opened and edited read-only files, sudo-edit
 (use-package sudo-edit)
+
+(use-package markdown-mode
+  :mode ("README\\.md\\'" . gfm-mode)
+  :init (setq markdown-command "multimarkdown"))
 
 ;; Load my general package key bindings
 (load "~/.emacs.d/general_keys.el")
