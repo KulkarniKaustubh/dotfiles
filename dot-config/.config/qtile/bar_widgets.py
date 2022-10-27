@@ -5,7 +5,6 @@ from libqtile import qtile, bar, widget  # , hook
 # from libqtile.log_utils import logger
 import subprocess
 import os
-from custom_widgets import MyWindowName
 
 my_terminal = "alacritty"
 
@@ -126,7 +125,7 @@ def window_name():
         #     fontsize=10,
         #     padding=20,
         # ),
-        MyWindowName(
+        widget.WindowName(
             foreground=colors["white"],
             background=backgrounds["window_name"],
             max_chars=50,
