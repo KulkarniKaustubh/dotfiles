@@ -58,5 +58,11 @@ nm-applet &
 # start the bluetooth manager GUI
 blueman-applet &
 
+# start the kdeconnect indicator
+kdeconnect-indicator &
+
+# start the notification daemon
+dunst &
+
 # qtile twm
 # /usr/bin/qtile start
