@@ -638,8 +638,9 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="sans",
-    fontsize=10,
+    # font="Iosevka Nerd Font",
+    font="Fura Mono NF",
+    fontsize=12,
     foreground="#ffffff",
     padding=5,
 )

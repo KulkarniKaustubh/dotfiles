@@ -36,11 +36,12 @@ backgrounds = {
     "cpu_block": "#b7e9f7",
     # "memory_block": colors["light_pink"],
     "memory_block": "#92dff3",
-    "volume_block": colors["dark_orange"],
+    # "volume_block": colors["dark_orange"],
+    "volume_block": "#296d98",
     "brightness_block": colors["orange"],
     "battery_block": colors["green"],
     # "clock_block": colors["yellow"],
-    "clock_block": "#7ad7f0",
+    "clock_block": "#2f4d7d",
     "current_layout": colors["lighter_blue"],
     "quick_exit": colors["black"],
 }
@@ -126,10 +127,9 @@ def group_box():
             other_screen_border="#215578",
             this_current_screen_border=colors["lighter_blue"],
             this_screen_border=colors["lighter_blue"],
-            fontsize=15,
-            font="Iosevka Nerd Font",
             background=backgrounds["group_box"],
             padding=10,
+            fontsize=25,
         ),
     ]
 
@@ -150,8 +150,6 @@ def window_name():
             background=backgrounds["window_name"],
             max_chars=40,
             width=bar.CALCULATED,
-            fontsize=12,
-            font="Iosevka Nerd Font",
             padding=20,
         ),
     ]
@@ -185,8 +183,6 @@ def gpu_block():
             background=backgrounds["gpu_block"],
             format="{temp}°C",
             padding=5,
-            fontsize=15,
-            font="Iosevka Nerd Font",
         ),
         # widget.GenPollText(
         #     fmt="{}",
@@ -210,8 +206,6 @@ def gpu_block():
                 "Button1": lambda: qtile.cmd_spawn(my_terminal + " -e nvtop")
             },
             padding=5,
-            fontsize=15,
-            font="Iosevka Nerd Font",
         ),
     ]
 
@@ -223,9 +217,9 @@ def cpu_block():
             text="",
             foreground=colors["dark_blue"],
             background=backgrounds["cpu_block"],
+            mouse_callbacks={"Button1": lambda: qtile.cmd_spawn("psensor")},
             fontsize=15,
             font="Iosevka Nerd Font",
-            mouse_callbacks={"Button1": lambda: qtile.cmd_spawn("psensor")},
         ),
         widget.GenPollText(
             fmt="{}°C",
@@ -235,8 +229,6 @@ def cpu_block():
             update_interval=2,
             mouse_callbacks={"Button1": lambda: qtile.cmd_spawn("psensor")},
             padding=5,
-            fontsize=15,
-            font="Iosevka Nerd Font",
         ),
         widget.CPU(
             foreground=colors["dark_blue"],
@@ -244,8 +236,6 @@ def cpu_block():
             # background="#f5d0f0",
             format="{load_percent}%",
             padding=5,
-            fontsize=15,
-            font="Iosevka Nerd Font",
             mouse_callbacks={"Button1": lambda: qtile.cmd_spawn("psensor")},
         ),
     ]
@@ -258,11 +248,11 @@ def memory_block():
             text="﬙",
             foreground=colors["black"],
             background=backgrounds["memory_block"],
-            fontsize=15,
-            font="Iosevka Nerd Font",
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
             },
+            fontsize=15,
+            font="Iosevka Nerd Font",
         ),
         widget.Memory(
             foreground=colors["black"],
@@ -273,8 +263,6 @@ def memory_block():
             },
             measure_mem="G",
             padding=5,
-            fontsize=15,
-            font="Iosevka Nerd Font",
         ),
         # widget.Memory(
         #     foreground=colors["black"],
@@ -296,24 +284,22 @@ def volume_block():
     return [
         widget.TextBox(
             text="墳",
-            foreground=colors["black"],
+            foreground=colors["lighter_blue"],
             background=backgrounds["volume_block"],
-            fontsize=15,
-            font="Iosevka Nerd Font",
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn("pavucontrol")
             },
+            fontsize=15,
+            font="Iosevka Nerd Font",
         ),
         widget.Volume(
             fmt="{}",
-            foreground=colors["black"],
+            foreground=colors["lighter_blue"],
             background=backgrounds["volume_block"],
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn("pavucontrol")
             },
             padding=5,
-            fontsize=15,
-            font="Iosevka Nerd Font",
         ),
     ]
 
@@ -323,22 +309,21 @@ def clock_block():
     return [
         widget.TextBox(
             text="",
-            foreground=colors["black"],
+            foreground=colors["lighter_blue"],
             background=backgrounds["clock_block"],
-            fontsize=15,
-            font="Iosevka Nerd Font",
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
             },
+            fontsize=15,
+            font="Iosevka Nerd Font",
         ),
         widget.Clock(
             format="%I:%M  %a  %b %d",
-            foreground=colors["black"],
+            foreground=colors["lighter_blue"],
             background=backgrounds["clock_block"],
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
             },
-            fontsize=11,
             padding=10,
         ),
     ]
@@ -351,7 +336,6 @@ def brightness_block():
             text="\u2600",
             foreground=colors["black"],
             background=backgrounds["brightness_block"],
-            fontsize=15,
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn("pavucontrol")
             },
@@ -408,8 +392,6 @@ def quick_exit():
     return [
         widget.QuickExit(
             default_text="",  # utf8 for the power symbol
-            fontsize=15,
-            font="Iosevka Nerd Font",
             foreground=colors["lighter_blue"],
             background=backgrounds["quick_exit"],
             padding=10,
@@ -419,6 +401,8 @@ def quick_exit():
                     + "menu_powermenu"
                 )
             },
+            fontsize=15,
+            font="Iosevka Nerd Font",
         ),
     ]
 
@@ -430,8 +414,6 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
             text="",
             foreground=colors["dark_blue"],
             background=colors["light_blue"],
-            fontsize=15,
-            font="Iosevka Nerd Font",
             padding=15,
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(
@@ -441,6 +423,8 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
                     + '-display-combi "Apps"'
                 )
             },
+            fontsize=15,
+            font="Iosevka Nerd Font",
         ),
         widget.Sep(linewidth=0, padding=5),
         *current_layout(),
@@ -498,7 +482,7 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
 
     # Add systray only on one primary monitor to avoid systray crash
     if primary:
-        widgets[6:6] = [
+        widgets[10:10] = [
             widget.Sep(linewidth=0, padding=5),
             *app_block(),
             widget.Sep(linewidth=0, padding=5),
