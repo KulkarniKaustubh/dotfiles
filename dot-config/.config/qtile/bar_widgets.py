@@ -29,16 +29,20 @@ colors = {
 
 backgrounds = {
     "group_box": colors["dark_blue"],
-    "window_name": colors["transparent"],
-    "gpu_block": colors["green"],
-    "cpu_block": colors["dark_pink"],
-    "memory_block": colors["light_pink"],
+    "window_name": colors["dark_blue"],
+    # "gpu_block": colors["green"],
+    "gpu_block": "#dbf3fa",
+    # "cpu_block": colors["dark_pink"],
+    "cpu_block": "#b7e9f7",
+    # "memory_block": colors["light_pink"],
+    "memory_block": "#92dff3",
     "volume_block": colors["dark_orange"],
     "brightness_block": colors["orange"],
     "battery_block": colors["green"],
-    "clock_block": colors["yellow"],
-    "current_layout": colors["white"],
-    "quick_exit": colors["lighter_blue"],
+    # "clock_block": colors["yellow"],
+    "clock_block": "#7ad7f0",
+    "current_layout": colors["lighter_blue"],
+    "quick_exit": colors["black"],
 }
 
 
@@ -74,12 +78,29 @@ def get_gpu_mem_usage():
     return str(out.decode("utf-8").strip("\n"))
 
 
-def powerline_symbol(direction, foreground, background, fontsize=25):
+def get_cpu_temp():
+    """Get CPU temperature for AMD CPUs (no core info)."""
+    cpu_temp = subprocess.Popen(
+        ["sensors | grep \"CPUTIN\" | awk '{print $2}'"],
+        stdout=subprocess.PIPE,
+        shell=True,
+    )
+    (out, err) = cpu_temp.communicate()
+    # comment to explain the below line
+    # the output is like +36.0C, so we split at the dot,
+    # take the first half, then remove the sign with [1:]
+    temp = out.decode("utf-8").strip("\n").split(".")[0][1:]
+    return temp
+
+
+def border_symbol(direction, foreground, background, fontsize=25):
     """Powerline arrow key symbol."""
     if direction == "left":
-        text = ""
+        # text = ""
+        text = ""
     elif direction == "right":
-        text = ""
+        # text = ""
+        text = ""
     return [
         widget.TextBox(
             text=text,
@@ -96,18 +117,17 @@ def group_box():
     """Workspaces."""
     return [
         widget.GroupBox(
-            # border="add8e6",
             active="#add8e6",
-            inactive="#ffffff",
+            # inactive="#add8e680",
+            inactive="#78909c",
             highlight_method="line",
-            highlight_color="#152238",
-            # highlight_color="#152238",
+            highlight_color=colors["dark_blue"],
             other_current_screen_border="#215578",
             other_screen_border="#215578",
-            this_current_screen_border="#dbf0fe",
-            this_screen_border="#dbf0fe",
-            border_width=3,
-            fontsize=11,
+            this_current_screen_border=colors["lighter_blue"],
+            this_screen_border=colors["lighter_blue"],
+            fontsize=15,
+            font="Iosevka Nerd Font",
             background=backgrounds["group_box"],
             padding=10,
         ),
@@ -128,9 +148,10 @@ def window_name():
         widget.WindowName(
             foreground=colors["white"],
             background=backgrounds["window_name"],
-            max_chars=50,
+            max_chars=40,
             width=bar.CALCULATED,
-            fontsize=10,
+            fontsize=12,
+            font="Iosevka Nerd Font",
             padding=20,
         ),
     ]
@@ -139,7 +160,7 @@ def window_name():
 def app_block():
     """Open apps."""
     return [
-        widget.Systray(background=colors["transparent"], padding=5),
+        widget.Systray(padding=0),
     ]
 
 
@@ -162,22 +183,23 @@ def gpu_block():
         widget.NvidiaSensors(
             foreground="#152238",
             background=backgrounds["gpu_block"],
-            format="{temp} C",
-            padding=10,
-            fontsize=10,
+            format="{temp}°C",
+            padding=5,
+            fontsize=15,
+            font="Iosevka Nerd Font",
         ),
-        widget.GenPollText(
-            fmt="{}",
-            foreground="#152238",
-            background=backgrounds["gpu_block"],
-            func=get_gpu_usage,
-            update_interval=2,
-            mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(my_terminal + " -e nvtop")
-            },
-            padding=10,
-            fontsize=10,
-        ),
+        # widget.GenPollText(
+        #     fmt="{}",
+        #     foreground="#152238",
+        #     background=backgrounds["gpu_block"],
+        #     func=get_gpu_usage,
+        #     update_interval=2,
+        #     mouse_callbacks={
+        #         "Button1": lambda: qtile.cmd_spawn(my_terminal + " -e nvtop")
+        #     },
+        #     padding=10,
+        #     fontsize=10,
+        # ),
         widget.GenPollText(
             fmt="{}",
             foreground="#152238",
@@ -187,8 +209,9 @@ def gpu_block():
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(my_terminal + " -e nvtop")
             },
-            padding=10,
-            fontsize=10,
+            padding=5,
+            fontsize=15,
+            font="Iosevka Nerd Font",
         ),
     ]
 
@@ -198,20 +221,32 @@ def cpu_block():
     return [
         widget.TextBox(
             text="",
-            foreground=colors["black"],
+            foreground=colors["dark_blue"],
             background=backgrounds["cpu_block"],
             fontsize=15,
-            mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
-            },
+            font="Iosevka Nerd Font",
+            mouse_callbacks={"Button1": lambda: qtile.cmd_spawn("psensor")},
+        ),
+        widget.GenPollText(
+            fmt="{}°C",
+            foreground=colors["dark_blue"],
+            background=backgrounds["cpu_block"],
+            func=get_cpu_temp,
+            update_interval=2,
+            mouse_callbacks={"Button1": lambda: qtile.cmd_spawn("psensor")},
+            padding=5,
+            fontsize=15,
+            font="Iosevka Nerd Font",
         ),
         widget.CPU(
-            foreground=colors["black"],
+            foreground=colors["dark_blue"],
             background=backgrounds["cpu_block"],
             # background="#f5d0f0",
             format="{load_percent}%",
-            padding=10,
-            fontsize=10,
+            padding=5,
+            fontsize=15,
+            font="Iosevka Nerd Font",
+            mouse_callbacks={"Button1": lambda: qtile.cmd_spawn("psensor")},
         ),
     ]
 
@@ -224,6 +259,7 @@ def memory_block():
             foreground=colors["black"],
             background=backgrounds["memory_block"],
             fontsize=15,
+            font="Iosevka Nerd Font",
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
             },
@@ -231,25 +267,27 @@ def memory_block():
         widget.Memory(
             foreground=colors["black"],
             background=backgrounds["memory_block"],
-            format="{MemUsed:.1f}{mm}/{MemTotal:.1f}{mm}",
+            format="{MemUsed:.1f}{mm}/{MemTotal:.0f}{mm}",
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
             },
             measure_mem="G",
-            padding=10,
-            fontsize=10,
+            padding=5,
+            fontsize=15,
+            font="Iosevka Nerd Font",
         ),
-        widget.Memory(
-            foreground=colors["black"],
-            background=backgrounds["memory_block"],
-            format="{SwapUsed:.1f}{ms}/{SwapTotal:.1f}{ms}",
-            mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
-            },
-            measure_swap="G",
-            padding=10,
-            fontsize=10,
-        ),
+        # widget.Memory(
+        #     foreground=colors["black"],
+        #     background=backgrounds["memory_block"],
+        #     format="{SwapUsed:.0f}{ms}/{SwapTotal:.0f}{ms}",
+        #     mouse_callbacks={
+        #         "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
+        #     },
+        #     measure_swap="G",
+        #     padding=5,
+        #     fontsize=15,
+        #     font="Iosevka Nerd Font",
+        # ),
     ]
 
 
@@ -261,6 +299,7 @@ def volume_block():
             foreground=colors["black"],
             background=backgrounds["volume_block"],
             fontsize=15,
+            font="Iosevka Nerd Font",
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn("pavucontrol")
             },
@@ -273,7 +312,8 @@ def volume_block():
                 "Button1": lambda: qtile.cmd_spawn("pavucontrol")
             },
             padding=5,
-            fontsize=10,
+            fontsize=15,
+            font="Iosevka Nerd Font",
         ),
     ]
 
@@ -286,12 +326,13 @@ def clock_block():
             foreground=colors["black"],
             background=backgrounds["clock_block"],
             fontsize=15,
+            font="Iosevka Nerd Font",
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
             },
         ),
         widget.Clock(
-            format="%I:%M  %A  %B %d",
+            format="%I:%M  %a  %b %d",
             foreground=colors["black"],
             background=backgrounds["clock_block"],
             mouse_callbacks={
@@ -339,12 +380,6 @@ def current_layout():
             custom_icon_paths=[f"{os.environ['HOME']}/.config/qtile/icons/"],
             padding=5,
         ),
-        widget.CurrentLayout(
-            foreground=colors["black"],
-            background=backgrounds["current_layout"],
-            fontsize=10,
-            padding=5,
-        ),
     ]
 
 
@@ -372,11 +407,12 @@ def quick_exit():
     """Shutdown button."""
     return [
         widget.QuickExit(
-            default_text="&#x23FB;",  # utf8 for the power symbol
+            default_text="",  # utf8 for the power symbol
             fontsize=15,
-            foreground="#152238",
+            font="Iosevka Nerd Font",
+            foreground=colors["lighter_blue"],
             background=backgrounds["quick_exit"],
-            padding=5,
+            padding=10,
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(
                     f"{os.environ['HOME']}/.config/rofi/scripts/"
@@ -390,30 +426,28 @@ def quick_exit():
 def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
     """Return an object of bar.Bar."""
     widgets = [
-        *powerline_symbol(
-            direction="left",
-            foreground=backgrounds["group_box"],
-            background=colors["transparent"],
+        widget.TextBox(
+            text="",
+            foreground=colors["dark_blue"],
+            background=colors["light_blue"],
+            fontsize=15,
+            font="Iosevka Nerd Font",
+            padding=15,
+            mouse_callbacks={
+                "Button1": lambda: qtile.cmd_spawn(
+                    f"rofi -theme {os.environ['HOME']}/.config/rofi"
+                    + "/themes/launchers_colourful_style_7 "
+                    + "-combi-modi window,drun -show combi "
+                    + '-display-combi "Apps"'
+                )
+            },
         ),
+        widget.Sep(linewidth=0, padding=5),
+        *current_layout(),
+        widget.Sep(linewidth=0, padding=10),
         *group_box(),
-        *powerline_symbol(
-            direction="right",
-            foreground=backgrounds["group_box"],
-            background=colors["transparent"],
-        ),
-        widget.Sep(linewidth=0, padding=15),
-        *powerline_symbol(
-            direction="left",
-            foreground=backgrounds["window_name"],
-            background=colors["transparent"],
-        ),
         *window_name(),
-        *powerline_symbol(
-            direction="right",
-            foreground=backgrounds["window_name"],
-            background=colors["transparent"],
-        ),
-        widget.Sep(linewidth=0, padding=15),
+        widget.Sep(linewidth=0, padding=5),
         widget.chord.Chord(
             foreground=colors["black"],
             background=colors["white"],
@@ -421,67 +455,25 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
             padding=10,
         ),
         widget.Spacer(length=bar.STRETCH),
+        widget.Sep(linewidth=0, padding=5),
         *cpu_block(),
-        *powerline_symbol(
-            direction="left",
-            foreground=backgrounds["memory_block"],
-            background=backgrounds["cpu_block"],
-        ),
+        widget.Sep(linewidth=0, padding=5),
         *memory_block(),
-        *powerline_symbol(
-            direction="left",
-            foreground=backgrounds["volume_block"],
-            background=backgrounds["memory_block"],
-        ),
+        widget.Sep(linewidth=0, padding=5),
         *volume_block(),
+        widget.Sep(linewidth=0, padding=5),
         *clock_block(),
-        *powerline_symbol(
-            direction="left",
-            foreground=backgrounds["current_layout"],
-            background=backgrounds["clock_block"],
-        ),
-        *current_layout(),
-        *powerline_symbol(
-            direction="left",
-            foreground=backgrounds["quick_exit"],
-            background=backgrounds["current_layout"],
-        ),
+        widget.Sep(linewidth=0, padding=5),
         *quick_exit(),
-        *powerline_symbol(
-            direction="right",
-            foreground=backgrounds["quick_exit"],
-            background=colors["transparent"],
-        ),
     ]
 
     if laptop:
         widgets[19:19] = [
-            *powerline_symbol(
-                direction="left",
-                foreground=backgrounds["brightness_block"],
-                background=backgrounds["volume_block"],
-            ),
             *brightness_block(),
-            *powerline_symbol(
-                direction="left",
-                foreground=backgrounds["battery_block"],
-                background=backgrounds["brightness_block"],
-            ),
             *battery_block(),
-            *powerline_symbol(
-                direction="left",
-                foreground=backgrounds["clock_block"],
-                background=backgrounds["battery_block"],
-            ),
         ]
     else:
-        widgets[19:19] = [
-            *powerline_symbol(
-                direction="left",
-                foreground=backgrounds["clock_block"],
-                background=backgrounds["volume_block"],
-            ),
-        ]
+        widgets[19:19] = []
 
     # Add the GPU block if it exists on the machine
     p1 = subprocess.Popen(
@@ -497,30 +489,16 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
 
     if num_occurences > 0:
         widgets[10:10] = [
-            *powerline_symbol(
-                direction="left",
-                foreground=backgrounds["gpu_block"],
-                background=colors["transparent"],
-            ),
+            widget.Sep(linewidth=0, padding=5),
             *gpu_block(),
-            *powerline_symbol(
-                direction="left",
-                foreground=backgrounds["cpu_block"],
-                background=backgrounds["gpu_block"],
-            ),
+            widget.Sep(linewidth=0, padding=5),
         ]
     else:
-        widgets[10:10] = [
-            *powerline_symbol(
-                direction="left",
-                foreground=backgrounds["cpu_block"],
-                background=colors["transparent"],
-            ),
-        ]
+        widgets[10:10] = []
 
     # Add systray only on one primary monitor to avoid systray crash
     if primary:
-        widgets[10:10] = [
+        widgets[6:6] = [
             widget.Sep(linewidth=0, padding=5),
             *app_block(),
             widget.Sep(linewidth=0, padding=5),
@@ -529,8 +507,10 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
     return bar.Bar(
         widgets,
         25,
-        background=colors["transparent"],
+        background=colors["dark_blue"],
+        # background=colors["dark_blue"],
         opacity=1.0,
-        # margin=[5, 5, 5, 5],
-        margin=7,
+        margin=[5, 5, 5, 5],
+        border_width=8,
+        border_color=colors["dark_blue"],
     )

@@ -38,7 +38,7 @@
 from typing import List  # noqa: F401
 
 
-from libqtile import qtile, layout, hook
+from libqtile import qtile, layout, hook, bar, widget
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.popup import Popup
@@ -274,7 +274,8 @@ def layout_keys():
                     desc="Reset all window sizes",
                 ),
             ],
-            mode="Window Resize Mode",
+            name="Window Resize Mode",
+            mode=True,
         ),
     ]
 
@@ -284,6 +285,12 @@ def layout_keys():
 def spawn_keys():
     """All spawn keys for lazy."""
     spawn_keys = [
+        Key(
+            [super_key, "control"],
+            "p",
+            lazy.spawn("sh /home/kaustubh/.config/polybar/launch.sh"),
+            desc="Reload the polybar",
+        ),
         Key(
             [super_key],
             "Return",
@@ -399,46 +406,84 @@ def spawn_keys():
             lazy.spawn("xbacklight -inc 5"),
             desc="Increase brightness",
         ),
+        # Key(
+        #     [super_key, "a"],
+        #     "r",
+        #     lazy.spawn("systemctl --user restart pipewire"),
+        #     desc="Restart pipewire.",
+        # ),
     ]
 
     return spawn_keys
 
 
-workspace_names = {
-    "one": "1",
-    "two": "2",
-    "three": "3",
-    "four": "4",
-    "five": "5",
-    "six": "6",
-    "seven": "7",
-    "eight": "8",
-    "nine": "9",
-    "ten": "10",
+workspace_labels = {
+    "1": "",
+    "2": "",
+    "3": "",
+    "4": "",
+    "5": "",
+    "6": "",
+    "7": "",
+    "8": "ﭮ",
+    "9": "",
+    "10": "ﱘ",
 }
 
 group_names = [
     (
-        workspace_names["one"],
-        {"layout": "monadtall", "spawn": [f"{my_terminal} -e tmux -u"]},
+        "1",
+        {
+            "layout": "monadtall",
+            "spawn": [f"{my_terminal} -e tmux -u"],
+            "label": workspace_labels["1"],
+        },
     ),
     (
-        workspace_names["two"],
-        {"layout": "monadtall", "spawn": [my_browser]},
+        "2",
+        {
+            "layout": "monadtall",
+            "spawn": [my_browser],
+            "label": workspace_labels["2"],
+        },
     ),
-    (workspace_names["three"], {"layout": "monadtall"}),
-    (workspace_names["four"], {"layout": "monadtall"}),
-    (workspace_names["five"], {"layout": "monadtall"}),
-    (workspace_names["six"], {"layout": "monadtall"}),
-    (workspace_names["seven"], {"layout": "monadtall"}),
-    (workspace_names["eight"], {"layout": "monadtall", "spawn": ["discord"]}),
+    ("3", {"layout": "monadtall", "label": workspace_labels["3"]}),
+    ("4", {"layout": "monadtall", "label": workspace_labels["4"]}),
     (
-        workspace_names["nine"],
-        {"layout": "monadtall", "spawn": ["signal-desktop"]},
+        "5",
+        {
+            "layout": "monadtall",
+            "label": workspace_labels["5"],
+        },
+    ),
+    ("6", {"layout": "monadtall", "label": workspace_labels["6"]}),
+    ("7", {"layout": "monadtall", "label": workspace_labels["7"]}),
+    (
+        "8",
+        {
+            "layout": "monadtall",
+            "spawn": ["discord"],
+            "label": workspace_labels["8"],
+        },
     ),
     (
-        workspace_names["ten"],
-        {"layout": "monadtall"},
+        "9",
+        {
+            "layout": "monadtall",
+            "spawn": ["signal-desktop"],
+            "label": workspace_labels["9"],
+            # "label": widget.Image(
+            #     filename=f"{os.environ['HOME']}/.config/qtile/icons/signal.png",
+            # ),
+        },
+    ),
+    (
+        "10",
+        {
+            "layout": "monadtall",
+            "spawn": '/usr/bin/qtws /usr/share/qtws-apps/youtube-music/youtube-music.qtws --disable-seccomp-filter-sandbox --register-pepper-plugins="/usr/lib/qt/plugins/ppapi/libwidevinecdmadapter.so; application/x-ppapi-widevine-cdm"',
+            "label": workspace_labels["10"],
+        },
     ),
 ]
 
@@ -604,9 +649,11 @@ extension_defaults = widget_defaults.copy()
 screens = [
     Screen(
         top=get_bar_widgets(primary=True, laptop=False),
+        # top=bar.Gap(35),
     ),
     Screen(
         top=get_bar_widgets(primary=False, laptop=False),
+        # top=bar.Gap(35),
     ),
 ]
 
