@@ -38,7 +38,7 @@
 from typing import List  # noqa: F401
 
 
-from libqtile import qtile, layout, hook, bar, widget
+from libqtile import qtile, layout, hook
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.popup import Popup
@@ -369,6 +369,24 @@ def spawn_keys():
                 f"{os.environ['HOME']}/.config/rofi/scripts/menu_powermenu"
             ),
             desc="Open shutdown menu",
+        ),
+        Key(
+            [],
+            "XF86AudioPrev",
+            lazy.spawn("playerctl previous"),
+            desc="Play previous track",
+        ),
+        Key(
+            [],
+            "XF86AudioNext",
+            lazy.spawn("playerctl next"),
+            desc="Play next track",
+        ),
+        Key(
+            [],
+            "XF86AudioPlay",
+            lazy.spawn("playerctl play-pause"),
+            desc="Toggle between play and pause on the current track",
         ),
         Key(
             [],
