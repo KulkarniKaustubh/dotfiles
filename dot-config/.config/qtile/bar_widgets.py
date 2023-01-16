@@ -34,8 +34,8 @@ backgrounds = {
     "gpu_block": "#dbf3fa",
     # "cpu_block": colors["dark_pink"],
     "cpu_block": "#b7e9f7",
-    # "memory_block": colors["light_pink"],
-    "memory_block": "#92dff3",
+    # "ram_block": colors["light_pink"],
+    "ram_block": "#92dff3",
     # "volume_block": colors["dark_orange"],
     "volume_block": "#296d98",
     "brightness_block": colors["orange"],
@@ -184,18 +184,17 @@ def gpu_block():
             format="{temp}°C",
             padding=5,
         ),
-        # widget.GenPollText(
-        #     fmt="{}",
-        #     foreground="#152238",
-        #     background=backgrounds["gpu_block"],
-        #     func=get_gpu_usage,
-        #     update_interval=2,
-        #     mouse_callbacks={
-        #         "Button1": lambda: qtile.cmd_spawn(my_terminal + " -e nvtop")
-        #     },
-        #     padding=10,
-        #     fontsize=10,
-        # ),
+        widget.GenPollText(
+            fmt="{}",
+            foreground="#152238",
+            background=backgrounds["gpu_block"],
+            func=get_gpu_usage,
+            update_interval=2,
+            mouse_callbacks={
+                "Button1": lambda: qtile.cmd_spawn(my_terminal + " -e nvtop")
+            },
+            padding=5,
+        ),
         widget.GenPollText(
             fmt="{}",
             foreground="#152238",
@@ -206,6 +205,30 @@ def gpu_block():
                 "Button1": lambda: qtile.cmd_spawn(my_terminal + " -e nvtop")
             },
             padding=5,
+        ),
+    ]
+
+
+def memory_block():
+    """Disk free space information using `df`."""
+    return [
+        widget.TextBox(
+            text="",
+            foreground=colors["dark_blue"],
+            background="#e5f3fd",
+            mouse_callbacks={
+                "Button1": lambda: qtile.cmd_spawn(my_terminal + "-e df -h .")
+            },
+            fontsize=15,
+            font="Iosevka Nerd Font",
+        ),
+        widget.DF(
+            format="{p} {uf}{m} {r:.1f}%",
+            visible_on_warn=False,
+            foreground=colors["dark_blue"],
+            background="#e5f3fd",
+            update_interval=360,
+            warn_space=100,
         ),
     ]
 
@@ -241,13 +264,13 @@ def cpu_block():
     ]
 
 
-def memory_block():
+def ram_block():
     """RAM and Swap information."""
     return [
         widget.TextBox(
             text="﬙",
             foreground=colors["black"],
-            background=backgrounds["memory_block"],
+            background=backgrounds["ram_block"],
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
             },
@@ -256,7 +279,7 @@ def memory_block():
         ),
         widget.Memory(
             foreground=colors["black"],
-            background=backgrounds["memory_block"],
+            background=backgrounds["ram_block"],
             format="{MemUsed:.1f}{mm}/{MemTotal:.0f}{mm}",
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
@@ -266,7 +289,7 @@ def memory_block():
         ),
         # widget.Memory(
         #     foreground=colors["black"],
-        #     background=backgrounds["memory_block"],
+        #     background=backgrounds["ram_block"],
         #     format="{SwapUsed:.0f}{ms}/{SwapTotal:.0f}{ms}",
         #     mouse_callbacks={
         #         "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
@@ -318,13 +341,13 @@ def clock_block():
             font="Iosevka Nerd Font",
         ),
         widget.Clock(
-            format="%I:%M  %a  %b %d",
+            format="%I:%M %a %b %d",
             foreground=colors["lighter_blue"],
             background=backgrounds["clock_block"],
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
             },
-            padding=10,
+            padding=5,
         ),
     ]
 
@@ -362,8 +385,13 @@ def current_layout():
             foreground=colors["black"],
             background=backgrounds["current_layout"],
             custom_icon_paths=[f"{os.environ['HOME']}/.config/qtile/icons/"],
-            padding=5,
+            padding=10,
         ),
+        # widget.CurrentLayout(
+        #     foreground=colors["black"],
+        #     background=backgrounds["current_layout"],
+        #     fontsize=6,
+        # ),
     ]
 
 
@@ -428,27 +456,30 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
         ),
         widget.Sep(linewidth=0, padding=5),
         *current_layout(),
-        widget.Sep(linewidth=0, padding=10),
+        widget.Sep(linewidth=0, padding=5),
         *group_box(),
         *window_name(),
         widget.Sep(linewidth=0, padding=5),
         widget.chord.Chord(
-            foreground=colors["black"],
+            foreground=colors["dark_blue"],
             background=colors["white"],
             fontsize=10,
-            padding=10,
+            padding=13,
         ),
         widget.Spacer(length=bar.STRETCH),
         widget.Sep(linewidth=0, padding=5),
+        *memory_block(),
+        widget.Sep(linewidth=0, padding=5),
         *cpu_block(),
         widget.Sep(linewidth=0, padding=5),
-        *memory_block(),
+        *ram_block(),
         widget.Sep(linewidth=0, padding=5),
         *volume_block(),
         widget.Sep(linewidth=0, padding=5),
         *clock_block(),
         widget.Sep(linewidth=0, padding=5),
         *quick_exit(),
+        widget.Mpris2(),
     ]
 
     if laptop:
@@ -472,20 +503,18 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
     num_occurences = int(p2.communicate()[0].strip().decode())
 
     if num_occurences > 0:
-        widgets[10:10] = [
+        widgets[13:13] = [
             widget.Sep(linewidth=0, padding=5),
             *gpu_block(),
-            widget.Sep(linewidth=0, padding=5),
         ]
     else:
-        widgets[10:10] = []
+        widgets[13:13] = []
 
     # Add systray only on one primary monitor to avoid systray crash
     if primary:
         widgets[10:10] = [
             widget.Sep(linewidth=0, padding=5),
             *app_block(),
-            widget.Sep(linewidth=0, padding=5),
         ]
 
     return bar.Bar(
@@ -494,7 +523,7 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
         background=colors["dark_blue"],
         # background=colors["dark_blue"],
         opacity=1.0,
-        margin=[5, 5, 5, 5],
-        border_width=8,
+        margin=[2, 5, 2, 5],
+        border_width=5,
         border_color=colors["dark_blue"],
     )
