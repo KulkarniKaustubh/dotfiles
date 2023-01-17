@@ -42,7 +42,8 @@ backgrounds = {
     "battery_block": colors["green"],
     # "clock_block": colors["yellow"],
     "clock_block": "#2f4d7d",
-    "current_layout": colors["lighter_blue"],
+    # "current_layout": colors["lighter_blue"],
+    "current_layout": colors["dark_blue"],
     "quick_exit": colors["black"],
 }
 
@@ -128,7 +129,7 @@ def group_box():
             this_current_screen_border=colors["lighter_blue"],
             this_screen_border=colors["lighter_blue"],
             background=backgrounds["group_box"],
-            padding=10,
+            padding=13,
             fontsize=25,
         ),
     ]
@@ -142,7 +143,7 @@ def window_name():
         #     background=backgrounds["window_name"],
         #     max_chars=50,
         #     width=bar.CALCULATED,
-        #     fontsize=10,
+        #     fontsize=13,
         #     padding=20,
         # ),
         widget.WindowName(
@@ -158,7 +159,15 @@ def window_name():
 def app_block():
     """Open apps."""
     return [
-        widget.Systray(padding=0),
+        widget.WidgetBox(
+            text_closed="",
+            text_open="",
+            close_button_location="right",
+            fontsize=25,
+            widgets=[
+                widget.Systray(padding=0),
+            ],
+        )
     ]
 
 
@@ -209,6 +218,34 @@ def gpu_block():
     ]
 
 
+def update_block():
+    """Check AUR for updates."""
+    return [
+        widget.TextBox(
+            text="",
+            foreground=colors["dark_blue"],
+            # background=colors["white"],
+            background="#eff3fd",
+            # "#E5F3FD"
+            mouse_callbacks={
+                "Button1": lambda: qtile.cmd_spawn(
+                    my_terminal + "--hold -e paru"
+                )
+            },
+            fontsize=15,
+            font="Iosevka Nerd Font",
+        ),
+        widget.CheckUpdates(
+            display_format="{updates}",
+            colour_have_updates=colors["dark_blue"],
+            colour_no_updates=colors["dark_blue"],
+            background="#eff3fd",
+            distro="Arch_paru",
+            update_interval=360,
+        ),
+    ]
+
+
 def memory_block():
     """Disk free space information using `df`."""
     return [
@@ -217,7 +254,9 @@ def memory_block():
             foreground=colors["dark_blue"],
             background="#e5f3fd",
             mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(my_terminal + "-e df -h .")
+                "Button1": lambda: qtile.cmd_spawn(
+                    my_terminal + "--hold -e watch -n 1 df -h /"
+                )
             },
             fontsize=15,
             font="Iosevka Nerd Font",
@@ -269,7 +308,7 @@ def ram_block():
     return [
         widget.TextBox(
             text="﬙",
-            foreground=colors["black"],
+            foreground=colors["dark_blue"],
             background=backgrounds["ram_block"],
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
@@ -278,7 +317,7 @@ def ram_block():
             font="Iosevka Nerd Font",
         ),
         widget.Memory(
-            foreground=colors["black"],
+            foreground=colors["dark_blue"],
             background=backgrounds["ram_block"],
             format="{MemUsed:.1f}{mm}/{MemTotal:.0f}{mm}",
             mouse_callbacks={
@@ -372,7 +411,7 @@ def brightness_block():
                 "Button1": lambda: qtile.cmd_spawn("pavucontrol")
             },
             padding=5,
-            fontsize=10,
+            fontsize=13,
         ),
     ]
 
@@ -381,11 +420,10 @@ def current_layout():
     """Show current Qtile layout."""
     return [
         widget.CurrentLayoutIcon(
-            scale=0.6,
-            foreground=colors["black"],
+            scale=0.75,
             background=backgrounds["current_layout"],
             custom_icon_paths=[f"{os.environ['HOME']}/.config/qtile/icons/"],
-            padding=10,
+            padding=13,
         ),
         # widget.CurrentLayout(
         #     foreground=colors["black"],
@@ -410,7 +448,7 @@ def battery_block():
             low_percentage=0.25,
             format="{char}   {percent:2.1%}",
             update_delay=5,
-            padding=10,
+            padding=13,
         )
     ]
 
@@ -422,7 +460,7 @@ def quick_exit():
             default_text="",  # utf8 for the power symbol
             foreground=colors["lighter_blue"],
             background=backgrounds["quick_exit"],
-            padding=10,
+            padding=13,
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(
                     f"{os.environ['HOME']}/.config/rofi/scripts/"
@@ -454,19 +492,19 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
             fontsize=15,
             font="Iosevka Nerd Font",
         ),
-        widget.Sep(linewidth=0, padding=5),
         *current_layout(),
-        widget.Sep(linewidth=0, padding=5),
         *group_box(),
         *window_name(),
         widget.Sep(linewidth=0, padding=5),
         widget.chord.Chord(
             foreground=colors["dark_blue"],
             background=colors["white"],
-            fontsize=10,
+            fontsize=13,
             padding=13,
         ),
         widget.Spacer(length=bar.STRETCH),
+        widget.Sep(linewidth=0, padding=5),
+        *update_block(),
         widget.Sep(linewidth=0, padding=5),
         *memory_block(),
         widget.Sep(linewidth=0, padding=5),
@@ -479,7 +517,6 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
         *clock_block(),
         widget.Sep(linewidth=0, padding=5),
         *quick_exit(),
-        widget.Mpris2(),
     ]
 
     if laptop:
@@ -512,7 +549,7 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
 
     # Add systray only on one primary monitor to avoid systray crash
     if primary:
-        widgets[10:10] = [
+        widgets[8:8] = [
             widget.Sep(linewidth=0, padding=5),
             *app_block(),
         ]
