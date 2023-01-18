@@ -1,6 +1,7 @@
 """My widget customizations stuff."""
 
 from libqtile import qtile, bar, widget  # , hook
+from libqtile.lazy import lazy
 
 # from libqtile.log_utils import logger
 import subprocess
@@ -227,13 +228,11 @@ def update_block():
             # background=colors["white"],
             background="#eff3fd",
             # "#E5F3FD"
-            mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(
-                    my_terminal + "--hold -e paru"
-                )
-            },
             fontsize=15,
             font="Iosevka Nerd Font",
+            mouse_callbacks={
+                "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e paru")
+            },
         ),
         widget.CheckUpdates(
             display_format="{updates}",
@@ -241,7 +240,10 @@ def update_block():
             colour_no_updates=colors["dark_blue"],
             background="#eff3fd",
             distro="Arch_paru",
-            update_interval=360,
+            update_interval=120,
+            mouse_callbacks={
+                "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e paru")
+            },
         ),
     ]
 
@@ -253,21 +255,26 @@ def memory_block():
             text="",
             foreground=colors["dark_blue"],
             background="#e5f3fd",
-            mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(
-                    my_terminal + "--hold -e watch -n 1 df -h /"
-                )
-            },
             fontsize=15,
             font="Iosevka Nerd Font",
+            mouse_callbacks={
+                "Button1": lambda: qtile.cmd_spawn(
+                    f"{my_terminal}  -e watch df -h /"
+                )
+            },
         ),
         widget.DF(
             format="{p} {uf}{m} {r:.1f}%",
             visible_on_warn=False,
             foreground=colors["dark_blue"],
             background="#e5f3fd",
-            update_interval=360,
+            update_interval=120,
             warn_space=100,
+            mouse_callbacks={
+                "Button1": lambda: qtile.cmd_spawn(
+                    f"{my_terminal}  -e watch df -h /"
+                )
+            },
         ),
     ]
 
