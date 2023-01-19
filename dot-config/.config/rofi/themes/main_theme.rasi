@@ -35,7 +35,7 @@ mainbox {
 element {
     padding: 0.5%;
     text-color: @fg;
-    margin: 1% 0 0.5% 0;
+    margin: 1% 0 1% 0;
     background-color: transparent;
     orientation: horizontal;
 }
@@ -73,7 +73,6 @@ inputbar {
 }
 
 listview {
-    padding: 8 0;
     background-color: @bg;
     columns: 1;
     lines: 30;
