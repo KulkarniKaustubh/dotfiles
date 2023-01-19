@@ -376,6 +376,24 @@ def spawn_keys():
             desc="Open shutdown menu",
         ),
         Key(
+            ["control"],
+            "grave",
+            lazy.spawn("dunstctl history-pop"),
+            desc="Pop notifications from dunst history.",
+        ),
+        Key(
+            ["control"],
+            "space",
+            lazy.spawn("dunstctl close"),
+            desc="Close latest visible dunst notification.",
+        ),
+        Key(
+            ["control", "shift"],
+            "space",
+            lazy.spawn("dunstctl close-all"),
+            desc="Close all visible dunst notifications.",
+        ),
+        Key(
             [],
             "XF86AudioPrev",
             lazy.spawn("playerctl previous"),
