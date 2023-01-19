@@ -5,7 +5,7 @@ notification_subject="Restart Service"
 
 options="Pipewire\nEmacs Daemon\nDocker"
 
-chosen="$(echo -e "$options" | rofi -i -theme /home/kaustubh/dotfiles/dot-config/.config/rofi/themes/scripts.rasi -dmenu)"
+chosen="$(echo -e "$options" | rofi -i -theme /home/kaustubh/dotfiles/dot-config/.config/rofi/themes/scripts.rasi -dmenu -theme-str 'entry { placeholder: " Search for service to restart"; }')"
 
 get_password() {
     rofi -theme /home/kaustubh/dotfiles/dot-config/.config/rofi/themes/password.rasi \
