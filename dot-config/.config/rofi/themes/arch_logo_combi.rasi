@@ -3,7 +3,7 @@
 window {
     width: 35%;
     location: northwest;
-    margin: 3.5% 0 0 0;
+    margin: 3.5% 0 0 5;
     height: 70%;
 }
 
