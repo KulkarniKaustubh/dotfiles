@@ -1,7 +1,6 @@
 """My widget customizations stuff."""
 
 from libqtile import qtile, bar, widget  # , hook
-from libqtile.lazy import lazy
 
 # from libqtile.log_utils import logger
 import subprocess
@@ -122,7 +121,8 @@ def group_box():
         widget.GroupBox(
             active="#add8e6",
             # inactive="#add8e680",
-            inactive="#78909c",
+            # inactive="#78909c",
+            inactive="#566c73",
             highlight_method="line",
             highlight_color=colors["dark_blue"],
             other_current_screen_border="#215578",
@@ -130,7 +130,7 @@ def group_box():
             this_current_screen_border=colors["lighter_blue"],
             this_screen_border=colors["lighter_blue"],
             background=backgrounds["group_box"],
-            padding=13,
+            padding=5,
             fontsize=25,
         ),
     ]
@@ -152,7 +152,7 @@ def window_name():
             background=backgrounds["window_name"],
             max_chars=40,
             width=bar.CALCULATED,
-            padding=20,
+            padding=15,
         ),
     ]
 
@@ -193,6 +193,9 @@ def gpu_block():
             background=backgrounds["gpu_block"],
             format="{temp}°C",
             padding=5,
+            mouse_callbacks={
+                "Button1": lambda: qtile.cmd_spawn(my_terminal + " -e nvtop")
+            },
         ),
         widget.GenPollText(
             fmt="{}",
@@ -239,8 +242,9 @@ def update_block():
             colour_have_updates=colors["dark_blue"],
             colour_no_updates=colors["dark_blue"],
             background="#eff3fd",
-            distro="Arch_paru",
+            distro="Arch_checkupdates",
             update_interval=120,
+            no_update_string="0",
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e paru")
             },
@@ -306,6 +310,7 @@ def cpu_block():
             format="{load_percent}%",
             padding=5,
             mouse_callbacks={"Button1": lambda: qtile.cmd_spawn("psensor")},
+            width=45,
         ),
     ]
 
@@ -430,7 +435,7 @@ def current_layout():
             scale=0.75,
             background=backgrounds["current_layout"],
             custom_icon_paths=[f"{os.environ['HOME']}/.config/qtile/icons/"],
-            padding=13,
+            padding=10,
         ),
         # widget.CurrentLayout(
         #     foreground=colors["black"],
@@ -470,8 +475,7 @@ def quick_exit():
             padding=13,
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(
-                    f"{os.environ['HOME']}/.config/rofi/scripts/"
-                    + "menu_powermenu"
+                    f"{os.environ['HOME']}/.config/rofi/scripts/powermenu"
                 )
             },
             fontsize=15,
@@ -491,13 +495,14 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(
                     f"rofi -theme {os.environ['HOME']}/.config/rofi"
-                    + "/themes/launchers_colourful_style_7 "
+                    + "/themes/arch_logo_combi.rasi "
                     + "-combi-modi window,drun -show combi "
                     + '-display-combi "Apps"'
                 )
             },
             fontsize=15,
             font="Iosevka Nerd Font",
+            name="Arch Logo",
         ),
         *current_layout(),
         *group_box(),
@@ -506,8 +511,7 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
         widget.chord.Chord(
             foreground=colors["dark_blue"],
             background=colors["white"],
-            fontsize=13,
-            padding=13,
+            padding=10,
         ),
         widget.Spacer(length=bar.STRETCH),
         widget.Sep(linewidth=0, padding=5),
@@ -564,8 +568,8 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
     return bar.Bar(
         widgets,
         25,
+        # background=colors["transparent"],
         background=colors["dark_blue"],
-        # background=colors["dark_blue"],
         opacity=1.0,
         margin=[2, 5, 2, 5],
         border_width=5,
