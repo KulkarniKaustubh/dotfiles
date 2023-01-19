@@ -27,7 +27,7 @@ $ chsh -s $(which zsh)
 
 > You can change the shell variable `EDITOR` in the last line of the `.zshrc` file
 
-For the right [fonts](https://github.com/KulkarniKaustubh/dotfiles/tree/main/zsh/fonts), follow these commands once you are in the `dotfiles` directory:
+For the right [fonts](https://github.com/KulkarniKaustubh/dotfiles/tree/main/fonts), follow these commands once you are in the `dotfiles` directory:
 
 ```sh
 $ sudo cp fonts/Speed.flf /usr/share/figlet/fonts/
