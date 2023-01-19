@@ -22,7 +22,7 @@ Recommended:
 ```sh
 $ git clone https://github.com/KulkarniKaustubh/dotfiles
 $ cd dotfiles
-$ stow --ignore="fonts" zsh
+$ stow zsh
 $ chsh -s $(which zsh)
 ```
 
