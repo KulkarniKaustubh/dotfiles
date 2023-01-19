@@ -286,12 +286,6 @@ def spawn_keys():
     """All spawn keys for lazy."""
     spawn_keys = [
         Key(
-            [super_key, "control"],
-            "p",
-            lazy.spawn("sh /home/kaustubh/.config/polybar/launch.sh"),
-            desc="Reload the polybar",
-        ),
-        Key(
             [super_key],
             "Return",
             lazy.spawn(f"{my_terminal} -e tmux -u"),
@@ -308,12 +302,26 @@ def spawn_keys():
             "Return",
             lazy.spawn(
                 f"rofi -theme {os.environ['HOME']}/.config/rofi"
-                + "/themes/launchers_colourful_style_7 "
-                + '-show run -display-run "Run Command"'
+                + "/themes/centered_run.rasi "
+                + "-show run"
             ),
-            # lazy.spawn("dmenu_run -p 'Run: '"),
             desc="Run a command using rofi",
-            # desc="Spawn a command using dmenu",
+        ),
+        KeyChord(
+            [super_key],
+            "r",
+            [
+                Key(
+                    [],
+                    "r",
+                    lazy.spawn(
+                        f"{os.environ['HOME']}/.config/rofi/scripts/restart_service"
+                    ),
+                    desc="Launch browser",
+                )
+            ],
+            name="Rofi Scripts Mode",
+            mode=False,
         ),
         Key([super_key], "c", lazy.spawn(my_browser), desc="Launch browser"),
         Key(
@@ -338,36 +346,33 @@ def spawn_keys():
         ),
         Key(
             [super_key],
-            "p",
-            lazy.spawn(
-                f"rofi -show drun -theme {os.environ['HOME']}/.config/rofi"
-                + "/themes/launchers_colourful_style_7"
-            ),
-            desc="Open menu for all applications",
-        ),
-        Key(
-            [super_key],
             "v",
             lazy.spawn("gnome-calendar"),
             desc="Open calendar",
         ),
         Key(
-            [alt_key],
-            "Tab",
+            [super_key],
+            "a",
             lazy.spawn(
                 f"rofi -theme {os.environ['HOME']}/.config/rofi"
-                + "/themes/launchers_colourful_style_7 "
+                + "/themes/centered_combi.rasi "
                 + "-combi-modi window,drun -show combi "
-                + '-display-combi "Apps"'
             ),
             desc="Display all open tabs and runable applications",
         ),
         Key(
             [alt_key],
-            "F4",
+            "Tab",
             lazy.spawn(
-                f"{os.environ['HOME']}/.config/rofi/scripts/menu_powermenu"
+                f"rofi -show drun -theme {os.environ['HOME']}/.config/rofi"
+                + "/themes/centered_drun.rasi"
             ),
+            desc="Open menu for all applications",
+        ),
+        Key(
+            [alt_key],
+            "F4",
+            lazy.spawn(f"{os.environ['HOME']}/.config/rofi/scripts/powermenu"),
             desc="Open shutdown menu",
         ),
         Key(
@@ -702,7 +707,7 @@ floating_layout = layout.Floating(
     float_rules=[
         # Run the utility of `xprop`
         # to see the wm class and name of an X client.
-        # *layout.Floating.default_float_rules,
+        *layout.Floating.default_float_rules,
         Match(wm_class="gnome-calendar"),  # Calendar app
         Match(wm_class="gnome-calculator"),  # Calculator app
         Match(wm_class="confirmreset"),  # gitk
