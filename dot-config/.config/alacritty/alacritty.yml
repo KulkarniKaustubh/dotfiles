@@ -114,7 +114,9 @@ font:
     #   - (Windows) Consolas
     # family: Source Code Pro
     # family: CodeNewRoman Nerd Font
-    family: MesloLGS NF
+    # family: MesloLGS NF
+    family: Fura Mono NF
+    # family: Iosevka Nerd Font
     # family: Hack
     # family: JetBrains Mono
     # family: UbuntuMono Nerd Font
@@ -132,7 +134,8 @@ font:
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
     # family: Source Code Pro
-    family: MesloLGS NF
+    # family: MesloLGS NF
+    family: Fura Mono NF
     # family: CodeNewRoman Nerd Font
     # family: Source Code Pro
     # family: Hack
@@ -151,7 +154,8 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: MesloLGS NF
+    # family: MesloLGS NF
+    family: Fura Mono NF
     # family: CodeNewRoman Nerd Font
     # family: Source Code Pro
     # family: Hack
@@ -170,7 +174,8 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: MesloLGS NF
+    # family: MesloLGS NF
+    family: Fura Mono NF
     # family: CodeNewRoman Nerd Font
     # family: Source Code Pro
     # family: Hack
