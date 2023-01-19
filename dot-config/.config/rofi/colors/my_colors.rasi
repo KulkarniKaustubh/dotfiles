@@ -1,0 +1,9 @@
+* {
+    bg: #15223880;  // dark blue with alpha
+    bg-alt: #add8e6;  // light blue with alpha
+    bg-selected: #dbf0fe;  // lighter blue
+
+    fg: #ffffff;  // white
+    fg-alt: #787c99; // greyish
+    fg-selected: #152238; // dark blue
+}

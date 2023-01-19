@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+notification_app="Rofi Scripts"
+notification_subject="Restart Service"
+
+options="Pipewire\nEmacs Daemon\nDocker"
+
+chosen="$(echo -e "$options" | rofi -i -theme /home/kaustubh/dotfiles/dot-config/.config/rofi/themes/scripts.rasi -dmenu)"
+
+get_password() {
+    rofi -theme /home/kaustubh/dotfiles/dot-config/.config/rofi/themes/password.rasi \
+    -dmenu -password \
+    -p "This requires sudo access!"
+}
+
+case $chosen in
+    "Pipewire")
+    systemctl --user restart pipewire
+    if [ $? -eq 0 ]; then
+        notify-send -a "$notification_app" "$notification_subject" "Pipewire restarted."
+    else
+        notify-send -a "$notification_app" "$notification_subject" "Pipewire restart failed with code $?." --urgency=critical
+    fi
+    ;;
+    "Emacs Daemon")
+    emacsclient -e '(save-buffers-kill-emacs)'; emacs --daemon
+    if [ $? -eq 0 ]; then
+        notify-send -a "$notification_app" "$notification_subject" "Emacs daemon restarted."
+    else
+        notify-send -a "$notification_app" "$notification_subject" "Emacs daemon restart failed with code $?." --urgency=critical
+    fi
+    ;;
+    "Docker")
+    pwd=$(get_password &)
+    if [ -z $pwd ]; then
+        notify-send -a "$notification_app" "$notification_subject" "Password not entered. Docker not restarted."
+    else
+        echo -e $pwd | sudo -S systemctl restart docker
+        if [ $? -eq 0 ]; then
+            notify-send -a "$notification_app" "$notification_subject" "Docker restarted."
+        else
+            notify-send -a "$notification_app" "$notification_subject" "Docker restart failed with code $?." --urgency=critical
+        fi
+    fi
+    ;;
+esac

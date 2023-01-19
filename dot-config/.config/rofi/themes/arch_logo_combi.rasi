@@ -1,0 +1,12 @@
+@theme "main_theme.rasi"
+
+window {
+    width: 35%;
+    location: northwest;
+    margin: 3.5% 0 0 0;
+    height: 70%;
+}
+
+entry {
+    placeholder: " Search for apps or active windows";
+}

@@ -1,0 +1,10 @@
+@theme "main_theme.rasi"
+
+window {
+    width: 25%;
+    height: 35%;
+}
+
+entry {
+    placeholder: " Search for executable commands";
+}

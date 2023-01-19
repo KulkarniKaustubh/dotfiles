@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+rofi_command="rofi -theme /home/kaustubh/dotfiles/dot-config/.config/rofi/themes/powermenu.rasi"
+
+shutdown=" Shutdown"
+reboot=" Reboot"
+lock=" Lock"
+logout=" Logout"
+
+options="$shutdown\n$reboot\n$lock\n$logout"
+
+chosen="$(echo -e "$options" | $rofi_command -dmenu)"
+case $chosen in
+    $shutdown)
+        systemctl poweroff
+        ;;
+    $reboot)
+        systemctl reboot
+        ;;
+    $lock)
+        betterlockscreen -l dimblur
+        ;;
+    $logout)
+        killall qtile
+        ;;
+esac

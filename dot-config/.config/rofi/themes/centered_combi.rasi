@@ -1,0 +1,14 @@
+@theme "main_theme.rasi"
+
+window {
+    width: 50%;
+    height: 50%;
+}
+
+entry {
+    placeholder: " Search for apps or active windows";
+}
+
+listview {
+    columns: 2;
+}
