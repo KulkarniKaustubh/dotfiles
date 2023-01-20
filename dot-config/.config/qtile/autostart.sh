@@ -53,16 +53,16 @@ nvidia-settings --load-config-only
 /usr/bin/emacs --daemon
 
 # start the network manager GUI
-nm-applet &
+/usr/bin/nm-applet &
 
 # start the bluetooth manager GUI
-blueman-applet &
+/usr/bin/blueman-applet &
 
 # start the kdeconnect indicator
-kdeconnect-indicator &
+/usr/bin/kdeconnect-indicator &
 
 # start the notification daemon
-dunst &
+/usr/bin/dunst &
 
 # qtile twm
 # /usr/bin/qtile start
