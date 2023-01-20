@@ -23,7 +23,7 @@ case $chosen in
     fi
     ;;
     "Emacs Daemon")
-    emacsclient -e '(save-buffers-kill-emacs)'; emacs --daemon
+    killall emacs; emacsclient -e '(save-buffers-kill-emacs)'; emacs --daemon
     if [ $? -eq 0 ]; then
         notify-send -a "$notification_app" "$notification_subject" "Emacs daemon restarted."
     else
