@@ -3,7 +3,7 @@
 configuration {
 	kb-remove-to-eol: "";
 	kb-accept-entry: "Control+m,Return,KP_Enter";
-	kb-row-up: "Up,Control+p,ISO_Left_Tab,Control+k";
+	kb-row-up: "Up,Control+p,Control+k";
 	kb-row-down: "Down,Control+n,Control+j";
     show-icons:         true;
     icon-theme:         "Papirus";
