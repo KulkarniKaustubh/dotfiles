@@ -33,7 +33,7 @@ mainbox {
 }
 
 element {
-    padding: 0.5%;
+    padding: 1% 0 1% 0;
     text-color: @fg;
     margin: 1% 0 1% 0;
     background-color: transparent;
@@ -75,7 +75,7 @@ inputbar {
 listview {
     background-color: @bg;
     columns: 1;
-    lines: 30;
+    lines: 10;
     fixed-height: true;
 }
 
@@ -84,4 +84,8 @@ prompt {
     enabled: true;
     padding: 12 0 0 12;
     text-color: @fg-selected;
+}
+
+textbox {
+    text-color: @bg-selected;
 }

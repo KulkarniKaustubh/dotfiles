@@ -2,7 +2,6 @@
 
 window {
     width: 50%;
-    height: 50%;
 }
 
 entry {
@@ -11,4 +10,5 @@ entry {
 
 listview {
     columns: 2;
+    lines: 7;
 }

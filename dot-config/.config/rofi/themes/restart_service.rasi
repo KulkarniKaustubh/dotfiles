@@ -2,11 +2,11 @@
 
 window {
     width: 25%;
-    height: 35%;
 }
 
 element {
     children: [element-text];
+    padding: 1%;
 }
 
 inputbar {
@@ -17,5 +17,5 @@ listview {
     padding: 8 0;
     background-color: @bg;
     columns: 1;
-    lines: 30;
+    lines: 5;
 }

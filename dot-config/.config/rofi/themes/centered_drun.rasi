@@ -2,9 +2,12 @@
 
 window {
     width: 25%;
-    height: 35%;
 }
 
 entry {
     placeholder: " Search for apps";
+}
+
+listview {
+    lines: 5;
 }
