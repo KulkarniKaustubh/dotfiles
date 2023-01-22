@@ -1,4 +1,5 @@
 /** Basic config file **/
+@theme "../themes/main_theme.rasi"
 
 configuration {
 	kb-remove-to-eol: "";
