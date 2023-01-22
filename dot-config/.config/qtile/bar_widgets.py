@@ -8,11 +8,25 @@ import os
 
 my_terminal = "alacritty"
 
+blue_colors = {
+    "white": "#ffffff",
+    "blue1": "#eff3fd",
+    "blue2": "#e5f3fd",
+    "blue3": "#dbf3fa",
+    "blue4": "#b7e9f7",
+    "blue5": "#92dff3",
+    "blue6": "#296d98",
+    "blue7": "#2f4d7d",
+    "blue8": "#215578",
+    "blue9": "#152338",
+}
+
 colors = {
     "black": "#000000",
     "gray": "#6e6c7e",
     "white": "#ffffff",
     "teal": "#b5e8e0",
+    "faded_blue": "#566c73",
     "lighter_blue": "#dbf0fe",
     "light_blue": "#add8e6",
     "dark_blue": "#152238",
@@ -30,18 +44,21 @@ colors = {
 backgrounds = {
     "group_box": colors["dark_blue"],
     "window_name": colors["dark_blue"],
+    "update_block": blue_colors["blue1"],
     # "gpu_block": colors["green"],
-    "gpu_block": "#dbf3fa",
+    "gpu_block": blue_colors["blue2"],
     # "cpu_block": colors["dark_pink"],
-    "cpu_block": "#b7e9f7",
+    "cpu_block": blue_colors["blue3"],
     # "ram_block": colors["light_pink"],
-    "ram_block": "#92dff3",
+    # "ram_block": "#92dff3",
+    "ram_block": blue_colors["blue4"],
+    "memory_block": blue_colors["blue5"],
     # "volume_block": colors["dark_orange"],
-    "volume_block": "#296d98",
+    "volume_block": blue_colors["blue6"],
     "brightness_block": colors["orange"],
     "battery_block": colors["green"],
     # "clock_block": colors["yellow"],
-    "clock_block": "#2f4d7d",
+    "clock_block": blue_colors["blue7"],
     # "current_layout": colors["lighter_blue"],
     "current_layout": colors["dark_blue"],
     "quick_exit": colors["black"],
@@ -119,19 +136,38 @@ def group_box():
     """Workspaces."""
     return [
         widget.GroupBox(
-            active="#add8e6",
+            active=colors["light_blue"],
             # inactive="#add8e680",
             # inactive="#78909c",
-            inactive="#566c73",
+            inactive=colors["faded_blue"],
             highlight_method="line",
             highlight_color=colors["dark_blue"],
-            other_current_screen_border="#215578",
-            other_screen_border="#215578",
+            other_current_screen_border=blue_colors["blue8"],
+            other_screen_border=blue_colors["blue8"],
             this_current_screen_border=colors["lighter_blue"],
             this_screen_border=colors["lighter_blue"],
             background=backgrounds["group_box"],
-            padding=5,
+            padding=10,
             fontsize=25,
+        ),
+    ]
+
+
+def audio_block():
+    """Show current audio info."""
+    return [
+        widget.Mpris2(
+            foreground=colors["lighter_blue"],
+            # background="#eff3fd",
+            # background="#566c73",
+            display_metadata=["xesam:title", "xesam:artist"],
+            max_chars=40,
+            playing_text="    {track}",
+            paused_text="    {track}",
+            scroll=False,
+            scroll_interval=0.01,
+            fontsize=12,
+            font="Iosevka Nerd Font",
         ),
     ]
 
@@ -139,20 +175,12 @@ def group_box():
 def window_name():
     """Active window name."""
     return [
-        # widget.WindowName(
-        #     foreground=colors["white"],
-        #     background=backgrounds["window_name"],
-        #     max_chars=50,
-        #     width=bar.CALCULATED,
-        #     fontsize=13,
-        #     padding=20,
-        # ),
         widget.WindowName(
             foreground=colors["white"],
             background=backgrounds["window_name"],
             max_chars=40,
             width=bar.CALCULATED,
-            padding=15,
+            # padding=13,
         ),
     ]
 
@@ -164,9 +192,11 @@ def app_block():
             text_closed="",
             text_open="",
             close_button_location="right",
-            fontsize=25,
+            fontsize=15,
+            font="Iosevka Nerd Font",
             widgets=[
-                widget.Systray(padding=0),
+                widget.Systray(padding=2, icon_size=15),
+                widget.Sep(linewidth=0, padding=5),
             ],
         )
     ]
@@ -189,7 +219,7 @@ def gpu_block():
             linewidth=0, padding=5, background=backgrounds["gpu_block"]
         ),
         widget.NvidiaSensors(
-            foreground="#152238",
+            foreground=colors["dark_blue"],
             background=backgrounds["gpu_block"],
             format="{temp}°C",
             padding=5,
@@ -199,7 +229,7 @@ def gpu_block():
         ),
         widget.GenPollText(
             fmt="{}",
-            foreground="#152238",
+            foreground=colors["dark_blue"],
             background=backgrounds["gpu_block"],
             func=get_gpu_usage,
             update_interval=2,
@@ -207,10 +237,11 @@ def gpu_block():
                 "Button1": lambda: qtile.cmd_spawn(my_terminal + " -e nvtop")
             },
             padding=5,
+            width=30,
         ),
         widget.GenPollText(
             fmt="{}",
-            foreground="#152238",
+            foreground=colors["dark_blue"],
             background=backgrounds["gpu_block"],
             func=get_gpu_mem_usage,
             update_interval=2,
@@ -229,9 +260,10 @@ def update_block():
             text="",
             foreground=colors["dark_blue"],
             # background=colors["white"],
-            background="#eff3fd",
+            background=backgrounds["update_block"],
+            # background="#e5f3fd",
             # "#E5F3FD"
-            fontsize=15,
+            fontsize=13,
             font="Iosevka Nerd Font",
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e paru")
@@ -241,7 +273,8 @@ def update_block():
             display_format="{updates}",
             colour_have_updates=colors["dark_blue"],
             colour_no_updates=colors["dark_blue"],
-            background="#eff3fd",
+            background=backgrounds["update_block"],
+            # background="#e5f3fd",
             distro="Arch_checkupdates",
             update_interval=120,
             no_update_string="0",
@@ -257,9 +290,10 @@ def memory_block():
     return [
         widget.TextBox(
             text="",
+            # text="",
             foreground=colors["dark_blue"],
-            background="#e5f3fd",
-            fontsize=15,
+            background=backgrounds["memory_block"],
+            fontsize=13,
             font="Iosevka Nerd Font",
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(
@@ -269,9 +303,10 @@ def memory_block():
         ),
         widget.DF(
             format="{p} {uf}{m} {r:.1f}%",
+            # format="{uf}{m}",
             visible_on_warn=False,
             foreground=colors["dark_blue"],
-            background="#e5f3fd",
+            background=backgrounds["memory_block"],
             update_interval=120,
             warn_space=100,
             mouse_callbacks={
@@ -291,7 +326,7 @@ def cpu_block():
             foreground=colors["dark_blue"],
             background=backgrounds["cpu_block"],
             mouse_callbacks={"Button1": lambda: qtile.cmd_spawn("psensor")},
-            fontsize=15,
+            fontsize=13,
             font="Iosevka Nerd Font",
         ),
         widget.GenPollText(
@@ -301,14 +336,12 @@ def cpu_block():
             func=get_cpu_temp,
             update_interval=2,
             mouse_callbacks={"Button1": lambda: qtile.cmd_spawn("psensor")},
-            padding=5,
         ),
         widget.CPU(
             foreground=colors["dark_blue"],
             background=backgrounds["cpu_block"],
             # background="#f5d0f0",
             format="{load_percent}%",
-            padding=5,
             mouse_callbacks={"Button1": lambda: qtile.cmd_spawn("psensor")},
             width=45,
         ),
@@ -325,13 +358,14 @@ def ram_block():
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
             },
-            fontsize=15,
+            fontsize=13,
             font="Iosevka Nerd Font",
         ),
         widget.Memory(
             foreground=colors["dark_blue"],
             background=backgrounds["ram_block"],
             format="{MemUsed:.1f}{mm}/{MemTotal:.0f}{mm}",
+            # format="{MemUsed:.1f}{mm}",
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
             },
@@ -347,7 +381,7 @@ def ram_block():
         #     },
         #     measure_swap="G",
         #     padding=5,
-        #     fontsize=15,
+        #     fontsize=13,
         #     font="Iosevka Nerd Font",
         # ),
     ]
@@ -363,7 +397,7 @@ def volume_block():
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn("pavucontrol")
             },
-            fontsize=15,
+            fontsize=13,
             font="Iosevka Nerd Font",
         ),
         widget.Volume(
@@ -388,17 +422,16 @@ def clock_block():
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
             },
-            fontsize=15,
+            fontsize=13,
             font="Iosevka Nerd Font",
         ),
         widget.Clock(
-            format="%I:%M %a %b %d",
+            format="%I:%M %b %d",
             foreground=colors["lighter_blue"],
             background=backgrounds["clock_block"],
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
             },
-            padding=5,
         ),
     ]
 
@@ -471,14 +504,14 @@ def quick_exit():
         widget.QuickExit(
             default_text="",  # utf8 for the power symbol
             foreground=colors["lighter_blue"],
-            background=backgrounds["quick_exit"],
-            padding=13,
+            # background=backgrounds["quick_exit"],
+            padding=10,
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(
                     f"{os.environ['HOME']}/.config/rofi/scripts/powermenu"
                 )
             },
-            fontsize=15,
+            fontsize=13,
             font="Iosevka Nerd Font",
         ),
     ]
@@ -500,13 +533,16 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
                     + '-display-combi "Apps"'
                 )
             },
-            fontsize=15,
+            fontsize=13,
             font="Iosevka Nerd Font",
             name="Arch Logo",
         ),
         *current_layout(),
         *group_box(),
+        widget.Sep(linewidth=0, padding=5),
         *window_name(),
+        widget.Sep(linewidth=0, padding=5),
+        *audio_block(),
         widget.Sep(linewidth=0, padding=5),
         widget.chord.Chord(
             foreground=colors["dark_blue"],
@@ -517,11 +553,11 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
         widget.Sep(linewidth=0, padding=5),
         *update_block(),
         widget.Sep(linewidth=0, padding=5),
-        *memory_block(),
-        widget.Sep(linewidth=0, padding=5),
         *cpu_block(),
         widget.Sep(linewidth=0, padding=5),
         *ram_block(),
+        widget.Sep(linewidth=0, padding=5),
+        *memory_block(),
         widget.Sep(linewidth=0, padding=5),
         *volume_block(),
         widget.Sep(linewidth=0, padding=5),
@@ -555,12 +591,10 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
             widget.Sep(linewidth=0, padding=5),
             *gpu_block(),
         ]
-    else:
-        widgets[13:13] = []
 
     # Add systray only on one primary monitor to avoid systray crash
     if primary:
-        widgets[8:8] = [
+        widgets[10:10] = [
             widget.Sep(linewidth=0, padding=5),
             *app_block(),
         ]
