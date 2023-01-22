@@ -489,15 +489,29 @@ group_names = [
         },
     ),
     ("3", {"layout": "monadtall", "label": workspace_labels["3"]}),
-    ("4", {"layout": "monadtall", "label": workspace_labels["4"]}),
+    (
+        "4",
+        {
+            "layout": "monadtall",
+            "label": workspace_labels["4"],
+            "matches": [Match(wm_class=["Steam"])],
+        },
+    ),
     (
         "5",
         {
-            "layout": "monadtall",
+            "layout": "treetab",
             "label": workspace_labels["5"],
         },
     ),
-    ("6", {"layout": "monadtall", "label": workspace_labels["6"]}),
+    (
+        "6",
+        {
+            "layout": "monadtall",
+            "label": workspace_labels["6"],
+            "matches": [Match(wm_class=["obs"])],
+        },
+    ),
     ("7", {"layout": "monadtall", "label": workspace_labels["7"]}),
     (
         "8",
@@ -505,6 +519,7 @@ group_names = [
             "layout": "monadtall",
             "spawn": ["discord"],
             "label": workspace_labels["8"],
+            "matches": [Match(wm_class=["discord"])],
         },
     ),
     (
@@ -513,17 +528,16 @@ group_names = [
             "layout": "monadtall",
             "spawn": ["signal-desktop"],
             "label": workspace_labels["9"],
-            # "label": widget.Image(
-            #     filename=f"{os.environ['HOME']}/.config/qtile/icons/signal.png",
-            # ),
+            "matches": [Match(wm_class=["Signal"])],
         },
     ),
     (
         "10",
         {
             "layout": "monadtall",
-            "spawn": "youtube-music",
+            # "spawn": "youtube-music",
             "label": workspace_labels["10"],
+            "matches": [Match(wm_class=["YouTube Music, Spotify"])],
         },
     ),
 ]
