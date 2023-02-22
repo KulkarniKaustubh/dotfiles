@@ -2,15 +2,43 @@
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
-bindkey -e
 # End of lines configured by zsh-newuser-install
 
+# ------------------------------- Vim Stuff -------------------------------
+# Activate Vim mode
+bindkey -v
+
+# Remove mode switching delay.
+export KEYTIMEOUT=1
+
+function _set_block_cursor() { echo -ne '\e[2 q' ;}
+function _set_underline_cursor() { echo -ne '\e[4 q' ;}
+
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
+      _set_block_cursor
+  elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] || [[ $1 = 'underline' ]]; then
+      _set_underline_cursor
+  fi
+}
+zle -N zle-keymap-select
+
+# Use beam shape cursor on startup.
+echo -ne '\e[4 q'
+
+# Use beam shape cursor for each new prompt.
+precmd_functions+=(_set_underline_cursor)
+
+# ----------------------------- Vim Stuff End -----------------------------
+
 # sugon
-if command -v "figlet" &> /dev/null &&
-   command -v "lolcat" &> /dev/null;
-then
-    figlet -f Speed "SugoN" | lolcat
-fi
+# if command -v "figlet" &> /dev/null &&
+#    command -v "lolcat" &> /dev/null;
+# then
+#     figlet -f Speed "SugoN" | lolcat
+# fi
 # end sugon
 
 # Fixing zsh history problems on multiple terminals
@@ -24,6 +52,10 @@ setopt histignorealldups
 autoload -Uz select-word-style
 select-word-style bash
 
+# Restore some things I like from bindkey -e
+bindkey "^A" beginning-of-line
+bindkey "^E" end-of-line
+bindkey "^[h" run-help
 bindkey ";5C" forward-word
 bindkey ";5D" backward-word
 bindkey "^[[H" beginning-of-line
@@ -80,6 +112,9 @@ if [ ! -d "$HOME/.zsh/zsh-history-substring-search" ]; then
 fi
 
 source $HOME/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+source $HOME/.zsh/fzf-dir/fzf-dir.zsh
+
 # enabling up and down arrow keys to use the plugin
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
@@ -134,41 +169,15 @@ fi
 
 # custom ZSH keybinds
 
-fzf-dir() {
-    if ! command -v "fd" &> /dev/null; then
-        echo "Install fd (or fd-find) for this feature to work."
-        return -1
-    fi
-    if ! command -v "fzf" &> /dev/null; then
-        echo "Install fzf for this feature to work."
-        return -1
-    fi
-    local dir ret=$?
-    dir=$(fd . $HOME -Ha --type directory | fzf --height=40%)
-    if [ -z "$dir" ]; then
-        zle redisplay
-        return 0
-    fi
-    cd $dir
-    # precmd functions are the functions/hooks run everytime to reset the prompt
-    local precmd
-    for precmd in $precmd_functions; do
-      $precmd
-    done
-    zle reset-prompt
-    return $ret
-}
-
-zle -N fzf-dir
-bindkey "^F" fzf-dir
-
 if command -v "emacs" &> /dev/null; then bindkey -s "^[e" "emacsclient -c . &; disown %1; ^M"; fi
 if command -v "nautilus" &> /dev/null; then bindkey -s "^[n" "nautilus . &; disown %1; ^M"; fi
+bindkey "^[[1;3D" "prevd"
+bindkey "^[[1;3C" "nextd"
 
 # end
 
 # loop through and source all aliases files
-for aliases_file in $(ls -a $HOME | grep -E "\.aliases.*\.zsh"); do
+for aliases_file in $(\ls -a $HOME | \grep -E "\.aliases.*\.zsh"); do
     source $HOME/$aliases_file
 done
 
