@@ -2,15 +2,16 @@ alias c='cd'
 alias c..='cd ..'
 
 if command -v "exa" &> /dev/null; then
-    alias ls="exa"
-    alias ll="exa -l"
-    alias la="exa -a"
-    alias lla="exa -laF"
-    alias l="exa"
+    exa_cmd="exa --icons --group-directories-first"
+    alias ls="$exa_cmd"
+    alias l="$exa_cmd"
+    alias ll="$exa_cmd -l"
+    alias la="$exa_cmd -a"
+    alias lla="$exa_cmd -laF"
 else
-    alias la="ls -a"
-    alias lla="ls -la"
     alias l="ls"
+    alias la="ls -a"
+    alias lla="ls -lah"
 fi
 
 if command -v "bat" &> /dev/null; then
