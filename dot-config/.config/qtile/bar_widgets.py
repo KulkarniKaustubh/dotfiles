@@ -426,7 +426,7 @@ def clock_block():
             font="Iosevka Nerd Font",
         ),
         widget.Clock(
-            format="%I:%M %b %d",
+            format="%H:%M %b %d",
             foreground=colors["lighter_blue"],
             background=backgrounds["clock_block"],
             mouse_callbacks={
