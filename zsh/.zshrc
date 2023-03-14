@@ -4,35 +4,6 @@ HISTSIZE=10000
 SAVEHIST=10000
 # End of lines configured by zsh-newuser-install
 
-# ------------------------------- Vim Stuff -------------------------------
-# Activate Vim mode
-bindkey -v
-
-# Remove mode switching delay.
-export KEYTIMEOUT=1
-
-function _set_block_cursor() { echo -ne '\e[2 q' ;}
-function _set_underline_cursor() { echo -ne '\e[4 q' ;}
-
-# Change cursor shape for different vi modes.
-function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
-      _set_block_cursor
-  elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]] || [[ $1 = 'underline' ]]; then
-      _set_underline_cursor
-  fi
-}
-zle -N zle-keymap-select
-
-# Use beam shape cursor on startup.
-echo -ne '\e[4 q'
-
-# Use beam shape cursor for each new prompt.
-precmd_functions+=(_set_underline_cursor)
-
-# ----------------------------- Vim Stuff End -----------------------------
-
 # sugon
 # if command -v "figlet" &> /dev/null &&
 #    command -v "lolcat" &> /dev/null;
@@ -51,16 +22,6 @@ setopt histignorealldups
 # Fixing some keys inside zsh
 autoload -Uz select-word-style
 select-word-style bash
-
-# Restore some things I like from bindkey -e
-bindkey "^A" beginning-of-line
-bindkey "^E" end-of-line
-bindkey "^[h" run-help
-bindkey ";5C" forward-word
-bindkey ";5D" backward-word
-bindkey "^[[H" beginning-of-line
-bindkey "^[[F" end-of-line
-bindkey "^[[3~" delete-char
 
 # Add highlight enabled tab completion with colors
 zstyle ':completion:*' menu select
@@ -113,7 +74,7 @@ fi
 
 source $HOME/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 
-source $HOME/.zsh/fzf-dir/fzf-dir.zsh
+source $HOME/dotfiles/zsh/widgets/dir-operations/dir-operations.zsh
 
 # enabling up and down arrow keys to use the plugin
 bindkey "^[[A" history-substring-search-up
@@ -168,11 +129,16 @@ then
 fi
 
 # custom ZSH keybinds
+bindkey ";5C" forward-word
+bindkey ";5D" backward-word
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+bindkey "^[[3~" delete-char
 
 if command -v "emacs" &> /dev/null; then bindkey -s "^[e" "emacsclient -c . &; disown %1; ^M"; fi
 if command -v "nautilus" &> /dev/null; then bindkey -s "^[n" "nautilus . &; disown %1; ^M"; fi
-bindkey "^[[1;3D" "prevd"
-bindkey "^[[1;3C" "nextd"
+# bindkey -s "^[[1;3D" "pushd +1"  # "prevd"
+# bindkey -s "^[[1;3C" "pushd -0"  # "nextd"
 
 # end
 
