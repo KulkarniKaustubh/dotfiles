@@ -15,7 +15,7 @@ fzf-dir() {
     local dir ret=$?
 
     local history_prompt="---- Recent History ----"
-    local history_file="$HOME/.local/share/dir-operations-history"
+    local history_file="$HOME/.local/share/zsh/widgets/dir-operations-history"
 
     if [ ! -f $history_file ]; then
         if [ ! -d $(dirname $history_file) ]; then
@@ -26,9 +26,8 @@ fzf-dir() {
     
     local dir_histsize=10
 
-
     local sed_cmd="sed -e 's|$HOME|~|g'"
-    local awk_cmd="awk 'NF==0{print;next} !seen[$0]++'"
+    # local pwd_sed_cmd="sed -e 's|$PWD|\.|g'"
     
     local pwd_fd_cmd="fd . . -Ha --type directory | $sed_cmd"
     local home_fd_cmd="fd . $HOME -Ha --type directory | (\tac \"$history_file\" && echo \"\n$history_prompt\n\" && \cat) | $sed_cmd"
@@ -37,12 +36,13 @@ fzf-dir() {
 
     if [ $PWD != $HOME ]; then
         dir=$(eval $pwd_fd_cmd | awk 'NF==0{print;next} !seen[$0]++' |
-                  fzf --header="Hit C-f to search from the home directory." \
+                  fzf --header="Hit C-f again to search from $HOME." \
                       --height=60% \
                       --border=top \
                       --border-label="Search For Directories" \
                       --bind "ctrl-f:reload(eval $home_fd_cmd)" \
-                      --preview "$preview_cmd"
+                      --preview "$preview_cmd" \
+                      --preview-window 35%,border-left \
               )
     else
         dir=$(eval $home_fd_cmd | awk 'NF==0{print;next} !seen[$0]++' |
@@ -50,7 +50,7 @@ fzf-dir() {
                       --border=top \
                       --border-label="Search For Directories" \
                       --preview "$preview_cmd" \
-                      --preview-window 35%
+                      --preview-window 35%,border-left \
               )
     fi
 

@@ -74,7 +74,7 @@ fi
 
 source $HOME/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 
-source $HOME/dotfiles/zsh/widgets/dir-operations/dir-operations.zsh
+source $HOME/dotfiles/zsh/widgets/dir-operations.zsh
 
 # enabling up and down arrow keys to use the plugin
 bindkey "^[[A" history-substring-search-up
