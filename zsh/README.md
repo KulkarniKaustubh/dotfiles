@@ -7,8 +7,6 @@ Prerequisites
 - `fzf` (fuzzy finder)
 > For `fzf` to work, please take a look at the `.fzf.zsh` script and change the file paths based on how `fzf` is installed on your system.
 - `fd` or `fd-find` (the Rust alternative to the `find` command)
-- `figlet`
-- `lolcat`
 
 Recommended:
 
