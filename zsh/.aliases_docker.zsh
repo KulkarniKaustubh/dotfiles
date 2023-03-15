@@ -8,6 +8,4 @@ if command -v "docker" &> /dev/null; then
     alias de="docker exec -ti"
     alias dl="docker pull"
     alias drestart="sudo systemctl restart docker"
-else
-    echo "Install docker."
 fi
