@@ -36,19 +36,21 @@ fzf-dir() {
 
     if [ $PWD != $HOME ]; then
         dir=$(eval $pwd_fd_cmd | awk 'NF==0{print;next} !seen[$0]++' |
-                  fzf --header="Hit C-f again to search from $HOME." \
+                  fzf --header="C-f : search ~ | C-v : search ." \
                       --height=60% \
-                      --border=top \
-                      --border-label="Search For Directories" \
+                      --border "top" \
+                      --prompt="Search for a directory> " \
                       --bind "ctrl-f:reload(eval $home_fd_cmd)" \
+                      --bind "ctrl-v:reload(eval $pwd_fd_cmd)" \
                       --preview "$preview_cmd" \
                       --preview-window 35%,border-left \
               )
     else
         dir=$(eval $home_fd_cmd | awk 'NF==0{print;next} !seen[$0]++' |
                   fzf --height=60% \
-                      --border=top \
-                      --border-label="Search For Directories" \
+                      --border "top" \
+                      --prompt="Search for a directory> " \
+                      --bind "change:first" \
                       --preview "$preview_cmd" \
                       --preview-window 35%,border-left \
               )
