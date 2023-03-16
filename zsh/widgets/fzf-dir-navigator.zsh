@@ -1,7 +1,7 @@
 # Make `cd` use `pushd`
 # setopt AUTO_PUSHD
 
-# Please read the README.md file @ https://www.github.com/KulkarniKaustubh/fzf-dir-navigation
+# Please read the README.md file @ https://www.github.com/KulkarniKaustubh/fzf-dir-navigator
 
 
 # ------------------------------------------------------------------------------------------
@@ -43,7 +43,7 @@ fzf-dir() {
     local dir_histsize=10
 
     # Default history file where all the history will be stored.
-    local history_file="$HOME/.local/share/zsh/widgets/fzf-dir-navigation-history"
+    local history_file="$HOME/.local/share/zsh/widgets/fzf-dir-navigator-history"
 
     # Prompt under which the history will be show on the terminal.
     local history_prompt="---- Recent History ----"
