@@ -74,7 +74,13 @@ fi
 
 source $HOME/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 
-source $HOME/dotfiles/zsh/widgets/fzf-dir-navigator.zsh
+# check if fzf dir navigator exists exists
+if [ ! -d "$HOME/.zsh/zsh-history-substring-search" ]; then
+    echo "Installing zsh history substring search."
+    git clone https://github.com/KulkarniKaustubh/fzf-dir-navigator.git $HOME/.zsh/fzf-dir-navigator
+fi
+
+source $HOME/.zsh/fzf-dir-navigator/fzf-dir-navigator.zsh
 
 # enabling up and down arrow keys to use the plugin
 bindkey "^[[A" history-substring-search-up
@@ -129,17 +135,14 @@ then
 fi
 
 # custom ZSH keybinds
-bindkey ";5C" forward-word
-bindkey ";5D" backward-word
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
 bindkey "^[[3~" delete-char
 
 if command -v "emacs" &> /dev/null; then bindkey -s "^[e" "emacsclient -c . &; disown %1; ^M"; fi
 if command -v "nautilus" &> /dev/null; then bindkey -s "^[n" "nautilus . &; disown %1; ^M"; fi
-# bindkey -s "^[[1;3D" "pushd +1"  # "prevd"
-# bindkey -s "^[[1;3C" "pushd -0"  # "nextd"
-
 # end
 
 # loop through and source all aliases files
