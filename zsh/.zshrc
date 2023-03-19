@@ -75,8 +75,8 @@ fi
 source $HOME/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # check if fzf dir navigator exists exists
-if [ ! -d "$HOME/.zsh/zsh-history-substring-search" ]; then
-    echo "Installing zsh history substring search."
+if [ ! -d "$HOME/.zsh/fzf-dir-navigator" ]; then
+    echo "Installing fzf dir navigator."
     git clone https://github.com/KulkarniKaustubh/fzf-dir-navigator.git $HOME/.zsh/fzf-dir-navigator
 fi
 
