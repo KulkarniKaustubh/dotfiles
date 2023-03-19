@@ -22,7 +22,8 @@ alias p="python"
 alias p3="python3"
 alias cls="clear"
 
-alias rm="gio trash" # safe rm command
+# safe rm command
+alias rm="gio trash"
 
 if command -v "emacs" &> /dev/null; then
     alias ec="emacsclient -c"
@@ -32,8 +33,9 @@ if command -v "emacs" &> /dev/null; then
     alias erestart="emacsclient -e '(save-buffers-kill-emacs)'; emacs --daemon"
 fi
 
-alias keys="xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf \"%-3s %s\n\", $5, $8 }'"
-
 alias yay="paru --bottomup"
 
 alias tmux="tmux -u"
+
+# alias to update all zsh plugins that are git repos.
+alias update="for plugin in $HOME/.zsh/*; do [ -d $plugin/.git ] && echo "Updating $plugin..." && git -C $plugin pull 2> /dev/null; done"
