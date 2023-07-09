@@ -5,9 +5,9 @@ if command -v "exa" &> /dev/null; then
     exa_cmd="exa --icons --group-directories-first"
     alias ls="$exa_cmd"
     alias l="$exa_cmd"
-    alias ll="$exa_cmd -l"
-    alias la="$exa_cmd -a"
-    alias lla="$exa_cmd -laF"
+    alias ll="$exa_cmd -hl"
+    alias la="$exa_cmd -ha"
+    alias lla="$exa_cmd -hlaF"
 else
     alias l="ls"
     alias la="ls -a"
