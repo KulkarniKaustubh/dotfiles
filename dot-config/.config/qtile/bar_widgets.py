@@ -443,18 +443,14 @@ def brightness_block():
             text="\u2600",
             foreground=colors["black"],
             background=backgrounds["brightness_block"],
-            mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn("pavucontrol")
-            },
+            fontsize=13,
+            font="Iosevka Nerd Font",
         ),
         widget.Backlight(
             fmt="{}",
-            backlight_name="intel_backlight",
+            backlight_name="amdgpu_bl1",
             foreground=colors["black"],
             background=backgrounds["brightness_block"],
-            mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn("pavucontrol")
-            },
             padding=5,
             fontsize=13,
         ),
@@ -491,7 +487,7 @@ def battery_block():
             full_char="",
             empty_char="",
             low_percentage=0.25,
-            format="{char}   {percent:2.1%}",
+            format="{char}  {percent:2.1%}",
             update_delay=5,
             padding=13,
         )
@@ -567,12 +563,14 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
     ]
 
     if laptop:
-        widgets[19:19] = [
+        widgets[20:20] = [
+            widget.Sep(linewidth=0, padding=5),
             *brightness_block(),
+            widget.Sep(linewidth=0, padding=5),
             *battery_block(),
         ]
     else:
-        widgets[19:19] = []
+        widgets[20:20] = []
 
     # Add the GPU block if it exists on the machine
     p1 = subprocess.Popen(
