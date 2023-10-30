@@ -143,8 +143,9 @@ bindkey "^[[F" end-of-line
 bindkey "^[[3~" delete-char
 
 # if command -v "emacs" &> /dev/null; then bindkey -s "^[e" "emacsclient -c . &; disown %1; ^M"; fi
-if command -v "nvim" &> /dev/null; then bindkey -s "^[e" "nvim .; ^M"; fi
-if command -v "nautilus" &> /dev/null; then bindkey -s "^[n" "nautilus . &; disown %1; ^M"; fi
+if command -v "nvim" &> /dev/null; then bindkey -s "^[e" "nvim "; fi
+if command -v "neovide" &> /dev/null; then bindkey -s "^[E" "devour neovide . --nofork; "; fi
+if command -v "nautilus" &> /dev/null; then bindkey -s "^[n" "nautilus . &!; exit; "; fi
 # end
 
 # loop through and source all aliases files
