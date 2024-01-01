@@ -114,8 +114,8 @@ font:
     #   - (Windows) Consolas
     # family: Source Code Pro
     # family: CodeNewRoman Nerd Font
-    # family: MesloLGS NF
-    family: Fura Mono NF
+    family: MesloLGS NF
+    # family: Fura Mono NF
     # family: Iosevka Nerd Font
     # family: Hack
     # family: JetBrains Mono
@@ -134,8 +134,9 @@ font:
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
     # family: Source Code Pro
-    # family: MesloLGS NF
-    family: Fura Mono NF
+    family: MesloLGS NF
+    # family: Fura Mono NF
+    # family: Iosevka Nerd Font
     # family: CodeNewRoman Nerd Font
     # family: Source Code Pro
     # family: Hack
@@ -154,8 +155,9 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    # family: MesloLGS NF
-    family: Fura Mono NF
+    family: MesloLGS NF
+    # family: Fura Mono NF
+    # family: Iosevka Nerd Font
     # family: CodeNewRoman Nerd Font
     # family: Source Code Pro
     # family: Hack
@@ -174,8 +176,9 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    # family: MesloLGS NF
-    family: Fura Mono NF
+    family: MesloLGS NF
+    # family: Fura Mono NF
+    # family: Iosevka Nerd Font
     # family: CodeNewRoman Nerd Font
     # family: Source Code Pro
     # family: Hack
@@ -186,7 +189,7 @@ font:
     # family: Mononoki Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    style: Italic
+   # style: Italic
 
   # Bold italic 
     # family: CodeNewRoman Nerd Font
@@ -202,7 +205,7 @@ font:
     style: Bold Italic
 
   # Point size
-  size: 12.0
+  size: 10.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -419,7 +422,7 @@ colors:
   #save_to_clipboard: false
 
 # Allow terminal applications to change Alacritty's window title.
-DISTRO TUBE CONF starts here:
+# DISTRO TUBE CONF starts here:
 # # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 # # Any items in the `env` entry below will be added as
