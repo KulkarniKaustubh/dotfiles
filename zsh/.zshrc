@@ -38,12 +38,6 @@ bashcompinit
 # Sourcing the different plugins I have in zsh
 source $HOME/.plugins.zsh
 
-# enabling up and down arrow keys to use the plugin
-bindkey "^[[A" history-substring-search-up
-bindkey "^[[B" history-substring-search-down
-
-# end
-
 # source fuzzy find
 # instructions to install fzf are found on github
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
