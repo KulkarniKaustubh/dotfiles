@@ -1,0 +1,1461 @@
+(cd network_load && /Library/Developer/CommandLineTools/usr/bin/make) >/dev/null
+(cd menus && /Library/Developer/CommandLineTools/usr/bin/make) >/dev/null
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+(cd network_load && /Library/Developer/CommandLineTools/usr/bin/make) >/dev/null
+(cd menus && /Library/Developer/CommandLineTools/usr/bin/make) >/dev/null
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Set: Item not found 'menu.padding'
+
+(cd network_load && /Library/Developer/CommandLineTools/usr/bin/make) >/dev/null
+(cd menus && /Library/Developer/CommandLineTools/usr/bin/make) >/dev/null
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+
+[i] sketchybar: [!] Background: Invalid property 'padding'
+
+[!] Lua: ./items/spaces.lua:63: attempt to index a nil value (local 'spaceConfig')
+[i] sketchybar: [?] Add: Item 'front_apps.Ghostty' already exists
+

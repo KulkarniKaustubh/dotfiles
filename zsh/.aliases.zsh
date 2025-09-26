@@ -1,8 +1,8 @@
 alias c='cd'
 alias c..='cd ..'
 
-if command -v "exa" &> /dev/null; then
-    exa_cmd="exa --icons --group-directories-first"
+if command -v "eza" &> /dev/null; then
+    exa_cmd="eza --icons --group-directories-first"
     alias ls="$exa_cmd"
     alias l="$exa_cmd"
     alias ll="$exa_cmd -hl"
