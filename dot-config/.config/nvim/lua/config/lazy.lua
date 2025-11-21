@@ -16,12 +16,6 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
--- Make sure to setup `mapleader` and `maplocalleader` before
--- loading lazy.nvim so that mappings are correct.
--- This is also a good place to setup other settings (vim.opt)
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-
 -- Setup lazy.nvim
 require("lazy").setup({
     default = { lazy = true },
@@ -29,5 +23,5 @@ require("lazy").setup({
     spec = {
         { import = "plugins" },
     },
-    install = { missing = true, colorscheme = { "habamax" } },
+    install = { missing = true },
 })
