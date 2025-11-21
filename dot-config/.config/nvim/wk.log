@@ -1,0 +1,226 @@
+
+
+Debug Started for v3.17.0
+{
+  commit = "3aab2147e74890957785941f0c1ad87d0a44c15a"
+}
+new Mode(n:2)
+Trigger(add) Mode(n:2) ' ` " g' g` z= g ] [ <Space> z <C-W>
+on_key: k
+on_key: w
+on_key: w
+on_key: h
+on_key: h
+on_key: x
+ModeChanged(n:no)
+  new Mode(o:2)
+  Unsafe(pending "l")
+  suspend: Mode(o:2)
+ModeChanged(no:n)
+  cooldown
+Trigger(add) Mode(o:2) g [ ]
+on_key: <Space>
+State(start): Mode(n:0) Node(<Space>) { keys = "<Space>" }
+  update Mode(n:2)
+  continue: <Space> Mode(n:2)
+  getchar
+  on_key: s
+  got: s
+  suspend: Mode(n:2)
+  Trigger(del) Mode(n:2) z g ] [ <Space> ' <C-W> ` " g' g` z=
+  feedkeys: Mode(n:2) <Space>s
+on_key: <Space>s
+ModeChanged(n:c)
+  new Mode(c:2)
+  Unsafe(pending "w")
+  suspend: Mode(c:2)
+ModeChanged(c:n)
+  cooldown
+Trigger(add) Mode(c:2) <C-R>
+Trigger(add) Mode(n:2) ' ` " g' g` z= g ] [ <Space> z <C-W>
+on_key: <Space>
+State(start): Mode(n:0) Node(<Space>) { keys = "<Space>" }
+  update Mode(n:2)
+  continue: <Space> Mode(n:2)
+  getchar
+  on_key: w
+  got: w
+  suspend: Mode(n:2)
+  Trigger(del) Mode(n:2) z g ] [ <Space> ' <C-W> ` " g' g` z=
+  feedkeys: Mode(n:2) <Space>w
+on_key: <Space>wq
+ModeChanged(n:c)
+  Unsafe(pending "q")
+  suspend: Mode(c:2)
+  Trigger(del) Mode(c:2) <C-R>
+ModeChanged(c:n)
+  cooldown
+Trigger(add) Mode(c:2) <C-R>
+Trigger(add) Mode(n:2) ' ` " g' g` z= g ] [ <Space> z <C-W>
+
+
+Debug Started for v3.17.0
+{
+  commit = "3aab2147e74890957785941f0c1ad87d0a44c15a"
+}
+new Mode(n:2)
+Trigger(add) Mode(n:2) ` ' " z= g` g' ] z <Space> <C-W> g [
+on_key: j
+on_key: j
+on_key: j
+on_key: j
+on_key: j
+on_key: j
+on_key: j
+on_key: j
+on_key: k
+on_key: k
+on_key: k
+on_key: k
+on_key: j
+on_key: h
+on_key: h
+on_key: h
+on_key: h
+on_key: h
+on_key: h
+on_key: x
+ModeChanged(n:no)
+  new Mode(o:2)
+  Unsafe(pending "l")
+  suspend: Mode(o:2)
+ModeChanged(no:n)
+  cooldown
+Trigger(add) Mode(o:2) ] [ g
+on_key: x
+ModeChanged(n:no)
+  Unsafe(pending "l")
+  suspend: Mode(o:2)
+  Trigger(del) Mode(o:2) g [ ]
+ModeChanged(no:n)
+  cooldown
+Trigger(add) Mode(o:2) ] [ g
+on_key: x
+ModeChanged(n:no)
+  Unsafe(pending "l")
+  suspend: Mode(o:2)
+  Trigger(del) Mode(o:2) g [ ]
+ModeChanged(no:n)
+  cooldown
+Trigger(add) Mode(o:2) ] [ g
+on_key: <Space>
+State(start): Mode(n:0) Node(<Space>) { keys = "<Space>" }
+  update Mode(n:2)
+  continue: <Space> Mode(n:2)
+  getchar
+  on_key: s
+  got: s
+  suspend: Mode(n:2)
+  Trigger(del) Mode(n:2) z= g` g' ] z <Space> <C-W> ` [ ' " g
+  feedkeys: Mode(n:2) <Space>s
+on_key: <Space>s
+ModeChanged(n:c)
+  new Mode(c:2)
+  Unsafe(pending "w")
+  suspend: Mode(c:2)
+ModeChanged(c:n)
+  cooldown
+Trigger(add) Mode(c:2) <C-R>
+Trigger(add) Mode(n:2) ` ' " z= g` g' ] z <Space> <C-W> g [
+on_key: <Space>
+State(start): Mode(n:0) Node(<Space>) { keys = "<Space>" }
+  update Mode(n:2)
+  continue: <Space> Mode(n:2)
+  getchar
+  on_key: w
+  got: w
+  suspend: Mode(n:2)
+  Trigger(del) Mode(n:2) [ z= g` g' ] z <Space> <C-W> ` ' " g
+  feedkeys: Mode(n:2) <Space>w
+on_key: <Space>wq
+ModeChanged(n:c)
+  Unsafe(pending "q")
+  suspend: Mode(c:2)
+  Trigger(del) Mode(c:2) <C-R>
+ModeChanged(c:n)
+  cooldown
+Trigger(add) Mode(c:2) <C-R>
+Trigger(add) Mode(n:2) ` ' " z= g` g' ] z <Space> <C-W> g [
+
+
+Debug Started for v3.17.0
+{
+  commit = "3aab2147e74890957785941f0c1ad87d0a44c15a"
+}
+new Mode(n:2)
+Trigger(add) Mode(n:2) ' " ` z= g' g` <Space> z ] [ <C-W> g
+on_key: j
+on_key: j
+on_key: j
+on_key: k
+on_key: k
+on_key: k
+on_key: k
+on_key: k
+on_key: k
+on_key: k
+on_key: k
+on_key: k
+on_key: V
+ModeChanged(n:V)
+  new Mode(x:2)
+  Safe(true)
+  State(start): Mode(x:0) Node() { defer = true }
+    update Mode(x:2)
+    continue:  Mode(x:2)
+    getchar
+    Trigger(add) Mode(x:2) " ] [ <C-W> z g
+    on_key: j
+    got: j
+    suspend: Mode(x:2)
+    Trigger(del) Mode(x:2) " ] [ g z <C-W>
+    feedkeys: Mode(x:2) j
+on_key: j
+Trigger(add) Mode(x:2) " ] [ <C-W> z g
+on_key: j
+on_key: d
+ModeChanged(V:n)
+  Safe(true)
+on_key: <Space>
+State(start): Mode(n:0) Node(<Space>) { keys = "<Space>" }
+  update Mode(n:2)
+  continue: <Space> Mode(n:2)
+  getchar
+  on_key: s
+  got: s
+  suspend: Mode(n:2)
+  Trigger(del) Mode(n:2) ' " ` z= g' ] [ <C-W> g z <Space> g`
+  feedkeys: Mode(n:2) <Space>s
+on_key: <Space>s
+ModeChanged(n:c)
+  new Mode(c:2)
+  Unsafe(pending "w")
+  suspend: Mode(c:2)
+ModeChanged(c:n)
+  cooldown
+Trigger(add) Mode(n:2) ' " ` z= g' g` <Space> z ] [ <C-W> g
+Trigger(add) Mode(c:2) <C-R>
+on_key: <Space>
+State(start): Mode(n:0) Node(<Space>) { keys = "<Space>" }
+  update Mode(n:2)
+  continue: <Space> Mode(n:2)
+  getchar
+  on_key: w
+  got: w
+  suspend: Mode(n:2)
+  Trigger(del) Mode(n:2) ' " ` z= g' ] [ <C-W> g z <Space> g`
+  feedkeys: Mode(n:2) <Space>w
+on_key: <Space>wq
+ModeChanged(n:c)
+  Unsafe(pending "q")
+  suspend: Mode(c:2)
+  Trigger(del) Mode(c:2) <C-R>
+ModeChanged(c:n)
+  cooldown
+Trigger(add) Mode(n:2) ' " ` z= g' g` <Space> z ] [ <C-W> g
+Trigger(add) Mode(c:2) <C-R>
