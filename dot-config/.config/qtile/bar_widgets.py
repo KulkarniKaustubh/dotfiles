@@ -460,17 +460,13 @@ def brightness_block():
 def current_layout():
     """Show current Qtile layout."""
     return [
-        widget.CurrentLayoutIcon(
+        widget.CurrentLayout(
+            mode="icon",
             scale=0.75,
             background=backgrounds["current_layout"],
             custom_icon_paths=[f"{os.environ['HOME']}/.config/qtile/icons/"],
             padding=10,
         ),
-        # widget.CurrentLayout(
-        #     foreground=colors["black"],
-        #     background=backgrounds["current_layout"],
-        #     fontsize=6,
-        # ),
     ]
 
 

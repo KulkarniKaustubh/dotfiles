@@ -63,7 +63,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes '(default))
  '(package-selected-packages
-   '(perspective sudo-edit neotree smooth-scrolling company-tabnine rg restart-emacs blacken python-black ein impatient-mode iedit pyvenv rainbow-delimiters company flycheck lsp-ui lsp-mode golden-ratio vterm-toggle vterm general smex helpful undo-tree counsel ivy-rich doom-themes which-key magit doom-modeline ivy use-package)))
+   '(cargo rust-mode perspective sudo-edit neotree smooth-scrolling company-tabnine rg restart-emacs blacken python-black ein impatient-mode iedit pyvenv rainbow-delimiters company flycheck lsp-ui lsp-mode golden-ratio vterm-toggle vterm general smex helpful undo-tree counsel ivy-rich doom-themes which-key magit doom-modeline ivy use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -315,6 +315,26 @@
   :config
   (pyvenv-activate "~/Envs/lspenv")
   )
+
+;; Rust configuration
+(use-package rust-mode
+  :ensure t
+  :config
+  (setq rust-format-on-save t
+        rust-format-show-buffer nil)
+  (add-hook 'rust-mode-hook
+            (lambda ()
+              (setq indent-tabs-mode nil)
+              ;; Prevent rust from hijacking the nice fold-this mode
+              (define-key rust-mode-map (kbd "C-c C-f") nil))))
+(use-package cargo
+  :ensure t
+  :after rust-mode
+  :hook (rust-mode . cargo-minor-mode)
+  :config
+  ;; cargo clippy no longer requires that nightly only
+  ;; unstable-options argument for the workaround
+  (setq cargo-process--command-clippy "clippy"))
 
 ;; To display warnings/errors, flycheck
 (use-package flycheck)

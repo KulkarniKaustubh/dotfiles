@@ -1,4 +1,5 @@
 """My configuration for the Qtile Tiling Window Manager."""
+
 #
 # -----------
 #  _  ___  __
@@ -53,10 +54,18 @@ super_key = "mod4"
 alt_key = "mod1"
 
 my_terminal = "alacritty"
-my_browser = "firefox"
+my_browser = "zen-browser"
 
 # A list of available commands that can be bound to keys can be found
 # at https://docs.qtile.org/en/latest/manual/config/lazy.html
+
+popup = None
+
+
+@hook.subscribe.startup_once
+def init_popup():
+    global popup
+    popup = Popup(qtile)
 
 
 def qtile_keys():
@@ -318,7 +327,15 @@ def spawn_keys():
                         f"{os.environ['HOME']}/.config/rofi/scripts/restart_service"
                     ),
                     desc="Launch browser",
-                )
+                ),
+                Key(
+                    [],
+                    "a",
+                    lazy.spawn(
+                        f"{os.environ['HOME']}/.config/rofi/scripts/audio_player"
+                    ),
+                    desc="Launch browser",
+                ),
             ],
             name="Rofi Scripts Mode",
             mode=False,
@@ -327,7 +344,7 @@ def spawn_keys():
         Key(
             [super_key],
             "e",
-            lazy.spawn("emacsclient -c"),
+            lazy.spawn("zsh -c 'source ~/.zshrc && neovide --maximized'"),
             desc="Launch emacs client",
         ),
         Key(
@@ -512,7 +529,13 @@ group_names = [
             "matches": [Match(wm_class=["obs"])],
         },
     ),
-    ("7", {"layout": "monadtall", "label": workspace_labels["7"]}),
+    (
+        "7",
+        {
+            "layout": "monadtall",
+            "label": workspace_labels["7"],
+        },
+    ),
     (
         "8",
         {
@@ -526,7 +549,6 @@ group_names = [
         "9",
         {
             "layout": "monadtall",
-            "spawn": ["signal-desktop"],
             "label": workspace_labels["9"],
             "matches": [Match(wm_class=["Signal"])],
         },
@@ -535,7 +557,6 @@ group_names = [
         "10",
         {
             "layout": "monadtall",
-            # "spawn": "youtube-music",
             "label": workspace_labels["10"],
             "matches": [Match(wm_class=["YouTube Music, Spotify"])],
         },
@@ -617,8 +638,6 @@ def show_keys():
     return key_help
 
 
-pop_obj = Popup(qtile=qtile)
-
 keys.extend(
     [
         # Key(
@@ -660,6 +679,24 @@ layout_defaults = dict(
     margin=5,
     font="Fura Mono NF",
 )
+
+floating_layout = layout.Floating(
+    float_rules=[
+        # Run the utility of `xprop`
+        # to see the wm class and name of an X client.
+        *layout.Floating.default_float_rules,
+        # Match(wm_class="gnome-calendar"),  # Calendar app
+        # Match(wm_class="gnome-calculator"),  # Calculator app
+        # Match(wm_class="confirmreset"),  # gitk
+        # Match(wm_class="makebranch"),  # gitk
+        # Match(wm_class="maketag"),  # gitk
+        # Match(wm_class="ssh-askpass"),  # ssh-askpass
+        # Match(title="branchdialog"),  # gitk
+        # Match(title="pinentry"),  # GPG key password entry
+    ],
+    **layout_defaults,
+)
+
 layouts = [
     layout.MonadTall(**layout_defaults),
     layout.TreeTab(
@@ -684,6 +721,7 @@ layouts = [
         border_focus_stack=["#d75f5f", "#8f3d3d"], **layout_defaults
     ),
     layout.Max(),
+    floating_layout,
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
@@ -738,22 +776,6 @@ dgroups_app_rules = []  # type: List
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
-floating_layout = layout.Floating(
-    float_rules=[
-        # Run the utility of `xprop`
-        # to see the wm class and name of an X client.
-        *layout.Floating.default_float_rules,
-        Match(wm_class="gnome-calendar"),  # Calendar app
-        Match(wm_class="gnome-calculator"),  # Calculator app
-        Match(wm_class="confirmreset"),  # gitk
-        Match(wm_class="makebranch"),  # gitk
-        Match(wm_class="maketag"),  # gitk
-        Match(wm_class="ssh-askpass"),  # ssh-askpass
-        Match(title="branchdialog"),  # gitk
-        Match(title="pinentry"),  # GPG key password entry
-    ],
-    **layout_defaults,
-)
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True

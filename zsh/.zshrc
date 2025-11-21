@@ -24,16 +24,16 @@ setopt histignorealldups
 autoload -Uz select-word-style
 select-word-style bash
 
-# Add highlight enabled tab completion with colors
-zstyle ':completion:*' menu select
-eval "$(dircolors)"
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
 # Get bash's compgen
 autoload -Uz compinit
 compinit
 autoload -Uz bashcompinit
 bashcompinit
+
+# Add highlight enabled tab completion with colors
+eval "$(dircolors)"
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' menu select
 
 # Sourcing the different plugins I have in zsh
 source $HOME/.plugins.zsh
@@ -52,7 +52,7 @@ source $HOME/.plugins.zsh
 # add binaries to $PATH
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/cuda/bin
 export PATH=$PATH:/usr/local/cuda/bin:/opt/cuda/bin
-export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin
 # end of $PATH exports
 
 # bash's command not found auto suggest
@@ -93,7 +93,7 @@ bindkey "^[[3~" delete-char
 
 # if command -v "emacs" &> /dev/null; then bindkey -s "^[e" "emacsclient -c . &; disown %1; ^M"; fi
 if command -v "nvim" &> /dev/null; then bindkey -s "^[e" "nvim "; fi
-if command -v "neovide" &> /dev/null; then bindkey -s "^[E" "devour neovide . --nofork; "; fi
+if command -v "neovide" &> /dev/null; then bindkey -s "^[E" "devour neovide . --no-fork; "; fi
 if command -v "nautilus" &> /dev/null; then bindkey -s "^[n" "nautilus . &!; exit; "; fi
 # end
 

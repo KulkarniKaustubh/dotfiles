@@ -38,13 +38,13 @@ fi
 nitrogen --restore &
 
 # compositor
-/usr/bin/picom -b --config $HOME/.config/picom/picom.conf --experimental-backend
+/usr/bin/picom -b --config $HOME/.config/picom/picom.conf
 
 # disable mouse acceleration
-xinput --set-prop "pointer:Razer Razer DeathAdder Essential" 'libinput Accel Profile Enabled' 0, 1
+xinput --set-prop "pointer:Logitech G305" 'libinput Accel Profile Enabled' 0, 1
 
 # reduce mouse sensitivity
-xinput --set-prop "pointer:Razer Razer DeathAdder Essential" 'libinput Accel Speed' -0.2
+xinput --set-prop "pointer:Logitech G305" 'libinput Accel Speed' -0.2
 
 # nvidia settings
 nvidia-settings --load-config-only
@@ -56,7 +56,7 @@ nvidia-settings --load-config-only
 /usr/bin/nm-applet &
 
 # start the bluetooth manager GUI
-/usr/bin/blueman-applet &
+/usr/sbin/blueman-applet &
 
 # start the kdeconnect indicator
 /usr/bin/kdeconnect-indicator &
