@@ -2,7 +2,7 @@ return {
     { "folke/which-key.nvim", },
     { "stevearc/oil.nvim", },
     { "nvim-telescope/telescope.nvim", },
-    { "rmagatti/auto-session", lazy = false, opts = {}, },
+    { "rmagatti/auto-session" },
     { "tpope/vim-fugitive", },
     { "nvim-treesitter/nvim-treesitter", },
     { "catppuccin/nvim" },
