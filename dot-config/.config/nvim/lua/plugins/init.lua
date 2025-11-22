@@ -7,5 +7,7 @@ return {
     { "nvim-treesitter/nvim-treesitter", },
     { "catppuccin/nvim" },
     { "smoka7/hop.nvim" },
-    { "unblevable/quick-scope", lazy = false, }
+    { "unblevable/quick-scope", lazy = false },
+    { "nvim-lualine/lualine.nvim" },
+    { "mason-org/mason.nvim" },
 }
