@@ -15,7 +15,9 @@ local mappings = {
         { "<C-l>", "zz", desc = "Center current line" },
         { "<leader>/", "<cmd> norm gcc <CR>", desc = "Toggle comment" },
         { "<ESC>", "<cmd> noh <CR>", desc = "Clear highlights" },
-        
+        { "<C-j>", "<Down>", desc = "Go down" },
+        { "<C-k>", "<Up>", desc = "Go up" },
+
         -- No idea why indentation doesn't work without this
         { "<<", "<<", desc = "Indent left" },
         { ">>", ">>", desc = "Indent right" },
