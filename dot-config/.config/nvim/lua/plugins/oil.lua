@@ -3,7 +3,7 @@ local border_style = "rounded"
 
 local mappings = {
     n = {
-        {"<leader>e", "<cmd> Oil <CR>", desc = "Oil explorer" },
+        { "<leader>e", "<cmd> Oil <CR>", desc = "Oil explorer" },
     },
 }
 
@@ -12,7 +12,7 @@ keymaps.add(mappings)
 return {
     "stevearc/oil.nvim",
     dependencies = {
-        { "nvim-mini/mini.icons", opts = {} },
+        { "nvim-mini/mini.icons",       opts = {} },
         { "nvim-tree/nvim-web-devicons" },
     },
     lazy = false,

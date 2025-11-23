@@ -1,4 +1,5 @@
 local keymaps = require("utils.keymaps")
+local opts = { noremap = true, silent = true }
 
 local mappings = {
     n = {

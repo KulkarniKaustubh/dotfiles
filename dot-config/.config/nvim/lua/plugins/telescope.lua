@@ -2,13 +2,13 @@ local keymaps = require("utils.keymaps")
 
 local mappings = {
     n = {
-        { "<leader>,", "<cmd>Telescope find_files follow=true no_ignore=true hidden=true <CR>", desc = "Find files" },
-        { "<leader>.", "<cmd>Telescope buffers<CR>", desc = "Browse open buffers" },
-        { "<leader>ll", "<cmd> Telescope diagnostics bufnr=0 <CR>", desc = "Telescope diagnostics for current buffer" },
-        { "<leader>lA", "<cmd> Telescope diagnostics <CR>", desc = "Telescope diagnostics for the project" },
-        { "<C-f>", "<cmd> Telescope live_grep <CR>", desc = "Telescope live grep" },
-        { "<leader>ft", "<cmd> Telescope live_grep <CR>", desc = "Telescope live grep" },
-        { "<C-s>", "<cmd> Telescope current_buffer_fuzzy_find <CR>", desc = "Current buffer fuzzy find" },
+        { "<leader>,",  "<cmd>Telescope find_files follow=true no_ignore=true hidden=true <CR>", desc = "Find files" },
+        { "<leader>.",  "<cmd>Telescope buffers<CR>",                                            desc = "Browse open buffers" },
+        { "<leader>ll", "<cmd> Telescope diagnostics bufnr=0 <CR>",                              desc = "Telescope diagnostics for current buffer" },
+        { "<leader>lA", "<cmd> Telescope diagnostics <CR>",                                      desc = "Telescope diagnostics for the project" },
+        { "<C-f>",      "<cmd> Telescope live_grep <CR>",                                        desc = "Telescope live grep" },
+        { "<leader>ft", "<cmd> Telescope live_grep <CR>",                                        desc = "Telescope live grep" },
+        { "<C-s>",      "<cmd> Telescope current_buffer_fuzzy_find <CR>",                        desc = "Current buffer fuzzy find" },
     },
 }
 
