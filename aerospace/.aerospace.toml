@@ -81,7 +81,6 @@ automatically-unhide-macos-hidden-apps = false
 # 'main' binding mode must be always presented
 # Fallback value (if you omit the key): mode.main.binding = {}
 [mode.main.binding]
-
     # All possible keys:
     # - Letters.        a, b, c, ..., z
     # - Numbers.        0, 1, 2, ..., 9
@@ -109,21 +108,22 @@ automatically-unhide-macos-hidden-apps = false
     # end tell'
     # '''
 
-    # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-    alt-slash = 'layout tiles horizontal vertical'
-    alt-comma = 'layout accordion horizontal vertical'
+    alt-a = [
+        'mode moonlander',
+        'exec-and-forget sketchybar --trigger send_message MESSAGE="AEROSPACE MODE" HOLD="true"'
+    ]
 
-    # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-    cmd-h = 'focus --boundaries all-monitors-outer-frame --boundaries-action stop left'
-    cmd-j = 'focus --boundaries all-monitors-outer-frame --boundaries-action stop down'
-    cmd-k = 'focus --boundaries all-monitors-outer-frame --boundaries-action stop up'
-    cmd-l = 'focus --boundaries all-monitors-outer-frame --boundaries-action stop right'
+    alt-shift-semicolon = [
+        'mode service',
+        'exec-and-forget sketchybar --trigger send_message MESSAGE="SERVICE MODE" HOLD="true"'
+    ]
+    alt-w = [
+        'mode resize',
+        'exec-and-forget sketchybar --trigger send_message MESSAGE="RESIZE MODE" HOLD="true"'
+    ]
 
-    cmd-comma = 'focus-monitor --wrap-around prev'
-    cmd-period = 'focus-monitor --wrap-around next'
-
-    cmd-shift-comma = 'move-workspace-to-monitor --wrap-around left'
-    cmd-shift-period = 'move-workspace-to-monitor --wrap-around right'
+    # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
+    alt-ctrl-tab = 'workspace-back-and-forth'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move
     cmd-shift-h = 'move left'
@@ -131,56 +131,124 @@ automatically-unhide-macos-hidden-apps = false
     cmd-shift-k = 'move up'
     cmd-shift-l = 'move right'
 
+    # ------------ For the laptop ------------
+
+    alt-slash = ['layout tiles horizontal vertical', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    alt-shift-slash = ['layout accordion horizontal vertical', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+
+    # See: https://nikitabobko.github.io/AeroSpace/commands#focus
+    alt-h = 'focus --boundaries all-monitors-outer-frame --boundaries-action stop left'
+    alt-j = 'focus --boundaries all-monitors-outer-frame --boundaries-action stop down'
+    alt-k = 'focus --boundaries all-monitors-outer-frame --boundaries-action stop up'
+    alt-l = 'focus --boundaries all-monitors-outer-frame --boundaries-action stop right'
+
+    alt-comma = 'focus-monitor --wrap-around prev'
+    alt-period = 'focus-monitor --wrap-around next'
+
+    alt-shift-comma = 'move-workspace-to-monitor --wrap-around left'
+    alt-shift-period = 'move-workspace-to-monitor --wrap-around right'
+
     # See: https://nikitabobko.github.io/AeroSpace/commands#resize
     alt-minus = 'resize smart -50'
     alt-equal = 'resize smart +50'
 
-    alt-h = 'join-with left'
-    alt-j = 'join-with down'
-    alt-k = 'join-with up' 
-    alt-l = 'join-with right'
+    alt-shift-h = 'join-with left'
+    alt-shift-j = 'join-with down'
+    alt-shift-k = 'join-with up' 
+    alt-shift-l = 'join-with right'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-    cmd-1 = 'workspace 1'
-    cmd-2 = 'workspace 2'
-    cmd-3 = 'workspace 3'
-    cmd-4 = 'workspace 4'
-    cmd-5 = 'workspace 5'
-    cmd-6 = 'workspace 6'
-    cmd-7 = 'workspace 7'
-    cmd-8 = 'workspace 8'
-    cmd-9 = 'workspace 9'
-    cmd-0 = 'workspace 10'
+    alt-1 = 'workspace 1'
+    alt-2 = 'workspace 2'
+    alt-3 = 'workspace 3'
+    alt-4 = 'workspace 4'
+    alt-5 = 'workspace 5'
+    alt-6 = 'workspace 6'
+    alt-7 = 'workspace 7'
+    alt-8 = 'workspace 8'
+    alt-9 = 'workspace 9'
+    alt-0 = 'workspace 10'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-    cmd-shift-1 = 'move-node-to-workspace 1'
-    cmd-shift-2 = 'move-node-to-workspace 2'
-    cmd-shift-3 = 'move-node-to-workspace 3'
-    cmd-shift-4 = 'move-node-to-workspace 4'
-    cmd-shift-5 = 'move-node-to-workspace 5'
-    cmd-shift-6 = 'move-node-to-workspace 6'
-    cmd-shift-7 = 'move-node-to-workspace 7'
-    cmd-shift-8 = 'move-node-to-workspace 8'
-    cmd-shift-9 = 'move-node-to-workspace 9'
-    cmd-shift-0 = 'move-node-to-workspace 10'
-
-    # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-    alt-ctrl-tab = 'workspace-back-and-forth'
+    alt-shift-1 = 'move-node-to-workspace 1'
+    alt-shift-2 = 'move-node-to-workspace 2'
+    alt-shift-3 = 'move-node-to-workspace 3'
+    alt-shift-4 = 'move-node-to-workspace 4'
+    alt-shift-5 = 'move-node-to-workspace 5'
+    alt-shift-6 = 'move-node-to-workspace 6'
+    alt-shift-7 = 'move-node-to-workspace 7'
+    alt-shift-8 = 'move-node-to-workspace 8'
+    alt-shift-9 = 'move-node-to-workspace 9'
+    alt-shift-0 = 'move-node-to-workspace 10'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     # Modes
-    alt-shift-semicolon = [
-        'mode service',
-        'exec-and-forget sketchybar --trigger send_message MESSAGE="SERVICE MODE" HOLD="true"'
-    ]
-    cmd-shift-w = [
-        'mode resize',
-        'exec-and-forget sketchybar --trigger send_message MESSAGE="RESIZE MODE" HOLD="true"'
-    ]
-
     # My customizations
-    cmd-g = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
-    cmd-m = 'fullscreen'
+    alt-g = 'layout floating tiling'
+    alt-m = 'fullscreen'
+
+[mode.moonlander.binding]
+    # --------- For Moonlander ----------
+
+    # See: https://nikitabobko.github.io/AeroSpace/commands#layout
+    slash = ['layout tiles horizontal vertical', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    shift-slash = ['layout accordion horizontal vertical', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+
+    # See: https://nikitabobko.github.io/AeroSpace/commands#focus
+    h = ['focus --boundaries all-monitors-outer-frame --boundaries-action stop left', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    j = ['focus --boundaries all-monitors-outer-frame --boundaries-action stop down', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    k = ['focus --boundaries all-monitors-outer-frame --boundaries-action stop up', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    l = ['focus --boundaries all-monitors-outer-frame --boundaries-action stop right', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+
+    comma = ['focus-monitor --wrap-around prev', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    period = ['focus-monitor --wrap-around next', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+
+    shift-comma = ['move-workspace-to-monitor --wrap-around left', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    shift-period = ['move-workspace-to-monitor --wrap-around right', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+
+    # See: https://nikitabobko.github.io/AeroSpace/commands#resize
+    minus = ['resize smart -50', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    equal = ['resize smart +50', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+
+    shift-h = ['join-with left', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    shift-j = ['join-with down', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    shift-k = ['join-with up' , 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    shift-l = ['join-with right', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+
+    # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
+    1 = ['workspace 1', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    2 = ['workspace 2', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    3 = ['workspace 3', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    4 = ['workspace 4', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    5 = ['workspace 5', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    6 = ['workspace 6', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    7 = ['workspace 7', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    8 = ['workspace 8', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    9 = ['workspace 9', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    0 = ['workspace 10', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+
+    # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
+    shift-1 = ['move-node-to-workspace 1', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    shift-2 = ['move-node-to-workspace 2', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    shift-3 = ['move-node-to-workspace 3', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    shift-4 = ['move-node-to-workspace 4', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    shift-5 = ['move-node-to-workspace 5', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    shift-6 = ['move-node-to-workspace 6', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    shift-7 = ['move-node-to-workspace 7', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    shift-8 = ['move-node-to-workspace 8', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    shift-9 = ['move-node-to-workspace 9', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+    shift-0 = ['move-node-to-workspace 10', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+
+    # See: https://nikitabobko.github.io/AeroSpace/commands#mode
+    # Modes
+    # My customizations
+    g = ['layout floating tiling', 'mode main', 'exec-and-forget sketchybar --trigger hide_message'] # Toggle between floating and tiling layout
+    m = ['fullscreen', 'mode main', 'exec-and-forget sketchybar --trigger hide_message']
+
+    esc = [
+        'mode main',
+        'exec-and-forget sketchybar --trigger hide_message'
+    ]
 
 [workspace-to-monitor-force-assignment]
     1 = 'main'
@@ -196,8 +264,8 @@ automatically-unhide-macos-hidden-apps = false
         'mode main',
         'exec-and-forget sketchybar --trigger hide_message'
     ]
-    r = ['flatten-workspace-tree', 'mode main'] # reset layout
-    backspace = ['close-all-windows-but-current', 'mode main']
+    r = ['flatten-workspace-tree', 'mode main', 'exec-and-forget sketchybar --trigger hide_message'] # reset layout
+    backspace = ['close-all-windows-but-current', 'mode main', 'exec-and-forget sketchybar --trigger hide_message' ]
 
     # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
     #s = ['layout sticky tiling', 'mode main']

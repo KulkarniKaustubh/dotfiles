@@ -39,3 +39,7 @@ alias tmux="tmux -u"
 
 # alias to update all zsh plugins that are git repos.
 alias zsh_update='for plugin in $HOME/.zsh/*; do [ -d $plugin/.git ] && echo \"Updating $plugin.\" && git -C $plugin pull 2> /dev/null; done'
+
+curlq() {
+    curl -s "$@" | jq .;
+}
