@@ -110,7 +110,7 @@ automatically-unhide-macos-hidden-apps = false
 
     alt-a = [
         'mode moonlander',
-        'exec-and-forget sketchybar --trigger send_message MESSAGE="AEROSPACE MODE" HOLD="true"'
+        'exec-and-forget sketchybar --trigger send_message MESSAGE="MOONLANDER MODE" HOLD="true"'
     ]
 
     alt-shift-semicolon = [
