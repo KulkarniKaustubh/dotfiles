@@ -6,11 +6,11 @@ bindkey -e
 # End of lines configured by zsh-newuser-install
 
 # sugon
-# if command -v "figlet" &> /dev/null &&
-#    command -v "lolcat" &> /dev/null;
-# then
-#     figlet -f Speed "SugoN" | lolcat
-# fi
+if command -v "figlet" &> /dev/null &&
+   command -v "lolcat" &> /dev/null;
+then
+    figlet -f Speed "SugoN" | lolcat
+fi
 # end sugon
 
 # Fixing zsh history problems on multiple terminals
@@ -89,6 +89,8 @@ bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[4~" end-of-line
 bindkey "^[[3~" delete-char
 
 # if command -v "emacs" &> /dev/null; then bindkey -s "^[e" "emacsclient -c . &; disown %1; ^M"; fi
