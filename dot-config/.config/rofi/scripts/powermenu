@@ -18,7 +18,8 @@ case $chosen in
         systemctl reboot
         ;;
     $lock)
-        betterlockscreen -l dimblur
+        betterlockscreen -l dimblur &
+        sleep 0.5 && systemctl suspend
         ;;
     $logout)
         killall qtile
