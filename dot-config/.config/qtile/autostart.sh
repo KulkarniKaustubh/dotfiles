@@ -49,6 +49,10 @@ xinput --set-prop "pointer:Logitech G305" 'libinput Accel Speed' -0.2
 # nvidia settings
 nvidia-settings --load-config-only
 
+# display settings
+xrandr --output HDMI-A-0 --mode 1920x1080 --rate 60.00 --primary
+xrandr --output DP-2 --primary --mode 2560x1440 -r 144 --left-of eDP-1
+
 # emacs server
 /usr/bin/emacs --daemon
 

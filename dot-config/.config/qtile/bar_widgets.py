@@ -77,7 +77,7 @@ def get_gpu_usage():
         stdout=subprocess.PIPE,
         shell=True,
     )
-    (out, err) = gpu.communicate()
+    (out, _) = gpu.communicate()
     return str(out.decode("utf-8").strip("\n")) + "%"
 
 
@@ -93,18 +93,18 @@ def get_gpu_mem_usage():
         stdout=subprocess.PIPE,
         shell=True,
     )
-    (out, err) = gpu.communicate()
+    (out, _) = gpu.communicate()
     return str(out.decode("utf-8").strip("\n"))
 
 
 def get_cpu_temp():
     """Get CPU temperature for AMD CPUs (no core info)."""
     cpu_temp = subprocess.Popen(
-        ["sensors | grep \"CPUTIN\" | awk '{print $2}'"],
+        ['sensors | grep -e "CPUTIN:" -e "CPU:" | awk \'{print $2}\''],
         stdout=subprocess.PIPE,
         shell=True,
     )
-    (out, err) = cpu_temp.communicate()
+    (out, _) = cpu_temp.communicate()
     # comment to explain the below line
     # the output is like +36.0C, so we split at the dot,
     # take the first half, then remove the sign with [1:]
@@ -448,7 +448,7 @@ def brightness_block():
         ),
         widget.Backlight(
             fmt="{}",
-            backlight_name="amdgpu_bl1",
+            backlight_name="intel_backlight",
             foreground=colors["black"],
             background=backgrounds["brightness_block"],
             padding=5,

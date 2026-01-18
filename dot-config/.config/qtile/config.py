@@ -93,8 +93,8 @@ def layout_keys():
         Key([super_key], "j", lazy.layout.down(), desc="Move focus down"),
         Key([super_key], "k", lazy.layout.up(), desc="Move focus up"),
         Key(
-            [super_key],
-            "g",
+            [super_key, "shift"],
+            "t",
             lazy.window.toggle_floating(),
             desc="Toggle floating window",
         ),
@@ -340,7 +340,12 @@ def spawn_keys():
             name="Rofi Scripts Mode",
             mode=False,
         ),
-        Key([super_key], "c", lazy.spawn(my_browser), desc="Launch browser"),
+        Key(
+            [super_key],
+            "c",
+            lazy.spawn(my_browser),
+            desc="Launch browser",
+        ),
         Key(
             [super_key],
             "e",
@@ -353,8 +358,18 @@ def spawn_keys():
             lazy.spawn("/usr/bin/emacs"),
             desc="Launch emacs",
         ),
-        Key([super_key], "d", lazy.spawn("discord"), desc="Launch discord"),
-        Key([super_key], "f", lazy.spawn("nautilus"), desc="Launch nautilus"),
+        Key(
+            [super_key],
+            "d",
+            lazy.spawn("discord"),
+            desc="Launch discord",
+        ),
+        Key(
+            [super_key],
+            "e",
+            lazy.spawn("nautilus"),
+            desc="Launch nautilus",
+        ),
         Key(
             [super_key, "shift"],
             "s",
@@ -388,6 +403,7 @@ def spawn_keys():
         ),
         Key(
             [alt_key],
+            # "XF86AudioPlay",
             "F4",
             lazy.spawn(f"{os.environ['HOME']}/.config/rofi/scripts/powermenu"),
             desc="Open shutdown menu",
@@ -411,6 +427,14 @@ def spawn_keys():
             desc="Close all visible dunst notifications.",
         ),
         Key(
+            ["control", super_key],
+            "L",
+            lazy.spawn(
+                "betterlockscreen -l dimblur & sleep 0.5; systemctl suspend"
+            ),
+            desc="Lock the system.",
+        ),
+        Key(
             [],
             "XF86AudioPrev",
             lazy.spawn("playerctl previous"),
@@ -431,18 +455,21 @@ def spawn_keys():
         Key(
             [],
             "XF86AudioMute",
+            # "F1",
             lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle"),
             desc="Mute audio",
         ),
         Key(
             [],
             "XF86AudioLowerVolume",
+            # "F2",
             lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%"),
             desc="Reduce volume",
         ),
         Key(
             [],
             "XF86AudioRaiseVolume",
+            # "F3",
             lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%"),
             desc="Increase volume",
         ),
@@ -455,13 +482,15 @@ def spawn_keys():
         Key(
             [],
             "XF86MonBrightnessDown",
-            lazy.spawn("xbacklight -dec 5"),
+            # "F5",
+            lazy.spawn("brightnessctl s 5%-"),
             desc="Decrease brightness",
         ),
         Key(
             [],
             "XF86MonBrightnessUp",
-            lazy.spawn("xbacklight -inc 5"),
+            # "F6",
+            lazy.spawn("brightnessctl s 5%+"),
             desc="Increase brightness",
         ),
         # Key(
@@ -493,7 +522,6 @@ group_names = [
         "1",
         {
             "layout": "monadtall",
-            "spawn": [f"{my_terminal} -e tmux -u"],
             "label": workspace_labels["1"],
         },
     ),
@@ -505,7 +533,14 @@ group_names = [
             "label": workspace_labels["2"],
         },
     ),
-    ("3", {"layout": "monadtall", "label": workspace_labels["3"]}),
+    (
+        "3",
+        {
+            "layout": "monadtall",
+            "spawn": [f"{my_terminal} -e tmux -u"],
+            "label": workspace_labels["3"],
+        },
+    ),
     (
         "4",
         {
@@ -564,18 +599,7 @@ group_names = [
 ]
 
 keys_screen_0 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
-keys_screen_1 = [
-    "KP_End",
-    "KP_Down",
-    "KP_Page_Down",
-    "KP_Left",
-    "KP_Begin",
-    "KP_Right",
-    "KP_Home",
-    "KP_Up",
-    "KP_Page_Up",
-    "KP_Insert",
-]
+keys_screen_1 = ["a", "s", "d", "f", "g", "h", "j", "k", "l", "semicolon"]
 
 
 def group_keys(group_names, keys, screen_number):
@@ -745,11 +769,11 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        top=get_bar_widgets(primary=True, laptop=False),
+        top=get_bar_widgets(primary=True, laptop=True),
         # top=bar.Gap(35),
     ),
     Screen(
-        top=get_bar_widgets(primary=False, laptop=False),
+        top=get_bar_widgets(primary=False, laptop=True),
         # top=bar.Gap(35),
     ),
 ]
