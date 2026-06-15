@@ -1,30 +1,28 @@
 local keymaps = {}
 
-local wk = require("which-key")
+-- which-key options that double as vim.keymap.set() options.
+local map_opts = { "desc", "silent", "noremap", "nowait", "expr", "buffer", "remap" }
 
+-- Register mappings grouped by mode. A spec is { lhs, rhs, desc = ... }; the
+-- keymap is created with vim.keymap.set and which-key shows it via its `desc`.
+-- Specs without an rhs (groups, `proxy`) go straight to which-key.
 function keymaps.add(mappings, opts)
-    -- Loop over modes and register all mappings with which-key
-    for mode, maps in pairs(mappings) do
-        for k, map in pairs(maps) do
-            local numeric_keys = {}
-            local wk_map = {}
-
-            for k, v in ipairs(map) do
-                table.insert(wk_map, v)
-                table.insert(numeric_keys, k)
-            end
-
-            for k, v in pairs(map) do
-                if type(k) ~= "number" then
-                    wk_map[k] = v
+    opts = opts or {}
+    for mode, specs in pairs(mappings) do
+        for _, spec in ipairs(specs) do
+            local lhs, rhs = spec[1], spec[2]
+            if rhs == nil then
+                spec.mode = mode
+                require("which-key").add(spec)
+            else
+                local o = vim.tbl_extend("force", {}, opts)
+                for _, key in ipairs(map_opts) do
+                    if spec[key] ~= nil then
+                        o[key] = spec[key]
+                    end
                 end
+                vim.keymap.set(mode, lhs, rhs, o)
             end
-
-            if #numeric_keys == 2 then
-                vim.keymap.set(mode, map[1], map[2], opts)
-            end
-
-            wk.add(wk_map, { mode = mode })
         end
     end
 end

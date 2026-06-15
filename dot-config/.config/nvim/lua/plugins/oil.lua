@@ -3,7 +3,7 @@ local border_style = "rounded"
 
 local mappings = {
     n = {
-        { "<leader>e", "<cmd> Oil <CR>", desc = "Oil explorer" },
+        { "<leader>e", function() require("oil").toggle_float() end, desc = "Oil explorer (float)" },
     },
 }
 
@@ -18,6 +18,9 @@ return {
     lazy = false,
     opts = {
         default_file_explorer = true,
+        view_options = {
+            show_hidden = true,
+        },
         keymaps = {
             ["<C-v>"] = { "actions.select", opts = { vertical = true } },
             ["<C-x>"] = { "actions.select", opts = { horizontal = true } },

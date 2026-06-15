@@ -16,6 +16,7 @@ keymaps.add(mappings)
 
 return {
     "nvim-telescope/telescope.nvim",
+    cmd = "Telescope",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
         defaults = {
@@ -27,10 +28,10 @@ return {
             sorting_strategy = "ascending",
             mappings = {
                 i = {
-                    ["<C-n>"] = require("telescope.actions").cycle_history_next,
-                    ["<C-p>"] = require("telescope.actions").cycle_history_prev,
-                    ["<C-j>"] = require("telescope.actions").move_selection_next,
-                    ["<C-k>"] = require("telescope.actions").move_selection_previous,
+                    ["<C-n>"] = "cycle_history_next",
+                    ["<C-p>"] = "cycle_history_prev",
+                    ["<C-j>"] = "move_selection_next",
+                    ["<C-k>"] = "move_selection_previous",
                 },
             },
         },

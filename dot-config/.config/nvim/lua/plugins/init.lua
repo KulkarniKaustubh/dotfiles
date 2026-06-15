@@ -1,13 +1,5 @@
+-- Plugins that need no setup of their own live here; the rest get a file.
 return {
-    { "folke/which-key.nvim" },
-    { "stevearc/oil.nvim" },
-    { "nvim-telescope/telescope.nvim" },
-    { "rmagatti/auto-session" },
-    { "tpope/vim-fugitive" },
-    { "nvim-treesitter/nvim-treesitter" },
-    { "catppuccin/nvim" },
-    { "smoka7/hop.nvim" },
-    { "unblevable/quick-scope" },
-    { "nvim-lualine/lualine.nvim" },
-    { "mason-org/mason.nvim" },
+    { "unblevable/quick-scope", keys = { "f", "F", "t", "T" } },
+    { "joechrisellis/lsp-format-modifications.nvim" },
 }

@@ -10,6 +10,7 @@ keymaps.add(mappings)
 
 return {
     "mason-org/mason.nvim",
+    cmd = "Mason",
     opts = {
         ui = {
             icons = {
