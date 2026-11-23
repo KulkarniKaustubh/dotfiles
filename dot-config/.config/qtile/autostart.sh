@@ -46,12 +46,19 @@ xinput --set-prop "pointer:Logitech G305" 'libinput Accel Profile Enabled' 0, 1
 # reduce mouse sensitivity
 xinput --set-prop "pointer:Logitech G305" 'libinput Accel Speed' -0.2
 
+# faster key repeat: start repeating after 250ms, then 40 repeats/sec
+# (X default is 660ms / 25)
+xset r rate 250 40
+
 # nvidia settings
 nvidia-settings --load-config-only
 
 # display settings
-xrandr --output HDMI-A-0 --mode 1920x1080 --rate 60.00 --primary
-xrandr --output DP-2 --primary --mode 2560x1440 -r 144 --left-of eDP-1
+# DP-2: primary, portrait (bottom edge faces right), on the left
+# DP-0: landscape, 180Hz, on the right
+# DISABLED: hung the X session on login (2026-11-23); test step by step before re-enabling
+# xrandr --output DP-2 --primary --mode 2560x1440 --rate 143.91 --rotate right --pos 0x0 \
+#        --output DP-0 --mode 2560x1440 --rate 180.00 --rotate normal --right-of DP-2
 
 # emacs server
 /usr/bin/emacs --daemon
