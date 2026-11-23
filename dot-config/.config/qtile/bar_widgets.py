@@ -1,10 +1,12 @@
 """My widget customizations stuff."""
 
-from libqtile import qtile, bar, widget  # , hook
+from libqtile import bar, widget
+from libqtile.lazy import lazy
 
 # from libqtile.log_utils import logger
-import subprocess
 import os
+import shutil
+import subprocess
 
 my_terminal = "alacritty"
 
@@ -65,51 +67,52 @@ backgrounds = {
 }
 
 
-def get_gpu_usage():
-    """Get GPU % usage."""
-    gpu = subprocess.Popen(
-        [
-            "nvidia-smi "
-            "--query-gpu=utilization.gpu --format=csv,nounits "
-            "| "
-            "awk '/[0-9]/ {print $1}'"
-        ],
-        stdout=subprocess.PIPE,
-        shell=True,
-    )
-    (out, _) = gpu.communicate()
-    return str(out.decode("utf-8").strip("\n")) + "%"
+def get_gpu_stats():
+    """GPU temperature, utilisation and VRAM used, from one nvidia-smi call.
+
+    Newer drivers report the temperature with decimals (e.g. "42.50"), which
+    breaks qtile's NvidiaSensors widget, so parse it ourselves.
+    """
+    try:
+        out = subprocess.run(
+            [
+                "nvidia-smi",
+                "--query-gpu=temperature.gpu,utilization.gpu,memory.used",
+                "--format=csv,noheader,nounits",
+            ],
+            capture_output=True,
+            text=True,
+            timeout=5,
+        ).stdout
+        temp, usage, mem = (
+            float(v) for v in out.splitlines()[0].split(",")
+        )
+    except (OSError, subprocess.SubprocessError, ValueError, IndexError):
+        return "N/A"
+    return f"{temp:.0f}°C {usage:3.0f}% {mem:.0f}M"
 
 
-def get_gpu_mem_usage():
-    """Get GPU VRAM usage."""
-    gpu = subprocess.Popen(
-        [
-            "nvidia-smi "
-            "--query-gpu=memory.used,memory.total --format=csv,nounits "
-            "| "
-            "awk '/[0-9]/ {printf \"%dM\",$1}'"
-        ],
-        stdout=subprocess.PIPE,
-        shell=True,
-    )
-    (out, _) = gpu.communicate()
-    return str(out.decode("utf-8").strip("\n"))
+def has_nvidia_gpu():
+    """True if nvidia-smi is installed."""
+    return shutil.which("nvidia-smi") is not None
 
 
 def get_cpu_temp():
     """Get CPU temperature for AMD CPUs (no core info)."""
-    cpu_temp = subprocess.Popen(
-        ['sensors | grep -e "CPUTIN:" -e "CPU:" | awk \'{print $2}\''],
-        stdout=subprocess.PIPE,
-        shell=True,
-    )
-    (out, _) = cpu_temp.communicate()
-    # comment to explain the below line
-    # the output is like +36.0C, so we split at the dot,
-    # take the first half, then remove the sign with [1:]
-    temp = out.decode("utf-8").strip("\n").split(".")[0][1:]
-    return temp
+    try:
+        out = subprocess.run(
+            ["sensors"], capture_output=True, text=True, timeout=5
+        ).stdout
+    except (OSError, subprocess.SubprocessError):
+        return "N/A"
+    for line in out.splitlines():
+        if line.startswith(("CPUTIN:", "CPU:", "Tctl:")):
+            # e.g. "Tctl:  +36.5°C" -> "36"
+            try:
+                return f"{float(line.split()[1].strip('+°C')):.0f}"
+            except (IndexError, ValueError):
+                break
+    return "N/A"
 
 
 def border_symbol(direction, foreground, background, fontsize=25):
@@ -212,42 +215,18 @@ def gpu_block():
             filename=f"{os.environ['HOME']}/.config/qtile/icons/gpu.png",
             background=backgrounds["gpu_block"],
             mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(my_terminal + " -e nvtop")
+                "Button1": lazy.spawn(my_terminal + " -e nvtop")
             },
         ),
         widget.Sep(
             linewidth=0, padding=5, background=backgrounds["gpu_block"]
         ),
-        widget.NvidiaSensors(
-            foreground=colors["dark_blue"],
-            background=backgrounds["gpu_block"],
-            format="{temp}°C",
-            padding=5,
-            mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(my_terminal + " -e nvtop")
-            },
-        ),
         widget.GenPollText(
-            fmt="{}",
             foreground=colors["dark_blue"],
             background=backgrounds["gpu_block"],
-            func=get_gpu_usage,
+            func=get_gpu_stats,
             update_interval=2,
-            mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(my_terminal + " -e nvtop")
-            },
-            padding=5,
-            width=30,
-        ),
-        widget.GenPollText(
-            fmt="{}",
-            foreground=colors["dark_blue"],
-            background=backgrounds["gpu_block"],
-            func=get_gpu_mem_usage,
-            update_interval=2,
-            mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(my_terminal + " -e nvtop")
-            },
+            mouse_callbacks={"Button1": lazy.spawn(my_terminal + " -e nvtop")},
             padding=5,
         ),
     ]
@@ -266,7 +245,7 @@ def update_block():
             fontsize=13,
             font="Iosevka Nerd Font",
             mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e paru")
+                "Button1": lazy.spawn(f"{my_terminal} -e paru")
             },
         ),
         widget.CheckUpdates(
@@ -279,7 +258,7 @@ def update_block():
             update_interval=120,
             no_update_string="0",
             mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e paru")
+                "Button1": lazy.spawn(f"{my_terminal} -e paru")
             },
         ),
     ]
@@ -296,7 +275,7 @@ def memory_block():
             fontsize=13,
             font="Iosevka Nerd Font",
             mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(
+                "Button1": lazy.spawn(
                     f"{my_terminal}  -e watch df -h /"
                 )
             },
@@ -310,7 +289,7 @@ def memory_block():
             update_interval=120,
             warn_space=100,
             mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(
+                "Button1": lazy.spawn(
                     f"{my_terminal}  -e watch df -h /"
                 )
             },
@@ -325,7 +304,7 @@ def cpu_block():
             text="",
             foreground=colors["dark_blue"],
             background=backgrounds["cpu_block"],
-            mouse_callbacks={"Button1": lambda: qtile.cmd_spawn("psensor")},
+            mouse_callbacks={"Button1": lazy.spawn("psensor")},
             fontsize=13,
             font="Iosevka Nerd Font",
         ),
@@ -335,14 +314,14 @@ def cpu_block():
             background=backgrounds["cpu_block"],
             func=get_cpu_temp,
             update_interval=2,
-            mouse_callbacks={"Button1": lambda: qtile.cmd_spawn("psensor")},
+            mouse_callbacks={"Button1": lazy.spawn("psensor")},
         ),
         widget.CPU(
             foreground=colors["dark_blue"],
             background=backgrounds["cpu_block"],
             # background="#f5d0f0",
             format="{load_percent}%",
-            mouse_callbacks={"Button1": lambda: qtile.cmd_spawn("psensor")},
+            mouse_callbacks={"Button1": lazy.spawn("psensor")},
             width=45,
         ),
     ]
@@ -356,7 +335,7 @@ def ram_block():
             foreground=colors["dark_blue"],
             background=backgrounds["ram_block"],
             mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
+                "Button1": lazy.spawn(f"{my_terminal} -e htop")
             },
             fontsize=13,
             font="Iosevka Nerd Font",
@@ -367,7 +346,7 @@ def ram_block():
             format="{MemUsed:.1f}{mm}/{MemTotal:.0f}{mm}",
             # format="{MemUsed:.1f}{mm}",
             mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
+                "Button1": lazy.spawn(f"{my_terminal} -e htop")
             },
             measure_mem="G",
             padding=5,
@@ -377,7 +356,7 @@ def ram_block():
         #     background=backgrounds["ram_block"],
         #     format="{SwapUsed:.0f}{ms}/{SwapTotal:.0f}{ms}",
         #     mouse_callbacks={
-        #         "Button1": lambda: qtile.cmd_spawn(f"{my_terminal} -e htop")
+        #         "Button1": lazy.spawn(f"{my_terminal} -e htop")
         #     },
         #     measure_swap="G",
         #     padding=5,
@@ -395,7 +374,7 @@ def volume_block():
             foreground=colors["lighter_blue"],
             background=backgrounds["volume_block"],
             mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn("pavucontrol")
+                "Button1": lazy.spawn("pavucontrol")
             },
             fontsize=13,
             font="Iosevka Nerd Font",
@@ -405,7 +384,7 @@ def volume_block():
             foreground=colors["lighter_blue"],
             background=backgrounds["volume_block"],
             mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn("pavucontrol")
+                "Button1": lazy.spawn("pavucontrol")
             },
             padding=5,
         ),
@@ -420,7 +399,7 @@ def clock_block():
             foreground=colors["lighter_blue"],
             background=backgrounds["clock_block"],
             mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
+                "Button1": lazy.spawn("gnome-calendar")
             },
             fontsize=13,
             font="Iosevka Nerd Font",
@@ -430,7 +409,7 @@ def clock_block():
             foreground=colors["lighter_blue"],
             background=backgrounds["clock_block"],
             mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn("gnome-calendar")
+                "Button1": lazy.spawn("gnome-calendar")
             },
         ),
     ]
@@ -517,7 +496,7 @@ def quick_exit():
             # background=backgrounds["quick_exit"],
             padding=10,
             mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(
+                "Button1": lazy.spawn(
                     f"{os.environ['HOME']}/.config/rofi/scripts/powermenu"
                 )
             },
@@ -529,14 +508,18 @@ def quick_exit():
 
 def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
     """Return an object of bar.Bar."""
+
+    def sep():
+        return widget.Sep(linewidth=0, padding=5)
+
     widgets = [
         widget.TextBox(
-            text="",
+            text="",
             foreground=colors["dark_blue"],
             background=colors["light_blue"],
             padding=15,
             mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(
+                "Button1": lazy.spawn(
                     f"rofi -theme {os.environ['HOME']}/.config/rofi"
                     + "/themes/arch_logo_combi.rasi "
                     + "-combi-modi window,drun -show combi "
@@ -549,79 +532,53 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
         ),
         *current_layout(),
         *group_box(),
-        widget.Sep(linewidth=0, padding=5),
+        sep(),
         *window_name(),
-        widget.Sep(linewidth=0, padding=5),
+        sep(),
         *audio_block(),
-        widget.Sep(linewidth=0, padding=5),
+        sep(),
         widget.chord.Chord(
             foreground=colors["dark_blue"],
             background=colors["white"],
             padding=10,
         ),
         widget.Spacer(length=bar.STRETCH),
-        widget.Sep(linewidth=0, padding=5),
-        *update_block(),
-        widget.Sep(linewidth=0, padding=5),
-        *cpu_block(),
-        widget.Sep(linewidth=0, padding=5),
-        *ram_block(),
-        widget.Sep(linewidth=0, padding=5),
-        *memory_block(),
-        widget.Sep(linewidth=0, padding=5),
-        *volume_block(),
-        widget.Sep(linewidth=0, padding=5),
-        *clock_block(),
-        widget.Sep(linewidth=0, padding=5),
-        *quick_exit(),
     ]
+
+    # Systray only on one primary monitor to avoid a systray crash
+    if primary:
+        widgets += [sep(), *app_block()]
+
+    widgets += [sep(), *update_block()]
+
+    if has_nvidia_gpu():
+        widgets += [sep(), *gpu_block()]
+
+    widgets += [sep(), *cpu_block(), sep(), *ram_block()]
 
     # Only add brightness/battery widgets when the hardware actually exists,
     # otherwise they spam "unable to read status" errors.
-    laptop_widgets = []
     if laptop:
         backlight_name = get_backlight_name()
         if backlight_name:
-            laptop_widgets += [
-                widget.Sep(linewidth=0, padding=5),
-                *brightness_block(backlight_name),
-            ]
+            widgets += [sep(), *brightness_block(backlight_name)]
         if has_system_battery():
-            laptop_widgets += [
-                widget.Sep(linewidth=0, padding=5),
-                *battery_block(),
-            ]
-    widgets[20:20] = laptop_widgets
+            widgets += [sep(), *battery_block()]
 
-    # Add the GPU block if it exists on the machine
-    p1 = subprocess.Popen(
-        ["lspci"], stdout=subprocess.PIPE, stderr=subprocess.PIPE
-    )
-    p2 = subprocess.Popen(
-        ["grep", "-ci", "nvidia"],
-        stdin=p1.stdout,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-    )
-    num_occurences = int(p2.communicate()[0].strip().decode())
-
-    if num_occurences > 0:
-        widgets[13:13] = [
-            widget.Sep(linewidth=0, padding=5),
-            *gpu_block(),
-        ]
-
-    # Add systray only on one primary monitor to avoid systray crash
-    if primary:
-        widgets[10:10] = [
-            widget.Sep(linewidth=0, padding=5),
-            *app_block(),
-        ]
+    widgets += [
+        sep(),
+        *memory_block(),
+        sep(),
+        *volume_block(),
+        sep(),
+        *clock_block(),
+        sep(),
+        *quick_exit(),
+    ]
 
     return bar.Bar(
         widgets,
         25,
-        # background=colors["transparent"],
         background=colors["dark_blue"],
         opacity=1.0,
         margin=[2, 5, 2, 5],
