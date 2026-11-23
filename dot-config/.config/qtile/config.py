@@ -767,16 +767,32 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 
-screens = [
-    Screen(
-        top=get_bar_widgets(primary=True, laptop=True),
-        # top=bar.Gap(35),
-    ),
-    Screen(
-        top=get_bar_widgets(primary=False, laptop=True),
-        # top=bar.Gap(35),
-    ),
-]
+# Bars are cached per monitor: qtile calls generate_screens again on every
+# screen change, and a fresh Systray each time would clash with the old one
+# (the closed WidgetBox never finalizes it -> "Only one Systray can be used").
+_bars = {}
+
+
+def generate_screens(outputs):
+    """Build one bar per monitor, sized to its orientation.
+
+    Portrait monitors (taller than wide) get a compact bar so the widgets fit.
+    The systray goes on the first screen only (two systrays crash qtile).
+    """
+    screens = []
+    for i, out in enumerate(outputs):
+        key = (
+            out.port or i,
+            i == 0,
+            out.rect.width < out.rect.height,
+        )
+        if key not in _bars:
+            _bars[key] = get_bar_widgets(
+                primary=key[1], laptop=True, compact=key[2]
+            )
+        screens.append(Screen(top=_bars[key]))
+    return screens
+
 
 # Drag floating layouts.
 mouse = [

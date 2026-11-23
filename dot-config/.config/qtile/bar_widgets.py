@@ -175,14 +175,14 @@ def audio_block():
     ]
 
 
-def window_name():
+def window_name(width=bar.CALCULATED):
     """Active window name."""
     return [
         widget.WindowName(
             foreground=colors["white"],
             background=backgrounds["window_name"],
             max_chars=40,
-            width=bar.CALCULATED,
+            width=width,
             # padding=13,
         ),
     ]
@@ -506,8 +506,15 @@ def quick_exit():
     ]
 
 
-def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
-    """Return an object of bar.Bar."""
+def get_bar_widgets(
+    primary: bool, laptop: bool, compact: bool = False
+) -> bar.Bar:
+    """Return an object of bar.Bar.
+
+    compact: for narrow (portrait) screens. Drops the media widget and lets
+    the window name absorb the slack instead of a fixed width, so the
+    right-hand blocks don't overflow off the edge of the screen.
+    """
 
     def sep():
         return widget.Sep(linewidth=0, padding=5)
@@ -533,17 +540,24 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
         *current_layout(),
         *group_box(),
         sep(),
-        *window_name(),
-        sep(),
-        *audio_block(),
+    ]
+
+    if compact:
+        widgets += [*window_name(width=bar.STRETCH)]
+    else:
+        widgets += [*window_name(), sep(), *audio_block()]
+
+    widgets += [
         sep(),
         widget.chord.Chord(
             foreground=colors["dark_blue"],
             background=colors["white"],
             padding=10,
         ),
-        widget.Spacer(length=bar.STRETCH),
     ]
+
+    if not compact:
+        widgets += [widget.Spacer(length=bar.STRETCH)]
 
     # Systray only on one primary monitor to avoid a systray crash
     if primary:
