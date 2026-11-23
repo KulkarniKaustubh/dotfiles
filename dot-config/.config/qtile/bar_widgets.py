@@ -436,7 +436,25 @@ def clock_block():
     ]
 
 
-def brightness_block():
+def get_backlight_name():
+    """Return the first backlight device in sysfs, or None if there is none."""
+    try:
+        devices = sorted(os.listdir("/sys/class/backlight"))
+    except OSError:
+        return None
+    return devices[0] if devices else None
+
+
+def has_system_battery():
+    """True if a system battery (BAT*), not e.g. a wireless mouse, exists."""
+    try:
+        supplies = os.listdir("/sys/class/power_supply")
+    except OSError:
+        return False
+    return any(name.startswith("BAT") for name in supplies)
+
+
+def brightness_block(backlight_name):
     """Brightness information."""
     return [
         widget.TextBox(
@@ -448,7 +466,7 @@ def brightness_block():
         ),
         widget.Backlight(
             fmt="{}",
-            backlight_name="intel_backlight",
+            backlight_name=backlight_name,
             foreground=colors["black"],
             background=backgrounds["brightness_block"],
             padding=5,
@@ -558,15 +576,22 @@ def get_bar_widgets(primary: bool, laptop: bool) -> bar.Bar:
         *quick_exit(),
     ]
 
+    # Only add brightness/battery widgets when the hardware actually exists,
+    # otherwise they spam "unable to read status" errors.
+    laptop_widgets = []
     if laptop:
-        widgets[20:20] = [
-            widget.Sep(linewidth=0, padding=5),
-            *brightness_block(),
-            widget.Sep(linewidth=0, padding=5),
-            *battery_block(),
-        ]
-    else:
-        widgets[20:20] = []
+        backlight_name = get_backlight_name()
+        if backlight_name:
+            laptop_widgets += [
+                widget.Sep(linewidth=0, padding=5),
+                *brightness_block(backlight_name),
+            ]
+        if has_system_battery():
+            laptop_widgets += [
+                widget.Sep(linewidth=0, padding=5),
+                *battery_block(),
+            ]
+    widgets[20:20] = laptop_widgets
 
     # Add the GPU block if it exists on the machine
     p1 = subprocess.Popen(
