@@ -281,7 +281,7 @@ def memory_block():
             },
         ),
         widget.DF(
-            format="{p} {uf}{m} {r:.1f}%",
+            format="{p} {uf:.0f}{m} {r:.0f}%",
             # format="{uf}{m}",
             visible_on_warn=False,
             foreground=colors["dark_blue"],
