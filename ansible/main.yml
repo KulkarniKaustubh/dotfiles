@@ -1,0 +1,17 @@
+---
+- name: Dotfiles setup playbook
+  hosts: localhost
+  connection: local
+  become: true
+  vars:
+    packages_file: "{{ playbook_dir }}/packages.txt"
+
+  tasks:
+    - name: Install packages and paru
+      ansible.builtin.include_tasks: tasks/install_packages.yml
+
+    # - name: Setup zsh
+    #   ansible.builtin.include_tasks: tasks/zsh_setup.yml
+    #
+    # - name: Stow .config
+    #   ansible.builtin.include_tasks: tasks/dotconfig_setup.yml

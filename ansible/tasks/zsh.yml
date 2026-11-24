@@ -1,0 +1,11 @@
+---
+- name: Stow zsh config
+  become: false
+  ansible.builtin.command: stow zsh
+  args:
+    chdir: "{{ playbook_dir }}/.."
+
+- name: Change default shell to zsh
+  ansible.builtin.user:
+    name: "{{ ansible_user_id }}"
+    shell: /bin/zsh

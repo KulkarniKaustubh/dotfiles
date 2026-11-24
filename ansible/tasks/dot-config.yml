@@ -1,0 +1,6 @@
+---
+- name: Stow .config directory
+  become: false
+  ansible.builtin.command: stow .config
+  args:
+    chdir: "{{ playbook_dir }}/.."

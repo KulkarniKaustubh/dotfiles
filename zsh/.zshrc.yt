@@ -1,0 +1,25 @@
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.zhistory
+HISTSIZE=10000
+SAVEHIST=10000
+bindkey -e
+# End of lines configured by zsh-newuser-install
+
+# Fixing zsh history problems on multiple terminals
+setopt inc_append_history
+setopt share_history
+
+# Ignore duplicate commands in history file
+setopt histignorealldups
+
+# Get bash's compgen
+autoload -Uz compinit
+compinit
+autoload -Uz bashcompinit
+bashcompinit
+
+# Add highlight enabled tab completion with colors
+eval "$(dircolors)"
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' menu select
+

@@ -1,0 +1,24 @@
+---
+- name: Read packages from file
+  ansible.builtin.slurp:
+    src: "{{ packages_file }}"
+  register: packages_file_content
+
+- name: Convert packages file content to list
+  ansible.builtin.set_fact:
+    package_list: "{{ packages_file_content['content'] | b64decode | split('\n') }}"
+
+- name: Install paru (AUR helper)
+  become: false
+  ansible.builtin.command: >
+    bash -c 'if ! command -v paru >/dev/null; then
+      git clone https://aur.archlinux.org/paru.git /tmp/paru &&
+      cd /tmp/paru &&
+      makepkg -si --noconfirm; fi'
+
+- name: Install packages with pacman
+  community.general.pacman:
+    name: "{{ package_list }}"
+    state: present
+    update_cache: true
+

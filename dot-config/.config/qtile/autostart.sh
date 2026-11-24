@@ -54,11 +54,10 @@ xset r rate 250 40
 nvidia-settings --load-config-only
 
 # display settings
-# DP-2: primary, portrait (bottom edge faces right), on the left
-# DP-0: landscape, 180Hz, on the right
-# DISABLED: hung the X session on login (2026-11-23); test step by step before re-enabling
-# xrandr --output DP-2 --primary --mode 2560x1440 --rate 143.91 --rotate right --pos 0x0 \
-#        --output DP-0 --mode 2560x1440 --rate 180.00 --rotate normal --right-of DP-2
+# Layout (rotation, position, refresh) lives in /etc/X11/xorg.conf MetaModes.
+# Don't change modes/rotation with xrandr here: on NVIDIA 620 a live modeset
+# touching both heads hangs the display engine. Setting primary is safe.
+xrandr --output DP-2 --primary
 
 # emacs server
 /usr/bin/emacs --daemon

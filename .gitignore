@@ -24,3 +24,9 @@ history
 
 # ignore elpa packages
 emacs/.emacs.d/elpa
+
+# emacs caches / local state (never commit)
+emacs/.emacs.d/eln-cache/
+emacs/.emacs.d/.cask/
+emacs/.emacs.d/forge-database.sqlite
+emacs/.emacs.d/tramp

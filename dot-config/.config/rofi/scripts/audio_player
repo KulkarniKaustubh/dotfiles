@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+rofi_command="rofi -dmenu -i -theme /home/kaustubh/dotfiles/dot-config/.config/rofi/themes/audio_player.rasi"
+
+options="Play/Pause\nNext\nTrack"
+
+# echo -e "$options" | $rofi_command -theme-str 'listview { columns: 5; lines: 1; layout: vertical; } element { orientation: vertical; } element-text { horizontal-align: 0.5; }'
+echo -e "$options" | $rofi_command -p "abc"
