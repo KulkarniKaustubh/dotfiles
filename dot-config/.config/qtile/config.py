@@ -767,10 +767,12 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 
-# Bars are cached per monitor: qtile calls generate_screens again on every
-# screen change, and a fresh Systray each time would clash with the old one
-# (the closed WidgetBox never finalizes it -> "Only one Systray can be used").
-_bars = {}
+# Screens (and their bars) are cached per monitor: qtile calls generate_screens
+# again on every screen change. A fresh Systray each time would clash with the
+# old one ("Only one Systray can be used"), and returning new Screen objects
+# that reuse old bars makes qtile finalize those bars while they are still in
+# use (it finalizes every old screen not in the new list).
+_screens = {}
 
 
 def generate_screens(outputs):
@@ -786,11 +788,11 @@ def generate_screens(outputs):
             i == 0,
             out.rect.width < out.rect.height,
         )
-        if key not in _bars:
-            _bars[key] = get_bar_widgets(
-                primary=key[1], laptop=True, compact=key[2]
+        if key not in _screens:
+            _screens[key] = Screen(
+                top=get_bar_widgets(primary=key[1], laptop=True, compact=key[2])
             )
-        screens.append(Screen(top=_bars[key]))
+        screens.append(_screens[key])
     return screens
 
 
@@ -818,7 +820,8 @@ bring_front_click = False
 cursor_warp = False
 auto_fullscreen = True
 focus_on_window_activation = "smart"
-reconfigure_screens = True
+# Reconfigured by our own screen_change hook below instead, see there.
+reconfigure_screens = False
 
 # If things like steam games want to auto-minimize themselves when losing
 # focus, should we respect this or not?
@@ -833,6 +836,20 @@ auto_minimize = True
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
+
+
+@hook.subscribe.screen_change
+def _reconfigure_screens(_event):
+    """Reconfigure screens, unless every monitor has gone away.
+
+    Switching a KVM away disconnects all monitors. qtile then replaces its
+    screens with a bare Screen() that never gets a group, and every later key
+    press or screen change fails with "'Screen' object has no attribute
+    'group'", leaving qtile unresponsive. Keep the old screens until a monitor
+    comes back instead.
+    """
+    if qtile.core.get_output_info():
+        qtile.reconfigure_screens()
 
 
 # To autostart stuff that would normally be in .xinitrc
